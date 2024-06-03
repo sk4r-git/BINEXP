@@ -1,0 +1,1 @@
+requires = "binsec.sse.shadow_stack"

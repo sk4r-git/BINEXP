@@ -1,0 +1,122 @@
+type token =
+    UNDERSCORE
+  | SYMBOL of string
+  | STRING of string
+  | SETOPTION
+  | SETLOGIC
+  | SETINFO
+  | RPAREN
+  | RESETASSERTIONS
+  | RESET
+  | QUOTEDSYMBOL of string
+  | PUSH
+  | POP
+  | PAR
+  | NUMERAL of string
+  | MODEL
+  | METAINFO
+  | LPAREN
+  | LET
+  | LAMBDA
+  | KEYWORD of string
+  | HEXADECIMAL of string
+  | GETVALUE
+  | GETUNSATCORE
+  | GETUNSATASSUMPTIONS
+  | GETPROOF
+  | GETOPTION
+  | GETMODEL
+  | GETINFO
+  | GETASSIGNMENT
+  | GETASSERTIONS
+  | FORALL
+  | EXIT
+  | EXISTS
+  | EOF
+  | ECHO
+  | DEFINESORT
+  | DEFINEFUNREC
+  | DEFINEFUN
+  | DECLARESORT
+  | DECLAREFUN
+  | DECLARECONST
+  | DECIMAL of string
+  | CHECKSAT
+  | BV_NUMERAL of string
+  | BOOL of bool
+  | BINARY of string
+  | BANG
+  | ASSERT
+  | AS
+val mk_sexpr : Smtlib.sexpr_desc -> Location.t -> Smtlib.sexpr
+val mk_identifier : Smtlib.id_desc -> Location.t -> Smtlib.identifier
+val mk_sort : Smtlib.sort_desc -> Location.t -> Smtlib.sort
+val mk_command : Smtlib.command_desc -> Location.t -> Smtlib.command
+val mk_fun_def : Smtlib.fun_def_desc -> Location.t -> Smtlib.fun_def
+val mk_fun_rec_def :
+  Smtlib.fun_rec_def_desc -> Location.t -> Smtlib.fun_rec_def
+val mk_sorted_var : Smtlib.sorted_var_desc -> Location.t -> Smtlib.sorted_var
+val mk_qual_identifier :
+  Smtlib.qual_identifier_desc -> Location.t -> Smtlib.qual_identifier
+val mk_var_binding :
+  Smtlib.var_binding_desc -> Location.t -> Smtlib.var_binding
+val mk_term : Smtlib.term_desc -> Location.t -> Smtlib.term
+val mk_smt_option : Smtlib.smt_option_desc -> Location.t -> Smtlib.smt_option
+val mk_script : Smtlib.commands -> Location.t -> Smtlib.script
+val mk_model : Smtlib.commands -> Location.t -> Smtlib.model
+val mk_attribute : Smtlib.attribute_desc -> Location.t -> Smtlib.attribute
+val mk_attr_value : Smtlib.attr_value_desc -> Location.t -> Smtlib.attr_value
+val mk_info_flag : Smtlib.info_flag_desc -> Location.t -> Smtlib.info_flag
+val mk_symbol : Smtlib.symbol_desc -> Location.t -> Smtlib.symbol
+val mk_loc : 'a -> 'b -> Location.t
+val menhir_begin_marker : int
+val xv_var_binding : Smtlib.var_binding
+val xv_value : (Smtlib.term * Smtlib.term) list
+val xv_term : Smtlib.term
+val xv_symbol : Smtlib.symbol
+val xv_spec_constant : Smtlib.constant
+val xv_sorted_var : Smtlib.sorted_var
+val xv_sort : Smtlib.sort
+val xv_smt_option : Smtlib.smt_option
+val xv_sexpr : Smtlib.sexpr
+val xv_script : Smtlib.script
+val xv_qual_identifier : Smtlib.qual_identifier
+val xv_preceded_option_MODEL__list_delimited_LPAREN_command_RPAREN___ :
+  Smtlib.commands
+val xv_poly_parameters : Smtlib.sorts
+val xv_pair_term_term_ : Smtlib.term * Smtlib.term
+val xv_option_poly_parameters_ : Smtlib.sorts option
+val xv_option_NUMERAL_ : string option
+val xv_option_MODEL_ : unit option
+val xv_nonempty_list_var_binding_ : Smtlib.var_bindings
+val xv_nonempty_list_term_ : Smtlib.terms
+val xv_nonempty_list_symbol_ : Smtlib.symbols
+val xv_nonempty_list_sorted_var_ : Smtlib.sorted_vars
+val xv_nonempty_list_sort_ : Smtlib.sorts
+val xv_nonempty_list_index_ : Smtlib.indexes
+val xv_nonempty_list_fun_rec_def_ : Smtlib.fun_rec_defs
+val xv_nonempty_list_delimited_LPAREN_pair_term_term__RPAREN__ :
+  (Smtlib.term * Smtlib.term) list
+val xv_nonempty_list_attribute_ : Smtlib.attributes
+val xv_model : Smtlib.model
+val xv_list_sorted_var_ : Smtlib.sorted_vars
+val xv_list_sort_ : Smtlib.sorts
+val xv_list_sexpr_ : Smtlib.sexprs
+val xv_list_delimited_LPAREN_command_RPAREN__ : Smtlib.commands
+val xv_ivalue : (Smtlib.term * Smtlib.term) list
+val xv_info_flag : Smtlib.info_flag
+val xv_index : Smtlib.index
+val xv_identifier : Smtlib.identifier
+val xv_fun_rec_def : Smtlib.fun_rec_def
+val xv_fun_nonrec_def : Smtlib.fun_def
+val xv_fun_def :
+  Smtlib.symbol * Smtlib.sorts option * Smtlib.sorted_vars * Smtlib.sort *
+  Smtlib.term
+val xv_delimited_LPAREN_preceded_option_MODEL__list_delimited_LPAREN_command_RPAREN____RPAREN_ :
+  Smtlib.commands
+val xv_delimited_LPAREN_pair_term_term__RPAREN_ : Smtlib.term * Smtlib.term
+val xv_delimited_LPAREN_command_RPAREN_ : Smtlib.command
+val xv_command : Smtlib.command
+val xv_attribute_value : Smtlib.attr_value
+val xv_attribute : Smtlib.attribute
+val menhir_end_marker : int

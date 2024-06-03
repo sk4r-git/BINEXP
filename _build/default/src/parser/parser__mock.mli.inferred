@@ -1,0 +1,203 @@
+type token =
+    XOR
+  | VAR
+  | UNIMPLEMENTED
+  | UNDEFINED
+  | UNDEF
+  | UNCONTROLLED
+  | TRUE
+  | TMP of string
+  | THEN
+  | TEMPTAG
+  | TEMPORARY
+  | SUPER
+  | STRING of string
+  | STOP
+  | STAR_U
+  | STAR_S
+  | STAR
+  | SOK
+  | SLASH_U
+  | SLASH_S
+  | SKO
+  | SEMICOLON
+  | RSHIFTU
+  | RSHIFTS
+  | RROTATE
+  | RPAR
+  | RETURNFLAG
+  | REGISTER
+  | REACH
+  | RBRACKETU
+  | RBRACKETS
+  | RBRACKET
+  | RBRACE
+  | PLUS
+  | OR
+  | NOT
+  | NONDET
+  | NEQ
+  | MODU
+  | MODS
+  | MINUS
+  | MIN
+  | MAX
+  | LTU
+  | LTS
+  | LSHIFT
+  | LROTATE
+  | LPAR
+  | LEU
+  | LES
+  | LBRACKET
+  | LBRACE
+  | INT of string
+  | INFER
+  | IF
+  | IDENT of string
+  | HEXA of string
+  | GTU
+  | GTS
+  | GOTO
+  | GEU
+  | GES
+  | FROMFILE
+  | FROM
+  | FLAGTAG
+  | FLAG
+  | FILE
+  | FALSE
+  | EXTU
+  | EXTS
+  | EQUAL
+  | EOF
+  | ENUMERATE
+  | ENTRYPOINT
+  | ELSE
+  | DOTDOT
+  | DOT
+  | CUT
+  | CONSEQUENT
+  | CONCAT
+  | COMMA
+  | COLON
+  | CALLFLAG
+  | BSWAP
+  | BIN of string
+  | AT
+  | ASSUME
+  | ASSIGN
+  | ASSERT
+  | AS
+  | ARROWINV
+  | ARROW
+  | ANNOT
+  | AND
+  | ALTERNATIVE
+  | ALTERNATE
+val unknown_successor : int
+val default_endianness : Machine.endianness option -> Machine.endianness
+val mk_declaration : Dba.Var.Tag.t -> string -> int -> Dba_types.LValue.t
+val _dummy_addr : int
+val menhir_begin_marker : int
+val xv_value : Parse_helpers.Message.Value.t
+val xv_terminated_initialization_directive_SEMICOLON_ :
+  Parse_helpers.Initialization.t
+val xv_terminated_declaration_SEMICOLON_ : Dba_types.LValue.t
+val xv_terminated_assignment_SEMICOLON_ : Dba_types.Instruction.t
+val xv_tags : Dba.Var.Tag.t
+val xv_store_annotation : Machine.endianness
+val xv_stop_annot : Dba.state
+val xv_static_target : int Dba.jump_target
+val xv_static_jump : Dba_types.Instruction.t
+val xv_specific_declaration_kwd : string -> int -> Dba_types.LValue.t
+val xv_size_annot : int
+val xv_separated_nonempty_list_SEMICOLON_located_directive_ :
+  Directive.t list
+val xv_separated_nonempty_list_COMMA_expr_ : Dba_types.Expr.t list
+val xv_rvalue : Dba_types.LValue.t -> int -> Dba_types.Instruction.t
+val xv_preceded_SEMICOLON_addressOption_ : int
+val xv_preceded_IF_expr_ : Dba_types.Expr.t
+val xv_preceded_COMMA_store_annotation_ : Machine.endianness
+val xv_preceded_COMMA_constant_ : Bitvector.t
+val xv_preceded_COMMA_INT_ : string
+val xv_patchmap : Binstream.t Virtual_address.Map.t
+val xv_patch : int * Binstream.t
+val xv_option_tags_ : Dba.Var.Tag.t option
+val xv_option_stop_annot_ : Dba.state option
+val xv_option_size_annot_ : int option
+val xv_option_preceded_IF_expr__ : Dba_types.Expr.t option
+val xv_option_jump_annotation_ : Dba.tag option
+val xv_opcode : Binstream.t
+val xv_offsets : int * int
+val xv_nonempty_list_integer_ : int list
+val xv_lvalue : Dba_types.LValue.t
+val xv_located_directive : Directive.t
+val xv_localized_instruction : Dba.address * Dba_types.Instruction.t
+val xv_list_terminated_initialization_directive_SEMICOLON__ :
+  Parse_helpers.Initialization.t list
+val xv_list_terminated_declaration_SEMICOLON__ : Dba_types.LValue.t list
+val xv_list_terminated_assignment_SEMICOLON__ : Dba_types.Instruction.t list
+val xv_list_patch_ : (int * Binstream.t) list
+val xv_list_localized_instruction_ :
+  (Dba.address * Dba_types.Instruction.t) list
+val xv_list_labelled_instruction_ : (int * Dba_types.Instruction.t) list
+val xv_list_dhunk_substitution_ : (Loader_utils.Binary_loc.t * Dhunk.t) list
+val xv_labelled_instruction : int * Dba_types.Instruction.t
+val xv_kv : string * Parse_helpers.Message.Value.t
+val xv_jump_target : Dba_types.Instruction.t
+val xv_jump_annotation : Dba.tag
+val xv_ioption_size_annot_ : int option
+val xv_ioption_preceded_COMMA_store_annotation__ : Machine.endianness option
+val xv_ioption_jump_annotation_ : Dba.tag option
+val xv_ioption_delimited_LPAR_integer_RPAR__ : int option
+val xv_ioption_as_annotation_ : string option
+val xv_interval_or_set : Parse_helpers.Initialization.rvalue
+val xv_integer_argument : int option
+val xv_integer : int
+val xv_instruction_eof : Dba_types.Instruction.t
+val xv_instruction : Dba_types.Instruction.t
+val xv_initialization_directive : Parse_helpers.Initialization.t
+val xv_initialization_assignment : Parse_helpers.Initialization.t
+val xv_initialization : Parse_helpers.Initialization.t list
+val xv_fromfile : unit
+val xv_expr_eof : Dba_types.Expr.t
+val xv_expr : Dba_types.Expr.t
+val xv_explicit_instruction : Dba_types.Instruction.t
+val xv_entry : Dba.address
+val xv_either_DOTDOT_COMMA_ : unit
+val xv_directives : Directive.t list
+val xv_directive : loc:Dba_types.Expr.t -> unit -> Directive.t
+val xv_dhunk_substitutions_eof : (Loader_utils.Binary_loc.t * Dhunk.t) list
+val xv_dhunk_substitution : Loader_utils.Binary_loc.t * Dhunk.t
+val xv_dhunk_eof : Dhunk.t
+val xv_dhunk : Dhunk.t
+val xv_delimited_LPAR_nonempty_list_integer__RPAR_ : int list
+val xv_delimited_LPAR_integer_RPAR_ : int
+val xv_delimited_LPAR_cond_RPAR_ : Dba_types.Expr.t
+val xv_delimited_INFER_bin_loc_with_id_SUPER_ : Loader_utils.Binary_loc.t
+val xv_decoder_msg :
+  (string * Parse_helpers.Message.Value.t) list *
+  (Dba.address * Dba_types.Instruction.t) list
+val xv_decoder_base : (string * Parse_helpers.Message.Value.t) list
+val xv_declaration : Dba_types.LValue.t
+val xv_dba : Dba_types.program
+val xv_constant : Bitvector.t
+val xv_consequent : unit
+val xv_config : Dba.address
+val xv_cond : Dba_types.Expr.t
+val xv_boption_UNCONTROLLED_ : bool
+val xv_boption_ALTERNATE_ : bool
+val xv_body : (Dba.address * Dba_types.Instruction.t) list
+val xv_binary_loc : Loader_utils.Binary_loc.t
+val xv_bin_op : Dba.Binary_op.t
+val xv_bin_loc_with_id : Loader_utils.Binary_loc.t
+val xv_assignment : Dba_types.Instruction.t
+val xv_as_annotation : string
+val xv_annotable_instruction : Dba_types.Instruction.t
+val xv_alternative : unit
+val xv_address_lvalue : Dba_types.LValue.t
+val xv_addressOption : int
+val xv_address : Dba.address
+val xv_addr_annot : int
+val menhir_end_marker : int

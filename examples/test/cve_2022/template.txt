@@ -1,0 +1,11 @@
+kind : "sink"
+name : "malloc"
+num  : "rdi"
+
+kind : "sink"
+name : "calloc"
+num  : "rdi, rsi"
+
+kind : "sink"
+name : "realloc"
+num  : "rdi, rsi"

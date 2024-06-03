@@ -1,0 +1,126 @@
+
+type token = 
+  | UNREACHABLE
+  | SKIP
+  | PROCESS
+  | OPAQUE
+  | IS
+  | FALLTHROUGH
+  | EXPECT
+  | EOF
+  | CLEAR
+  | CALL
+  | BRANCH
+  | AT
+  | ADDRESS of (
+# 24 "src/bbsse/bbsse_parser.mly"
+       (Z.t)
+# 19 "src/bbsse/bbsse_parser__mock.ml.mock"
+)
+
+let menhir_begin_marker =
+  0
+
+and (xv_status, xv_list_directive_, xv_directives, xv_directive, xv_address) =
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 218 "<standard.mly>"
+         xs
+# 29 "src/bbsse/bbsse_parser__mock.ml.mock"
+   : 'tv_list_directive_) (_startpos_xs_ : Lexing.position) (_endpos_xs_ : Lexing.position) (_startofs_xs_ : int) (_endofs_xs_ : int) (_loc_xs_ : Lexing.position * Lexing.position) (
+# 218 "<standard.mly>"
+  x
+# 33 "src/bbsse/bbsse_parser__mock.ml.mock"
+   : 'tv_directive) (_startpos_x_ : Lexing.position) (_endpos_x_ : Lexing.position) (_startofs_x_ : int) (_endofs_x_ : int) (_loc_x_ : Lexing.position * Lexing.position) : 'tv_list_directive_ ->
+    
+# 219 "<standard.mly>"
+    ( x :: xs )
+# 38 "src/bbsse/bbsse_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) : 'tv_list_directive_ ->
+    
+# 216 "<standard.mly>"
+    ( [] )
+# 44 "src/bbsse/bbsse_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (_2 : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (_1 : 'tv_list_directive_) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : (
+# 28 "src/bbsse/bbsse_parser.mly"
+      (Bbsse_types.Directive.t  list)
+# 49 "src/bbsse/bbsse_parser__mock.ml.mock"
+  ) ->
+    (_1 : 'tv_directives) in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (_1 : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_status ->
+    
+# 54 "src/bbsse/bbsse_parser.mly"
+    ( Bbsse_types.Status.Clear )
+# 56 "src/bbsse/bbsse_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (_1 : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_status ->
+    
+# 52 "src/bbsse/bbsse_parser.mly"
+    ( Bbsse_types.Status.Unreachable )
+# 62 "src/bbsse/bbsse_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (_2 : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (_1 : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_status ->
+    
+# 50 "src/bbsse/bbsse_parser.mly"
+    ( Bbsse_types.Status.Opaque false )
+# 68 "src/bbsse/bbsse_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (_2 : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (_1 : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_status ->
+    
+# 48 "src/bbsse/bbsse_parser.mly"
+    ( Bbsse_types.Status.Opaque true )
+# 74 "src/bbsse/bbsse_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 40 "src/bbsse/bbsse_parser.mly"
+                       address
+# 79 "src/bbsse/bbsse_parser__mock.ml.mock"
+   : 'tv_address) (_startpos_address_ : Lexing.position) (_endpos_address_ : Lexing.position) (_startofs_address_ : int) (_endofs_address_ : int) (_loc_address_ : Lexing.position * Lexing.position) (_3 : unit) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (_2 : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (_1 : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_directive ->
+    
+# 41 "src/bbsse/bbsse_parser.mly"
+    ( Bbsse_types.Directive.ProcessCall address )
+# 84 "src/bbsse/bbsse_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 38 "src/bbsse/bbsse_parser.mly"
+          address
+# 89 "src/bbsse/bbsse_parser__mock.ml.mock"
+   : 'tv_address) (_startpos_address_ : Lexing.position) (_endpos_address_ : Lexing.position) (_startofs_address_ : int) (_endofs_address_ : int) (_loc_address_ : Lexing.position * Lexing.position) (_1 : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_directive ->
+    
+# 39 "src/bbsse/bbsse_parser.mly"
+    ( Bbsse_types.Directive.SkipJump address )
+# 94 "src/bbsse/bbsse_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 36 "src/bbsse/bbsse_parser.mly"
+                           status
+# 99 "src/bbsse/bbsse_parser__mock.ml.mock"
+   : 'tv_status) (_startpos_status_ : Lexing.position) (_endpos_status_ : Lexing.position) (_startofs_status_ : int) (_endofs_status_ : int) (_loc_status_ : Lexing.position * Lexing.position) (_3 : unit) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (
+# 36 "src/bbsse/bbsse_parser.mly"
+            address
+# 103 "src/bbsse/bbsse_parser__mock.ml.mock"
+   : 'tv_address) (_startpos_address_ : Lexing.position) (_endpos_address_ : Lexing.position) (_startofs_address_ : int) (_endofs_address_ : int) (_loc_address_ : Lexing.position * Lexing.position) (_1 : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_directive ->
+    
+# 37 "src/bbsse/bbsse_parser.mly"
+    ( Bbsse_types.Directive.ExpectAt (address, status) )
+# 108 "src/bbsse/bbsse_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 43 "src/bbsse/bbsse_parser.mly"
+               addr
+# 113 "src/bbsse/bbsse_parser__mock.ml.mock"
+   : (
+# 24 "src/bbsse/bbsse_parser.mly"
+       (Z.t)
+# 117 "src/bbsse/bbsse_parser__mock.ml.mock"
+  )) (_startpos_addr_ : Lexing.position) (_endpos_addr_ : Lexing.position) (_startofs_addr_ : int) (_endofs_addr_ : int) (_loc_addr_ : Lexing.position * Lexing.position) : 'tv_address ->
+    
+# 44 "src/bbsse/bbsse_parser.mly"
+    ( Virtual_address.of_bigint addr )
+# 122 "src/bbsse/bbsse_parser__mock.ml.mock"
+     in
+  ((let rec diverge() = diverge() in diverge()) : 'tv_status * 'tv_list_directive_ * 'tv_directives * 'tv_directive * 'tv_address)
+
+and menhir_end_marker =
+  0

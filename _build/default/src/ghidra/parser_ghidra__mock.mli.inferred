@@ -1,0 +1,35 @@
+type token =
+    SUPER
+  | SUCCESSORS
+  | STRING of string
+  | SIZE
+  | RPAR
+  | OPCODE
+  | NUMERIC of Z.t
+  | MNEMONIC
+  | LPAR
+  | KIND
+  | INFO
+  | FILE
+  | EOF
+  | DOT
+  | DATE
+  | ADDRESS
+val menhir_begin_marker : int
+val xv_log_kv_SUCCESSORS_list_NUMERIC___ : Z.t list
+val xv_log_kv_SIZE_NUMERIC__ : Z.t
+val xv_log_kv_OPCODE_NUMERIC__ : Z.t
+val xv_log_kv_MNEMONIC_STRING__ : string
+val xv_log_kv_KIND_STRING__ : string
+val xv_log_kv_ADDRESS_NUMERIC__ : Z.t
+val xv_list_instruction_ : (int * int * string * string * int list) list
+val xv_list_NUMERIC_ : Z.t list
+val xv_kv_SUCCESSORS_list_NUMERIC__ : Z.t list
+val xv_kv_SIZE_NUMERIC_ : Z.t
+val xv_kv_OPCODE_NUMERIC_ : Z.t
+val xv_kv_MNEMONIC_STRING_ : string
+val xv_kv_KIND_STRING_ : string
+val xv_kv_ADDRESS_NUMERIC_ : Z.t
+val xv_instructions : (int * int * string * string * int list) list
+val xv_instruction : int * int * string * string * int list
+val menhir_end_marker : int

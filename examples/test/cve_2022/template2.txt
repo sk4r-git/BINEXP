@@ -1,0 +1,19 @@
+kind : "source"
+name : "ntohs"
+num  : ""
+
+kind : "source"
+name : "malloc"
+num  : ""
+
+kind : "sink"
+name : "htons"
+num  : "rdi"
+
+kind : "sink"
+name : "malloc"
+num  : "rdi"
+
+kind : "source"
+name : "htonl"
+num  : ""

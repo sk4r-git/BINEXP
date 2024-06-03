@@ -1,0 +1,1960 @@
+
+type token = 
+  | UNDERSCORE
+  | SYMBOL of (
+# 140 "src/smtlib/smtlib_parser.mly"
+       (string)
+# 8 "src/smtlib/smtlib_parser__mock.ml.mock"
+)
+  | STRING of (
+# 137 "src/smtlib/smtlib_parser.mly"
+       (string)
+# 13 "src/smtlib/smtlib_parser__mock.ml.mock"
+)
+  | SETOPTION
+  | SETLOGIC
+  | SETINFO
+  | RPAREN
+  | RESETASSERTIONS
+  | RESET
+  | QUOTEDSYMBOL of (
+# 141 "src/smtlib/smtlib_parser.mly"
+       (string)
+# 24 "src/smtlib/smtlib_parser__mock.ml.mock"
+)
+  | PUSH
+  | POP
+  | PAR
+  | NUMERAL of (
+# 132 "src/smtlib/smtlib_parser.mly"
+       (Smtlib.numeral)
+# 32 "src/smtlib/smtlib_parser__mock.ml.mock"
+)
+  | MODEL
+  | METAINFO
+  | LPAREN
+  | LET
+  | LAMBDA
+  | KEYWORD of (
+# 139 "src/smtlib/smtlib_parser.mly"
+       (string)
+# 42 "src/smtlib/smtlib_parser__mock.ml.mock"
+)
+  | HEXADECIMAL of (
+# 134 "src/smtlib/smtlib_parser.mly"
+       (string)
+# 47 "src/smtlib/smtlib_parser__mock.ml.mock"
+)
+  | GETVALUE
+  | GETUNSATCORE
+  | GETUNSATASSUMPTIONS
+  | GETPROOF
+  | GETOPTION
+  | GETMODEL
+  | GETINFO
+  | GETASSIGNMENT
+  | GETASSERTIONS
+  | FORALL
+  | EXIT
+  | EXISTS
+  | EOF
+  | ECHO
+  | DEFINESORT
+  | DEFINEFUNREC
+  | DEFINEFUN
+  | DECLARESORT
+  | DECLAREFUN
+  | DECLARECONST
+  | DECIMAL of (
+# 133 "src/smtlib/smtlib_parser.mly"
+       (string)
+# 72 "src/smtlib/smtlib_parser__mock.ml.mock"
+)
+  | CHECKSAT
+  | BV_NUMERAL of (
+# 135 "src/smtlib/smtlib_parser.mly"
+       (string)
+# 78 "src/smtlib/smtlib_parser__mock.ml.mock"
+)
+  | BOOL of (
+# 138 "src/smtlib/smtlib_parser.mly"
+       (bool)
+# 83 "src/smtlib/smtlib_parser__mock.ml.mock"
+)
+  | BINARY of (
+# 136 "src/smtlib/smtlib_parser.mly"
+       (string)
+# 88 "src/smtlib/smtlib_parser__mock.ml.mock"
+)
+  | BANG
+  | ASSERT
+  | AS
+
+# 22 "src/smtlib/smtlib_parser.mly"
+  
+    open Smtlib
+    open Location ;;
+
+    (* Helper construction functions.
+       File location is handled in production rules.
+       *)
+    let mk_sexpr sexpr_desc sexpr_loc = { sexpr_desc; sexpr_loc; } ;;
+    let mk_identifier id_desc id_loc = { id_desc; id_loc; } ;;
+
+    let mk_sort sort_desc sort_loc = { sort_desc; sort_loc; } ;;
+
+    let mk_command command_desc command_loc =
+      { command_desc; command_loc; }
+    ;;
+
+    let mk_fun_def fun_def_desc fun_def_loc =
+      { fun_def_desc; fun_def_loc; }
+    ;;
+
+    let mk_fun_rec_def fun_rec_def_desc fun_rec_def_loc =
+      { fun_rec_def_desc; fun_rec_def_loc; }
+    ;;
+
+    let mk_sorted_var sorted_var_desc sorted_var_loc =
+      { sorted_var_desc; sorted_var_loc; }
+    ;;
+
+    let mk_qual_identifier qual_identifier_desc qual_identifier_loc =
+      { qual_identifier_desc; qual_identifier_loc; }
+    ;;
+
+    let mk_var_binding var_binding_desc var_binding_loc =
+      { var_binding_desc; var_binding_loc; }
+    ;;
+
+    let mk_term term_desc term_loc = { term_desc; term_loc; } ;;
+
+    let mk_smt_option smt_option_desc smt_option_loc = {
+        smt_option_desc; smt_option_loc ;
+      }
+    ;;
+
+    let mk_script script_commands script_loc =
+      { script_commands; script_loc; }
+    ;;
+
+    let mk_model model_commands model_loc = { model_commands; model_loc; }
+    let mk_attribute attribute_desc attribute_loc =
+      { attribute_desc; attribute_loc; }
+    ;;
+
+    let mk_attr_value attr_value_desc attr_value_loc =
+      { attr_value_desc; attr_value_loc; }
+    ;;
+
+    let mk_info_flag info_flag_desc info_flag_loc =
+      { info_flag_desc; info_flag_loc; }
+    ;;
+
+    let mk_symbol symbol_desc symbol_loc = { symbol_desc; symbol_loc; } ;;
+
+    let mk_loc _ _ = dummy_loc
+
+# 159 "src/smtlib/smtlib_parser__mock.ml.mock"
+
+let menhir_begin_marker =
+  0
+
+and (xv_var_binding, xv_value, xv_term, xv_symbol, xv_spec_constant, xv_sorted_var, xv_sort, xv_smt_option, xv_sexpr, xv_script, xv_qual_identifier, xv_preceded_option_MODEL__list_delimited_LPAREN_command_RPAREN___, xv_poly_parameters, xv_pair_term_term_, xv_option_poly_parameters_, xv_option_NUMERAL_, xv_option_MODEL_, xv_nonempty_list_var_binding_, xv_nonempty_list_term_, xv_nonempty_list_symbol_, xv_nonempty_list_sorted_var_, xv_nonempty_list_sort_, xv_nonempty_list_index_, xv_nonempty_list_fun_rec_def_, xv_nonempty_list_delimited_LPAREN_pair_term_term__RPAREN__, xv_nonempty_list_attribute_, xv_model, xv_list_sorted_var_, xv_list_sort_, xv_list_sexpr_, xv_list_delimited_LPAREN_command_RPAREN__, xv_ivalue, xv_info_flag, xv_index, xv_identifier, xv_fun_rec_def, xv_fun_nonrec_def, xv_fun_def, xv_delimited_LPAREN_preceded_option_MODEL__list_delimited_LPAREN_command_RPAREN____RPAREN_, xv_delimited_LPAREN_pair_term_term__RPAREN_, xv_delimited_LPAREN_command_RPAREN_, xv_command, xv_attribute_value, xv_attribute) =
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 187 "<standard.mly>"
+           x
+# 168 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_list_delimited_LPAREN_command_RPAREN__) (_startpos_x_ : Lexing.position) (_endpos_x_ : Lexing.position) (_startofs_x_ : int) (_endofs_x_ : int) (_loc_x_ : Lexing.position * Lexing.position) (
+# 186 "<standard.mly>"
+                                     _1
+# 173 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_option_MODEL_) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_preceded_option_MODEL__list_delimited_LPAREN_command_RPAREN___ ->
+    
+# 188 "<standard.mly>"
+    ( x )
+# 178 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 171 "<standard.mly>"
+         y
+# 183 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_term) (_startpos_y_ : Lexing.position) (_endpos_y_ : Lexing.position) (_startofs_y_ : int) (_endofs_y_ : int) (_loc_y_ : Lexing.position * Lexing.position) (
+# 171 "<standard.mly>"
+  x
+# 187 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_term) (_startpos_x_ : Lexing.position) (_endpos_x_ : Lexing.position) (_startofs_x_ : int) (_endofs_x_ : int) (_loc_x_ : Lexing.position * Lexing.position) : 'tv_pair_term_term_ ->
+    
+# 172 "<standard.mly>"
+    ( (x, y) )
+# 192 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 113 "<standard.mly>"
+  x
+# 197 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_poly_parameters) (_startpos_x_ : Lexing.position) (_endpos_x_ : Lexing.position) (_startofs_x_ : int) (_endofs_x_ : int) (_loc_x_ : Lexing.position * Lexing.position) : 'tv_option_poly_parameters_ ->
+    
+# 114 "<standard.mly>"
+    ( Some x )
+# 202 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) : 'tv_option_poly_parameters_ ->
+    
+# 111 "<standard.mly>"
+    ( None )
+# 208 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 113 "<standard.mly>"
+  x
+# 213 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : (
+# 132 "src/smtlib/smtlib_parser.mly"
+       (Smtlib.numeral)
+# 217 "src/smtlib/smtlib_parser__mock.ml.mock"
+  )) (_startpos_x_ : Lexing.position) (_endpos_x_ : Lexing.position) (_startofs_x_ : int) (_endofs_x_ : int) (_loc_x_ : Lexing.position * Lexing.position) : 'tv_option_NUMERAL_ ->
+    
+# 114 "<standard.mly>"
+    ( Some x )
+# 222 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) : 'tv_option_NUMERAL_ ->
+    
+# 111 "<standard.mly>"
+    ( None )
+# 228 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 113 "<standard.mly>"
+  x
+# 233 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos_x_ : Lexing.position) (_endpos_x_ : Lexing.position) (_startofs_x_ : int) (_endofs_x_ : int) (_loc_x_ : Lexing.position * Lexing.position) : 'tv_option_MODEL_ ->
+    
+# 114 "<standard.mly>"
+    ( Some x )
+# 238 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) : 'tv_option_MODEL_ ->
+    
+# 111 "<standard.mly>"
+    ( None )
+# 244 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 230 "<standard.mly>"
+         xs
+# 249 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_nonempty_list_var_binding_) (_startpos_xs_ : Lexing.position) (_endpos_xs_ : Lexing.position) (_startofs_xs_ : int) (_endofs_xs_ : int) (_loc_xs_ : Lexing.position * Lexing.position) (
+# 230 "<standard.mly>"
+  x
+# 253 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_var_binding) (_startpos_x_ : Lexing.position) (_endpos_x_ : Lexing.position) (_startofs_x_ : int) (_endofs_x_ : int) (_loc_x_ : Lexing.position * Lexing.position) : 'tv_nonempty_list_var_binding_ ->
+    
+# 231 "<standard.mly>"
+    ( x :: xs )
+# 258 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 227 "<standard.mly>"
+  x
+# 263 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_var_binding) (_startpos_x_ : Lexing.position) (_endpos_x_ : Lexing.position) (_startofs_x_ : int) (_endofs_x_ : int) (_loc_x_ : Lexing.position * Lexing.position) : 'tv_nonempty_list_var_binding_ ->
+    
+# 228 "<standard.mly>"
+    ( [ x ] )
+# 268 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 230 "<standard.mly>"
+         xs
+# 273 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_nonempty_list_term_) (_startpos_xs_ : Lexing.position) (_endpos_xs_ : Lexing.position) (_startofs_xs_ : int) (_endofs_xs_ : int) (_loc_xs_ : Lexing.position * Lexing.position) (
+# 230 "<standard.mly>"
+  x
+# 277 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_term) (_startpos_x_ : Lexing.position) (_endpos_x_ : Lexing.position) (_startofs_x_ : int) (_endofs_x_ : int) (_loc_x_ : Lexing.position * Lexing.position) : 'tv_nonempty_list_term_ ->
+    
+# 231 "<standard.mly>"
+    ( x :: xs )
+# 282 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 227 "<standard.mly>"
+  x
+# 287 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_term) (_startpos_x_ : Lexing.position) (_endpos_x_ : Lexing.position) (_startofs_x_ : int) (_endofs_x_ : int) (_loc_x_ : Lexing.position * Lexing.position) : 'tv_nonempty_list_term_ ->
+    
+# 228 "<standard.mly>"
+    ( [ x ] )
+# 292 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 230 "<standard.mly>"
+         xs
+# 297 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_nonempty_list_symbol_) (_startpos_xs_ : Lexing.position) (_endpos_xs_ : Lexing.position) (_startofs_xs_ : int) (_endofs_xs_ : int) (_loc_xs_ : Lexing.position * Lexing.position) (
+# 230 "<standard.mly>"
+  x
+# 301 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_symbol) (_startpos_x_ : Lexing.position) (_endpos_x_ : Lexing.position) (_startofs_x_ : int) (_endofs_x_ : int) (_loc_x_ : Lexing.position * Lexing.position) : 'tv_nonempty_list_symbol_ ->
+    
+# 231 "<standard.mly>"
+    ( x :: xs )
+# 306 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 227 "<standard.mly>"
+  x
+# 311 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_symbol) (_startpos_x_ : Lexing.position) (_endpos_x_ : Lexing.position) (_startofs_x_ : int) (_endofs_x_ : int) (_loc_x_ : Lexing.position * Lexing.position) : 'tv_nonempty_list_symbol_ ->
+    
+# 228 "<standard.mly>"
+    ( [ x ] )
+# 316 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 230 "<standard.mly>"
+         xs
+# 321 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_nonempty_list_sorted_var_) (_startpos_xs_ : Lexing.position) (_endpos_xs_ : Lexing.position) (_startofs_xs_ : int) (_endofs_xs_ : int) (_loc_xs_ : Lexing.position * Lexing.position) (
+# 230 "<standard.mly>"
+  x
+# 325 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_sorted_var) (_startpos_x_ : Lexing.position) (_endpos_x_ : Lexing.position) (_startofs_x_ : int) (_endofs_x_ : int) (_loc_x_ : Lexing.position * Lexing.position) : 'tv_nonempty_list_sorted_var_ ->
+    
+# 231 "<standard.mly>"
+    ( x :: xs )
+# 330 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 227 "<standard.mly>"
+  x
+# 335 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_sorted_var) (_startpos_x_ : Lexing.position) (_endpos_x_ : Lexing.position) (_startofs_x_ : int) (_endofs_x_ : int) (_loc_x_ : Lexing.position * Lexing.position) : 'tv_nonempty_list_sorted_var_ ->
+    
+# 228 "<standard.mly>"
+    ( [ x ] )
+# 340 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 230 "<standard.mly>"
+         xs
+# 345 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_nonempty_list_sort_) (_startpos_xs_ : Lexing.position) (_endpos_xs_ : Lexing.position) (_startofs_xs_ : int) (_endofs_xs_ : int) (_loc_xs_ : Lexing.position * Lexing.position) (
+# 230 "<standard.mly>"
+  x
+# 349 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_sort) (_startpos_x_ : Lexing.position) (_endpos_x_ : Lexing.position) (_startofs_x_ : int) (_endofs_x_ : int) (_loc_x_ : Lexing.position * Lexing.position) : 'tv_nonempty_list_sort_ ->
+    
+# 231 "<standard.mly>"
+    ( x :: xs )
+# 354 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 227 "<standard.mly>"
+  x
+# 359 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_sort) (_startpos_x_ : Lexing.position) (_endpos_x_ : Lexing.position) (_startofs_x_ : int) (_endofs_x_ : int) (_loc_x_ : Lexing.position * Lexing.position) : 'tv_nonempty_list_sort_ ->
+    
+# 228 "<standard.mly>"
+    ( [ x ] )
+# 364 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 230 "<standard.mly>"
+         xs
+# 369 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_nonempty_list_index_) (_startpos_xs_ : Lexing.position) (_endpos_xs_ : Lexing.position) (_startofs_xs_ : int) (_endofs_xs_ : int) (_loc_xs_ : Lexing.position * Lexing.position) (
+# 230 "<standard.mly>"
+  x
+# 373 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_index) (_startpos_x_ : Lexing.position) (_endpos_x_ : Lexing.position) (_startofs_x_ : int) (_endofs_x_ : int) (_loc_x_ : Lexing.position * Lexing.position) : 'tv_nonempty_list_index_ ->
+    
+# 231 "<standard.mly>"
+    ( x :: xs )
+# 378 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 227 "<standard.mly>"
+  x
+# 383 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_index) (_startpos_x_ : Lexing.position) (_endpos_x_ : Lexing.position) (_startofs_x_ : int) (_endofs_x_ : int) (_loc_x_ : Lexing.position * Lexing.position) : 'tv_nonempty_list_index_ ->
+    
+# 228 "<standard.mly>"
+    ( [ x ] )
+# 388 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 230 "<standard.mly>"
+         xs
+# 393 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_nonempty_list_fun_rec_def_) (_startpos_xs_ : Lexing.position) (_endpos_xs_ : Lexing.position) (_startofs_xs_ : int) (_endofs_xs_ : int) (_loc_xs_ : Lexing.position * Lexing.position) (
+# 230 "<standard.mly>"
+  x
+# 397 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_fun_rec_def) (_startpos_x_ : Lexing.position) (_endpos_x_ : Lexing.position) (_startofs_x_ : int) (_endofs_x_ : int) (_loc_x_ : Lexing.position * Lexing.position) : 'tv_nonempty_list_fun_rec_def_ ->
+    
+# 231 "<standard.mly>"
+    ( x :: xs )
+# 402 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 227 "<standard.mly>"
+  x
+# 407 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_fun_rec_def) (_startpos_x_ : Lexing.position) (_endpos_x_ : Lexing.position) (_startofs_x_ : int) (_endofs_x_ : int) (_loc_x_ : Lexing.position * Lexing.position) : 'tv_nonempty_list_fun_rec_def_ ->
+    
+# 228 "<standard.mly>"
+    ( [ x ] )
+# 412 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 230 "<standard.mly>"
+         xs
+# 417 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_nonempty_list_delimited_LPAREN_pair_term_term__RPAREN__) (_startpos_xs_ : Lexing.position) (_endpos_xs_ : Lexing.position) (_startofs_xs_ : int) (_endofs_xs_ : int) (_loc_xs_ : Lexing.position * Lexing.position) (
+# 230 "<standard.mly>"
+  x
+# 421 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_delimited_LPAREN_pair_term_term__RPAREN_) (_startpos_x_ : Lexing.position) (_endpos_x_ : Lexing.position) (_startofs_x_ : int) (_endofs_x_ : int) (_loc_x_ : Lexing.position * Lexing.position) : 'tv_nonempty_list_delimited_LPAREN_pair_term_term__RPAREN__ ->
+    
+# 231 "<standard.mly>"
+    ( x :: xs )
+# 426 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 227 "<standard.mly>"
+  x
+# 431 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_delimited_LPAREN_pair_term_term__RPAREN_) (_startpos_x_ : Lexing.position) (_endpos_x_ : Lexing.position) (_startofs_x_ : int) (_endofs_x_ : int) (_loc_x_ : Lexing.position * Lexing.position) : 'tv_nonempty_list_delimited_LPAREN_pair_term_term__RPAREN__ ->
+    
+# 228 "<standard.mly>"
+    ( [ x ] )
+# 436 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 230 "<standard.mly>"
+         xs
+# 441 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_nonempty_list_attribute_) (_startpos_xs_ : Lexing.position) (_endpos_xs_ : Lexing.position) (_startofs_xs_ : int) (_endofs_xs_ : int) (_loc_xs_ : Lexing.position * Lexing.position) (
+# 230 "<standard.mly>"
+  x
+# 445 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_attribute) (_startpos_x_ : Lexing.position) (_endpos_x_ : Lexing.position) (_startofs_x_ : int) (_endofs_x_ : int) (_loc_x_ : Lexing.position * Lexing.position) : 'tv_nonempty_list_attribute_ ->
+    
+# 231 "<standard.mly>"
+    ( x :: xs )
+# 450 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 227 "<standard.mly>"
+  x
+# 455 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_attribute) (_startpos_x_ : Lexing.position) (_endpos_x_ : Lexing.position) (_startofs_x_ : int) (_endofs_x_ : int) (_loc_x_ : Lexing.position * Lexing.position) : 'tv_nonempty_list_attribute_ ->
+    
+# 228 "<standard.mly>"
+    ( [ x ] )
+# 460 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 218 "<standard.mly>"
+         xs
+# 465 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_list_sorted_var_) (_startpos_xs_ : Lexing.position) (_endpos_xs_ : Lexing.position) (_startofs_xs_ : int) (_endofs_xs_ : int) (_loc_xs_ : Lexing.position * Lexing.position) (
+# 218 "<standard.mly>"
+  x
+# 469 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_sorted_var) (_startpos_x_ : Lexing.position) (_endpos_x_ : Lexing.position) (_startofs_x_ : int) (_endofs_x_ : int) (_loc_x_ : Lexing.position * Lexing.position) : 'tv_list_sorted_var_ ->
+    
+# 219 "<standard.mly>"
+    ( x :: xs )
+# 474 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) : 'tv_list_sorted_var_ ->
+    
+# 216 "<standard.mly>"
+    ( [] )
+# 480 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 218 "<standard.mly>"
+         xs
+# 485 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_list_sort_) (_startpos_xs_ : Lexing.position) (_endpos_xs_ : Lexing.position) (_startofs_xs_ : int) (_endofs_xs_ : int) (_loc_xs_ : Lexing.position * Lexing.position) (
+# 218 "<standard.mly>"
+  x
+# 489 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_sort) (_startpos_x_ : Lexing.position) (_endpos_x_ : Lexing.position) (_startofs_x_ : int) (_endofs_x_ : int) (_loc_x_ : Lexing.position * Lexing.position) : 'tv_list_sort_ ->
+    
+# 219 "<standard.mly>"
+    ( x :: xs )
+# 494 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) : 'tv_list_sort_ ->
+    
+# 216 "<standard.mly>"
+    ( [] )
+# 500 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 218 "<standard.mly>"
+         xs
+# 505 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_list_sexpr_) (_startpos_xs_ : Lexing.position) (_endpos_xs_ : Lexing.position) (_startofs_xs_ : int) (_endofs_xs_ : int) (_loc_xs_ : Lexing.position * Lexing.position) (
+# 218 "<standard.mly>"
+  x
+# 509 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_sexpr) (_startpos_x_ : Lexing.position) (_endpos_x_ : Lexing.position) (_startofs_x_ : int) (_endofs_x_ : int) (_loc_x_ : Lexing.position * Lexing.position) : 'tv_list_sexpr_ ->
+    
+# 219 "<standard.mly>"
+    ( x :: xs )
+# 514 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) : 'tv_list_sexpr_ ->
+    
+# 216 "<standard.mly>"
+    ( [] )
+# 520 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 218 "<standard.mly>"
+         xs
+# 525 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_list_delimited_LPAREN_command_RPAREN__) (_startpos_xs_ : Lexing.position) (_endpos_xs_ : Lexing.position) (_startofs_xs_ : int) (_endofs_xs_ : int) (_loc_xs_ : Lexing.position * Lexing.position) (
+# 218 "<standard.mly>"
+  x
+# 529 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_delimited_LPAREN_command_RPAREN_) (_startpos_x_ : Lexing.position) (_endpos_x_ : Lexing.position) (_startofs_x_ : int) (_endofs_x_ : int) (_loc_x_ : Lexing.position * Lexing.position) : 'tv_list_delimited_LPAREN_command_RPAREN__ ->
+    
+# 219 "<standard.mly>"
+    ( x :: xs )
+# 534 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) : 'tv_list_delimited_LPAREN_command_RPAREN__ ->
+    
+# 216 "<standard.mly>"
+    ( [] )
+# 540 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 204 "<standard.mly>"
+                 _3
+# 545 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (
+# 204 "<standard.mly>"
+           x
+# 549 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_preceded_option_MODEL__list_delimited_LPAREN_command_RPAREN___) (_startpos_x_ : Lexing.position) (_endpos_x_ : Lexing.position) (_startofs_x_ : int) (_endofs_x_ : int) (_loc_x_ : Lexing.position * Lexing.position) (
+# 203 "<standard.mly>"
+                                               _1
+# 554 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_delimited_LPAREN_preceded_option_MODEL__list_delimited_LPAREN_command_RPAREN____RPAREN_ ->
+    
+# 205 "<standard.mly>"
+    ( x )
+# 559 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 204 "<standard.mly>"
+                 _3
+# 564 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (
+# 204 "<standard.mly>"
+           x
+# 568 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_pair_term_term_) (_startpos_x_ : Lexing.position) (_endpos_x_ : Lexing.position) (_startofs_x_ : int) (_endofs_x_ : int) (_loc_x_ : Lexing.position * Lexing.position) (
+# 203 "<standard.mly>"
+                                               _1
+# 573 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_delimited_LPAREN_pair_term_term__RPAREN_ ->
+    
+# 205 "<standard.mly>"
+    ( x )
+# 578 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 204 "<standard.mly>"
+                 _3
+# 583 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (
+# 204 "<standard.mly>"
+           x
+# 587 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_command) (_startpos_x_ : Lexing.position) (_endpos_x_ : Lexing.position) (_startofs_x_ : int) (_endofs_x_ : int) (_loc_x_ : Lexing.position * Lexing.position) (
+# 203 "<standard.mly>"
+                                               _1
+# 592 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_delimited_LPAREN_command_RPAREN_ ->
+    
+# 205 "<standard.mly>"
+    ( x )
+# 597 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 366 "src/smtlib/smtlib_parser.mly"
+                             _4
+# 602 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__4_ : Lexing.position) (_endpos__4_ : Lexing.position) (_startofs__4_ : int) (_endofs__4_ : int) (_loc__4_ : Lexing.position * Lexing.position) (
+# 366 "src/smtlib/smtlib_parser.mly"
+                      t
+# 606 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_term) (_startpos_t_ : Lexing.position) (_endpos_t_ : Lexing.position) (_startofs_t_ : int) (_endofs_t_ : int) (_loc_t_ : Lexing.position * Lexing.position) (
+# 366 "src/smtlib/smtlib_parser.mly"
+         symb
+# 610 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_symbol) (_startpos_symb_ : Lexing.position) (_endpos_symb_ : Lexing.position) (_startofs_symb_ : int) (_endofs_symb_ : int) (_loc_symb_ : Lexing.position * Lexing.position) (
+# 366 "src/smtlib/smtlib_parser.mly"
+ _1
+# 614 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_var_binding ->
+    
+# 367 "src/smtlib/smtlib_parser.mly"
+  ( let loc = mk_loc _startpos _endpos in
+    mk_var_binding (VarBinding (symb, t)) loc )
+# 620 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 182 "src/smtlib/smtlib_parser.mly"
+          _2
+# 625 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) ((
+# 182 "src/smtlib/smtlib_parser.mly"
+  v
+# 629 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_ivalue) : (
+# 148 "src/smtlib/smtlib_parser.mly"
+       ((Smtlib.term * Smtlib.term) list)
+# 633 "src/smtlib/smtlib_parser__mock.ml.mock"
+  )) (_startpos_v_ : Lexing.position) (_endpos_v_ : Lexing.position) (_startofs_v_ : int) (_endofs_v_ : int) (_loc_v_ : Lexing.position * Lexing.position) : (
+# 147 "src/smtlib/smtlib_parser.mly"
+       ((Smtlib.term * Smtlib.term) list)
+# 637 "src/smtlib/smtlib_parser__mock.ml.mock"
+  ) ->
+    (
+# 183 "src/smtlib/smtlib_parser.mly"
+  ( v )
+# 642 "src/smtlib/smtlib_parser__mock.ml.mock"
+     : 'tv_value) in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 351 "src/smtlib/smtlib_parser.mly"
+                                                        _7
+# 647 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__7_ : Lexing.position) (_endpos__7_ : Lexing.position) (_startofs__7_ : int) (_endofs__7_ : int) (_loc__7_ : Lexing.position * Lexing.position) (
+# 351 "src/smtlib/smtlib_parser.mly"
+                                                 t
+# 651 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_term) (_startpos_t_ : Lexing.position) (_endpos_t_ : Lexing.position) (_startofs_t_ : int) (_endofs_t_ : int) (_loc_t_ : Lexing.position * Lexing.position) (
+# 351 "src/smtlib/smtlib_parser.mly"
+                                         _5
+# 655 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__5_ : Lexing.position) (_endpos__5_ : Lexing.position) (_startofs__5_ : int) (_endofs__5_ : int) (_loc__5_ : Lexing.position * Lexing.position) (
+# 351 "src/smtlib/smtlib_parser.mly"
+                       svars
+# 659 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_nonempty_list_sorted_var_) (_startpos_svars_ : Lexing.position) (_endpos_svars_ : Lexing.position) (_startofs_svars_ : int) (_endofs_svars_ : int) (_loc_svars_ : Lexing.position * Lexing.position) (
+# 351 "src/smtlib/smtlib_parser.mly"
+               _3
+# 663 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (
+# 351 "src/smtlib/smtlib_parser.mly"
+        _2
+# 667 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 351 "src/smtlib/smtlib_parser.mly"
+ _1
+# 671 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_term ->
+    
+# 352 "src/smtlib/smtlib_parser.mly"
+ ( let loc = mk_loc _startpos _endpos in
+   mk_term (TermLambdaTerm(svars, t)) loc )
+# 677 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 348 "src/smtlib/smtlib_parser.mly"
+                                      _5
+# 682 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__5_ : Lexing.position) (_endpos__5_ : Lexing.position) (_startofs__5_ : int) (_endofs__5_ : int) (_loc__5_ : Lexing.position * Lexing.position) (
+# 348 "src/smtlib/smtlib_parser.mly"
+                      attrs
+# 686 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_nonempty_list_attribute_) (_startpos_attrs_ : Lexing.position) (_endpos_attrs_ : Lexing.position) (_startofs_attrs_ : int) (_endofs_attrs_ : int) (_loc_attrs_ : Lexing.position * Lexing.position) (
+# 348 "src/smtlib/smtlib_parser.mly"
+              t
+# 690 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_term) (_startpos_t_ : Lexing.position) (_endpos_t_ : Lexing.position) (_startofs_t_ : int) (_endofs_t_ : int) (_loc_t_ : Lexing.position * Lexing.position) (
+# 348 "src/smtlib/smtlib_parser.mly"
+        _2
+# 694 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 348 "src/smtlib/smtlib_parser.mly"
+ _1
+# 698 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_term ->
+    
+# 349 "src/smtlib/smtlib_parser.mly"
+ ( let loc = mk_loc _startpos _endpos in
+   mk_term (TermAnnotatedTerm(t, attrs)) loc )
+# 704 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 345 "src/smtlib/smtlib_parser.mly"
+                                                         _7
+# 709 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__7_ : Lexing.position) (_endpos__7_ : Lexing.position) (_startofs__7_ : int) (_endofs__7_ : int) (_loc__7_ : Lexing.position * Lexing.position) (
+# 345 "src/smtlib/smtlib_parser.mly"
+                                                  t
+# 713 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_term) (_startpos_t_ : Lexing.position) (_endpos_t_ : Lexing.position) (_startofs_t_ : int) (_endofs_t_ : int) (_loc_t_ : Lexing.position * Lexing.position) (
+# 345 "src/smtlib/smtlib_parser.mly"
+                                          _5
+# 717 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__5_ : Lexing.position) (_endpos__5_ : Lexing.position) (_startofs__5_ : int) (_endofs__5_ : int) (_loc__5_ : Lexing.position * Lexing.position) (
+# 345 "src/smtlib/smtlib_parser.mly"
+                        svars
+# 721 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_nonempty_list_sorted_var_) (_startpos_svars_ : Lexing.position) (_endpos_svars_ : Lexing.position) (_startofs_svars_ : int) (_endofs_svars_ : int) (_loc_svars_ : Lexing.position * Lexing.position) (
+# 345 "src/smtlib/smtlib_parser.mly"
+               _3
+# 725 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (
+# 345 "src/smtlib/smtlib_parser.mly"
+        _2
+# 729 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 345 "src/smtlib/smtlib_parser.mly"
+ _1
+# 733 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_term ->
+    
+# 346 "src/smtlib/smtlib_parser.mly"
+ ( let loc = mk_loc _startpos _endpos in
+   mk_term (TermExistsTerm (svars, t)) loc )
+# 739 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 342 "src/smtlib/smtlib_parser.mly"
+                                                        _7
+# 744 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__7_ : Lexing.position) (_endpos__7_ : Lexing.position) (_startofs__7_ : int) (_endofs__7_ : int) (_loc__7_ : Lexing.position * Lexing.position) (
+# 342 "src/smtlib/smtlib_parser.mly"
+                                                 t
+# 748 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_term) (_startpos_t_ : Lexing.position) (_endpos_t_ : Lexing.position) (_startofs_t_ : int) (_endofs_t_ : int) (_loc_t_ : Lexing.position * Lexing.position) (
+# 342 "src/smtlib/smtlib_parser.mly"
+                                         _5
+# 752 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__5_ : Lexing.position) (_endpos__5_ : Lexing.position) (_startofs__5_ : int) (_endofs__5_ : int) (_loc__5_ : Lexing.position * Lexing.position) (
+# 342 "src/smtlib/smtlib_parser.mly"
+                       svars
+# 756 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_nonempty_list_sorted_var_) (_startpos_svars_ : Lexing.position) (_endpos_svars_ : Lexing.position) (_startofs_svars_ : int) (_endofs_svars_ : int) (_loc_svars_ : Lexing.position * Lexing.position) (
+# 342 "src/smtlib/smtlib_parser.mly"
+               _3
+# 760 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (
+# 342 "src/smtlib/smtlib_parser.mly"
+        _2
+# 764 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 342 "src/smtlib/smtlib_parser.mly"
+ _1
+# 768 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_term ->
+    
+# 343 "src/smtlib/smtlib_parser.mly"
+ ( let loc = mk_loc _startpos _endpos in
+   mk_term (TermForallTerm (svars, t)) loc)
+# 774 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 339 "src/smtlib/smtlib_parser.mly"
+                                                          _7
+# 779 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__7_ : Lexing.position) (_endpos__7_ : Lexing.position) (_startofs__7_ : int) (_endofs__7_ : int) (_loc__7_ : Lexing.position * Lexing.position) (
+# 339 "src/smtlib/smtlib_parser.mly"
+                                                   t
+# 783 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_term) (_startpos_t_ : Lexing.position) (_endpos_t_ : Lexing.position) (_startofs_t_ : int) (_endofs_t_ : int) (_loc_t_ : Lexing.position * Lexing.position) (
+# 339 "src/smtlib/smtlib_parser.mly"
+                                           _5
+# 787 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__5_ : Lexing.position) (_endpos__5_ : Lexing.position) (_startofs__5_ : int) (_endofs__5_ : int) (_loc__5_ : Lexing.position * Lexing.position) (
+# 339 "src/smtlib/smtlib_parser.mly"
+                    vbindings
+# 791 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_nonempty_list_var_binding_) (_startpos_vbindings_ : Lexing.position) (_endpos_vbindings_ : Lexing.position) (_startofs_vbindings_ : int) (_endofs_vbindings_ : int) (_loc_vbindings_ : Lexing.position * Lexing.position) (
+# 339 "src/smtlib/smtlib_parser.mly"
+            _3
+# 795 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (
+# 339 "src/smtlib/smtlib_parser.mly"
+        _2
+# 799 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 339 "src/smtlib/smtlib_parser.mly"
+ _1
+# 803 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_term ->
+    
+# 340 "src/smtlib/smtlib_parser.mly"
+ ( let loc = mk_loc _startpos _endpos in
+   mk_term (TermLetTerm (vbindings, t)) loc )
+# 809 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 336 "src/smtlib/smtlib_parser.mly"
+                                          _4
+# 814 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__4_ : Lexing.position) (_endpos__4_ : Lexing.position) (_startofs__4_ : int) (_endofs__4_ : int) (_loc__4_ : Lexing.position * Lexing.position) (
+# 336 "src/smtlib/smtlib_parser.mly"
+                                 ts
+# 818 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_nonempty_list_term_) (_startpos_ts_ : Lexing.position) (_endpos_ts_ : Lexing.position) (_startofs_ts_ : int) (_endofs_ts_ : int) (_loc_ts_ : Lexing.position * Lexing.position) (
+# 336 "src/smtlib/smtlib_parser.mly"
+         qualid
+# 822 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_qual_identifier) (_startpos_qualid_ : Lexing.position) (_endpos_qualid_ : Lexing.position) (_startofs_qualid_ : int) (_endofs_qualid_ : int) (_loc_qualid_ : Lexing.position * Lexing.position) (
+# 336 "src/smtlib/smtlib_parser.mly"
+ _1
+# 826 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_term ->
+    
+# 337 "src/smtlib/smtlib_parser.mly"
+ ( let loc = mk_loc _startpos _endpos in
+   mk_term (TermQualIdentifierTerms(qualid, ts)) loc )
+# 832 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 333 "src/smtlib/smtlib_parser.mly"
+ _1
+# 837 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_qual_identifier) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_term ->
+    
+# 334 "src/smtlib/smtlib_parser.mly"
+ ( let loc = mk_loc _startpos _endpos in
+   mk_term (TermQualIdentifier _1) loc )
+# 843 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 330 "src/smtlib/smtlib_parser.mly"
+ _1
+# 848 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_spec_constant) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_term ->
+    
+# 331 "src/smtlib/smtlib_parser.mly"
+ ( let loc = mk_loc _startpos _endpos in
+   mk_term (TermSpecConstant _1) loc )
+# 854 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 325 "src/smtlib/smtlib_parser.mly"
+ _1
+# 859 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : (
+# 141 "src/smtlib/smtlib_parser.mly"
+       (string)
+# 863 "src/smtlib/smtlib_parser__mock.ml.mock"
+  )) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_symbol ->
+    
+# 326 "src/smtlib/smtlib_parser.mly"
+  ( let loc = mk_loc _startpos _endpos in mk_symbol (QuotedSymbol _1) loc )
+# 868 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 323 "src/smtlib/smtlib_parser.mly"
+ _1
+# 873 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : (
+# 140 "src/smtlib/smtlib_parser.mly"
+       (string)
+# 877 "src/smtlib/smtlib_parser__mock.ml.mock"
+  )) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_symbol ->
+    
+# 324 "src/smtlib/smtlib_parser.mly"
+  ( let loc = mk_loc _startpos _endpos in mk_symbol (SimpleSymbol _1) loc )
+# 882 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 379 "src/smtlib/smtlib_parser.mly"
+                                                     _5
+# 887 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__5_ : Lexing.position) (_endpos__5_ : Lexing.position) (_startofs__5_ : int) (_endofs__5_ : int) (_loc__5_ : Lexing.position * Lexing.position) (
+# 379 "src/smtlib/smtlib_parser.mly"
+                                        size
+# 891 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : (
+# 132 "src/smtlib/smtlib_parser.mly"
+       (Smtlib.numeral)
+# 895 "src/smtlib/smtlib_parser__mock.ml.mock"
+  )) (_startpos_size_ : Lexing.position) (_endpos_size_ : Lexing.position) (_startofs_size_ : int) (_endofs_size_ : int) (_loc_size_ : Lexing.position * Lexing.position) (
+# 379 "src/smtlib/smtlib_parser.mly"
+                      value
+# 899 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : (
+# 135 "src/smtlib/smtlib_parser.mly"
+       (string)
+# 903 "src/smtlib/smtlib_parser__mock.ml.mock"
+  )) (_startpos_value_ : Lexing.position) (_endpos_value_ : Lexing.position) (_startofs_value_ : int) (_endofs_value_ : int) (_loc_value_ : Lexing.position * Lexing.position) (
+# 379 "src/smtlib/smtlib_parser.mly"
+         _2
+# 907 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 379 "src/smtlib/smtlib_parser.mly"
+ _1
+# 911 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_spec_constant ->
+    
+# 380 "src/smtlib/smtlib_parser.mly"
+  ( CstDecimalSize(value, size) )
+# 916 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 377 "src/smtlib/smtlib_parser.mly"
+ _1
+# 921 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : (
+# 134 "src/smtlib/smtlib_parser.mly"
+       (string)
+# 925 "src/smtlib/smtlib_parser__mock.ml.mock"
+  )) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_spec_constant ->
+    
+# 377 "src/smtlib/smtlib_parser.mly"
+              ( CstHexadecimal _1 )
+# 930 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 376 "src/smtlib/smtlib_parser.mly"
+ _1
+# 935 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : (
+# 138 "src/smtlib/smtlib_parser.mly"
+       (bool)
+# 939 "src/smtlib/smtlib_parser__mock.ml.mock"
+  )) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_spec_constant ->
+    
+# 376 "src/smtlib/smtlib_parser.mly"
+          ( CstBool _1 )
+# 944 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 375 "src/smtlib/smtlib_parser.mly"
+ _1
+# 949 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : (
+# 137 "src/smtlib/smtlib_parser.mly"
+       (string)
+# 953 "src/smtlib/smtlib_parser__mock.ml.mock"
+  )) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_spec_constant ->
+    
+# 375 "src/smtlib/smtlib_parser.mly"
+          ( CstString _1 )
+# 958 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 374 "src/smtlib/smtlib_parser.mly"
+ _1
+# 963 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : (
+# 132 "src/smtlib/smtlib_parser.mly"
+       (Smtlib.numeral)
+# 967 "src/smtlib/smtlib_parser__mock.ml.mock"
+  )) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_spec_constant ->
+    
+# 374 "src/smtlib/smtlib_parser.mly"
+          ( CstNumeral _1 )
+# 972 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 373 "src/smtlib/smtlib_parser.mly"
+ _1
+# 977 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : (
+# 133 "src/smtlib/smtlib_parser.mly"
+       (string)
+# 981 "src/smtlib/smtlib_parser__mock.ml.mock"
+  )) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_spec_constant ->
+    
+# 373 "src/smtlib/smtlib_parser.mly"
+          ( CstDecimal _1 )
+# 986 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 372 "src/smtlib/smtlib_parser.mly"
+ _1
+# 991 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : (
+# 136 "src/smtlib/smtlib_parser.mly"
+       (string)
+# 995 "src/smtlib/smtlib_parser__mock.ml.mock"
+  )) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_spec_constant ->
+    
+# 372 "src/smtlib/smtlib_parser.mly"
+          ( CstBinary _1 )
+# 1000 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 295 "src/smtlib/smtlib_parser.mly"
+                              _4
+# 1005 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__4_ : Lexing.position) (_endpos__4_ : Lexing.position) (_startofs__4_ : int) (_endofs__4_ : int) (_loc__4_ : Lexing.position * Lexing.position) (
+# 295 "src/smtlib/smtlib_parser.mly"
+                      so
+# 1009 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_sort) (_startpos_so_ : Lexing.position) (_endpos_so_ : Lexing.position) (_startofs_so_ : int) (_endofs_so_ : int) (_loc_so_ : Lexing.position * Lexing.position) (
+# 295 "src/smtlib/smtlib_parser.mly"
+         symb
+# 1013 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_symbol) (_startpos_symb_ : Lexing.position) (_endpos_symb_ : Lexing.position) (_startofs_symb_ : int) (_endofs_symb_ : int) (_loc_symb_ : Lexing.position * Lexing.position) (
+# 295 "src/smtlib/smtlib_parser.mly"
+ _1
+# 1017 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_sorted_var ->
+    
+# 296 "src/smtlib/smtlib_parser.mly"
+  ( let loc = mk_loc _startpos _endpos in
+    mk_sorted_var (SortedVar (symb, so)) loc )
+# 1023 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 303 "src/smtlib/smtlib_parser.mly"
+                                    _4
+# 1028 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__4_ : Lexing.position) (_endpos__4_ : Lexing.position) (_startofs__4_ : int) (_endofs__4_ : int) (_loc__4_ : Lexing.position * Lexing.position) (
+# 303 "src/smtlib/smtlib_parser.mly"
+                        sorts
+# 1032 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_nonempty_list_sort_) (_startpos_sorts_ : Lexing.position) (_endpos_sorts_ : Lexing.position) (_startofs_sorts_ : int) (_endofs_sorts_ : int) (_loc_sorts_ : Lexing.position * Lexing.position) (
+# 303 "src/smtlib/smtlib_parser.mly"
+         id
+# 1036 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_identifier) (_startpos_id_ : Lexing.position) (_endpos_id_ : Lexing.position) (_startofs_id_ : int) (_endofs_id_ : int) (_loc_id_ : Lexing.position * Lexing.position) (
+# 303 "src/smtlib/smtlib_parser.mly"
+ _1
+# 1040 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_sort ->
+    
+# 304 "src/smtlib/smtlib_parser.mly"
+  ( let loc = mk_loc _startpos _endpos in mk_sort (SortFun (id, sorts)) loc )
+# 1045 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 301 "src/smtlib/smtlib_parser.mly"
+  id
+# 1050 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_identifier) (_startpos_id_ : Lexing.position) (_endpos_id_ : Lexing.position) (_startofs_id_ : int) (_endofs_id_ : int) (_loc_id_ : Lexing.position * Lexing.position) : 'tv_sort ->
+    
+# 302 "src/smtlib/smtlib_parser.mly"
+  ( let loc = mk_loc _startpos _endpos in mk_sort (SortIdentifier id) loc )
+# 1055 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 420 "src/smtlib/smtlib_parser.mly"
+  attr
+# 1060 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_attribute) (_startpos_attr_ : Lexing.position) (_endpos_attr_ : Lexing.position) (_startofs_attr_ : int) (_endofs_attr_ : int) (_loc_attr_ : Lexing.position * Lexing.position) : 'tv_smt_option ->
+    
+# 421 "src/smtlib/smtlib_parser.mly"
+  ( let loc = mk_loc _startpos _endpos in
+    mk_smt_option (OptionAttribute attr) loc )
+# 1066 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 405 "src/smtlib/smtlib_parser.mly"
+                       _3
+# 1071 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (
+# 405 "src/smtlib/smtlib_parser.mly"
+         sexprs
+# 1075 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_list_sexpr_) (_startpos_sexprs_ : Lexing.position) (_endpos_sexprs_ : Lexing.position) (_startofs_sexprs_ : int) (_endofs_sexprs_ : int) (_loc_sexprs_ : Lexing.position * Lexing.position) (
+# 405 "src/smtlib/smtlib_parser.mly"
+ _1
+# 1079 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_sexpr ->
+    
+# 406 "src/smtlib/smtlib_parser.mly"
+ ( let loc = mk_loc _startpos _endpos in
+   mk_sexpr (SexprParens sexprs) loc )
+# 1085 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 402 "src/smtlib/smtlib_parser.mly"
+  kwd
+# 1090 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : (
+# 139 "src/smtlib/smtlib_parser.mly"
+       (string)
+# 1094 "src/smtlib/smtlib_parser__mock.ml.mock"
+  )) (_startpos_kwd_ : Lexing.position) (_endpos_kwd_ : Lexing.position) (_startofs_kwd_ : int) (_endofs_kwd_ : int) (_loc_kwd_ : Lexing.position * Lexing.position) : 'tv_sexpr ->
+    
+# 403 "src/smtlib/smtlib_parser.mly"
+  ( let loc = mk_loc _startpos _endpos in
+    mk_sexpr (SexprKeyword kwd) loc )
+# 1100 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 399 "src/smtlib/smtlib_parser.mly"
+  symb
+# 1105 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_symbol) (_startpos_symb_ : Lexing.position) (_endpos_symb_ : Lexing.position) (_startofs_symb_ : int) (_endofs_symb_ : int) (_loc_symb_ : Lexing.position * Lexing.position) : 'tv_sexpr ->
+    
+# 400 "src/smtlib/smtlib_parser.mly"
+  ( let loc = mk_loc _startpos _endpos in
+    mk_sexpr (SexprSymbol symb) loc )
+# 1111 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 396 "src/smtlib/smtlib_parser.mly"
+  sc
+# 1116 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_spec_constant) (_startpos_sc_ : Lexing.position) (_endpos_sc_ : Lexing.position) (_startofs_sc_ : int) (_endofs_sc_ : int) (_loc_sc_ : Lexing.position * Lexing.position) : 'tv_sexpr ->
+    
+# 397 "src/smtlib/smtlib_parser.mly"
+  ( let loc = mk_loc _startpos _endpos in
+    mk_sexpr (SexprConstant sc) loc )
+# 1122 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 157 "src/smtlib/smtlib_parser.mly"
+                                             _2
+# 1127 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 157 "src/smtlib/smtlib_parser.mly"
+  commands
+# 1131 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_list_delimited_LPAREN_command_RPAREN__) (_startpos_commands_ : Lexing.position) (_endpos_commands_ : Lexing.position) (_startofs_commands_ : int) (_endofs_commands_ : int) (_loc_commands_ : Lexing.position * Lexing.position) : (
+# 143 "src/smtlib/smtlib_parser.mly"
+       (Smtlib.script)
+# 1135 "src/smtlib/smtlib_parser__mock.ml.mock"
+  ) ->
+    (
+# 158 "src/smtlib/smtlib_parser.mly"
+  ( let loc = mk_loc _startpos _endpos in
+    mk_script commands loc )
+# 1141 "src/smtlib/smtlib_parser__mock.ml.mock"
+     : 'tv_script) in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 360 "src/smtlib/smtlib_parser.mly"
+                                   _5
+# 1146 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__5_ : Lexing.position) (_endpos__5_ : Lexing.position) (_startofs__5_ : int) (_endofs__5_ : int) (_loc__5_ : Lexing.position * Lexing.position) (
+# 360 "src/smtlib/smtlib_parser.mly"
+                           so
+# 1150 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_sort) (_startpos_so_ : Lexing.position) (_endpos_so_ : Lexing.position) (_startofs_so_ : int) (_endofs_so_ : int) (_loc_so_ : Lexing.position * Lexing.position) (
+# 360 "src/smtlib/smtlib_parser.mly"
+            id
+# 1154 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_identifier) (_startpos_id_ : Lexing.position) (_endpos_id_ : Lexing.position) (_startofs_id_ : int) (_endofs_id_ : int) (_loc_id_ : Lexing.position * Lexing.position) (
+# 360 "src/smtlib/smtlib_parser.mly"
+        _2
+# 1158 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 360 "src/smtlib/smtlib_parser.mly"
+ _1
+# 1162 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_qual_identifier ->
+    
+# 361 "src/smtlib/smtlib_parser.mly"
+  ( let loc = mk_loc _startpos _endpos in
+    mk_qual_identifier (QualIdentifierAs (id, so)) loc )
+# 1168 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 357 "src/smtlib/smtlib_parser.mly"
+  id
+# 1173 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_identifier) (_startpos_id_ : Lexing.position) (_endpos_id_ : Lexing.position) (_startofs_id_ : int) (_endofs_id_ : int) (_loc_id_ : Lexing.position * Lexing.position) : 'tv_qual_identifier ->
+    
+# 358 "src/smtlib/smtlib_parser.mly"
+  ( let loc = mk_loc _startpos _endpos in
+    mk_qual_identifier (QualIdentifierIdentifier id) loc )
+# 1179 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 291 "src/smtlib/smtlib_parser.mly"
+                         _4
+# 1184 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__4_ : Lexing.position) (_endpos__4_ : Lexing.position) (_startofs__4_ : int) (_endofs__4_ : int) (_loc__4_ : Lexing.position * Lexing.position) (
+# 291 "src/smtlib/smtlib_parser.mly"
+             sorts
+# 1188 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_nonempty_list_sort_) (_startpos_sorts_ : Lexing.position) (_endpos_sorts_ : Lexing.position) (_startofs_sorts_ : int) (_endofs_sorts_ : int) (_loc_sorts_ : Lexing.position * Lexing.position) (
+# 291 "src/smtlib/smtlib_parser.mly"
+     _2
+# 1192 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 291 "src/smtlib/smtlib_parser.mly"
+ _1
+# 1196 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_poly_parameters ->
+    
+# 291 "src/smtlib/smtlib_parser.mly"
+                                 ( sorts )
+# 1201 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 165 "src/smtlib/smtlib_parser.mly"
+             _2
+# 1206 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 163 "src/smtlib/smtlib_parser.mly"
+  commands
+# 1210 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_delimited_LPAREN_preceded_option_MODEL__list_delimited_LPAREN_command_RPAREN____RPAREN_) (_startpos_commands_ : Lexing.position) (_endpos_commands_ : Lexing.position) (_startofs_commands_ : int) (_endofs_commands_ : int) (_loc_commands_ : Lexing.position * Lexing.position) : (
+# 145 "src/smtlib/smtlib_parser.mly"
+       (Smtlib.model)
+# 1214 "src/smtlib/smtlib_parser__mock.ml.mock"
+  ) ->
+    (
+# 166 "src/smtlib/smtlib_parser.mly"
+  ( let loc = mk_loc _startpos _endpos in
+    mk_model commands loc
+   )
+# 1221 "src/smtlib/smtlib_parser__mock.ml.mock"
+     : 'tv_model) in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 177 "src/smtlib/smtlib_parser.mly"
+        _2
+# 1226 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 177 "src/smtlib/smtlib_parser.mly"
+ _1
+# 1230 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : (
+# 148 "src/smtlib/smtlib_parser.mly"
+       ((Smtlib.term * Smtlib.term) list)
+# 1234 "src/smtlib/smtlib_parser__mock.ml.mock"
+  ) ->
+    (
+# 178 "src/smtlib/smtlib_parser.mly"
+  ( [] )
+# 1239 "src/smtlib/smtlib_parser__mock.ml.mock"
+     : 'tv_ivalue) in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 175 "src/smtlib/smtlib_parser.mly"
+          _5
+# 1244 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__5_ : Lexing.position) (_endpos__5_ : Lexing.position) (_startofs__5_ : int) (_endofs__5_ : int) (_loc__5_ : Lexing.position * Lexing.position) (
+# 174 "src/smtlib/smtlib_parser.mly"
+                                                                                _4
+# 1249 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__4_ : Lexing.position) (_endpos__4_ : Lexing.position) (_startofs__4_ : int) (_endofs__4_ : int) (_loc__4_ : Lexing.position * Lexing.position) (
+# 174 "src/smtlib/smtlib_parser.mly"
+                  ts
+# 1253 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_nonempty_list_delimited_LPAREN_pair_term_term__RPAREN__) (_startpos_ts_ : Lexing.position) (_endpos_ts_ : Lexing.position) (_startofs_ts_ : int) (_endofs_ts_ : int) (_loc_ts_ : Lexing.position * Lexing.position) (
+# 174 "src/smtlib/smtlib_parser.mly"
+          _2
+# 1257 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 174 "src/smtlib/smtlib_parser.mly"
+   _1
+# 1261 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : (
+# 148 "src/smtlib/smtlib_parser.mly"
+       ((Smtlib.term * Smtlib.term) list)
+# 1265 "src/smtlib/smtlib_parser__mock.ml.mock"
+  ) ->
+    (
+# 176 "src/smtlib/smtlib_parser.mly"
+  ( ts )
+# 1270 "src/smtlib/smtlib_parser__mock.ml.mock"
+     : 'tv_ivalue) in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 172 "src/smtlib/smtlib_parser.mly"
+                                    _6
+# 1275 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__6_ : Lexing.position) (_endpos__6_ : Lexing.position) (_startofs__6_ : int) (_endofs__6_ : int) (_loc__6_ : Lexing.position * Lexing.position) (
+# 172 "src/smtlib/smtlib_parser.mly"
+                             _5
+# 1279 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__5_ : Lexing.position) (_endpos__5_ : Lexing.position) (_startofs__5_ : int) (_endofs__5_ : int) (_loc__5_ : Lexing.position * Lexing.position) (
+# 172 "src/smtlib/smtlib_parser.mly"
+                       v
+# 1283 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_term) (_startpos_v_ : Lexing.position) (_endpos_v_ : Lexing.position) (_startofs_v_ : int) (_endofs_v_ : int) (_loc_v_ : Lexing.position * Lexing.position) (
+# 172 "src/smtlib/smtlib_parser.mly"
+                t
+# 1287 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_term) (_startpos_t_ : Lexing.position) (_endpos_t_ : Lexing.position) (_startofs_t_ : int) (_endofs_t_ : int) (_loc_t_ : Lexing.position * Lexing.position) (
+# 172 "src/smtlib/smtlib_parser.mly"
+        _2
+# 1291 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 172 "src/smtlib/smtlib_parser.mly"
+ _1
+# 1295 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : (
+# 148 "src/smtlib/smtlib_parser.mly"
+       ((Smtlib.term * Smtlib.term) list)
+# 1299 "src/smtlib/smtlib_parser__mock.ml.mock"
+  ) ->
+    (
+# 173 "src/smtlib/smtlib_parser.mly"
+    ( [ t, v ] )
+# 1304 "src/smtlib/smtlib_parser__mock.ml.mock"
+     : 'tv_ivalue) in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 426 "src/smtlib/smtlib_parser.mly"
+  kwd
+# 1309 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : (
+# 139 "src/smtlib/smtlib_parser.mly"
+       (string)
+# 1313 "src/smtlib/smtlib_parser__mock.ml.mock"
+  )) (_startpos_kwd_ : Lexing.position) (_endpos_kwd_ : Lexing.position) (_startofs_kwd_ : int) (_endofs_kwd_ : int) (_loc_kwd_ : Lexing.position * Lexing.position) : 'tv_info_flag ->
+    
+# 427 "src/smtlib/smtlib_parser.mly"
+  ( let loc = mk_loc _startpos _endpos in
+    mk_info_flag (InfoFlagKeyword kwd) loc )
+# 1319 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 309 "src/smtlib/smtlib_parser.mly"
+ _1
+# 1324 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : (
+# 140 "src/smtlib/smtlib_parser.mly"
+       (string)
+# 1328 "src/smtlib/smtlib_parser__mock.ml.mock"
+  )) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_index ->
+    
+# 310 "src/smtlib/smtlib_parser.mly"
+  ( let loc = mk_loc _startpos _endpos in
+    IdxSymbol (mk_symbol (SimpleSymbol _1) loc) )
+# 1334 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 308 "src/smtlib/smtlib_parser.mly"
+ _1
+# 1339 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : (
+# 132 "src/smtlib/smtlib_parser.mly"
+       (Smtlib.numeral)
+# 1343 "src/smtlib/smtlib_parser__mock.ml.mock"
+  )) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_index ->
+    
+# 308 "src/smtlib/smtlib_parser.mly"
+          ( IdxNum _1 )
+# 1348 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 317 "src/smtlib/smtlib_parser.mly"
+                                                _5
+# 1353 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__5_ : Lexing.position) (_endpos__5_ : Lexing.position) (_startofs__5_ : int) (_endofs__5_ : int) (_loc__5_ : Lexing.position * Lexing.position) (
+# 317 "src/smtlib/smtlib_parser.mly"
+                                 indexes
+# 1357 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_nonempty_list_index_) (_startpos_indexes_ : Lexing.position) (_endpos_indexes_ : Lexing.position) (_startofs_indexes_ : int) (_endofs_indexes_ : int) (_loc_indexes_ : Lexing.position * Lexing.position) (
+# 317 "src/smtlib/smtlib_parser.mly"
+                    symb
+# 1361 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_symbol) (_startpos_symb_ : Lexing.position) (_endpos_symb_ : Lexing.position) (_startofs_symb_ : int) (_endofs_symb_ : int) (_loc_symb_ : Lexing.position * Lexing.position) (
+# 317 "src/smtlib/smtlib_parser.mly"
+        _2
+# 1365 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 317 "src/smtlib/smtlib_parser.mly"
+ _1
+# 1369 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_identifier ->
+    
+# 318 "src/smtlib/smtlib_parser.mly"
+  ( let loc = mk_loc _startpos _endpos in
+    mk_identifier (IdUnderscore (symb, indexes)) loc )
+# 1375 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 315 "src/smtlib/smtlib_parser.mly"
+  symb
+# 1380 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_symbol) (_startpos_symb_ : Lexing.position) (_endpos_symb_ : Lexing.position) (_startofs_symb_ : int) (_endofs_symb_ : int) (_loc_symb_ : Lexing.position * Lexing.position) : 'tv_identifier ->
+    
+# 316 "src/smtlib/smtlib_parser.mly"
+  ( let loc = mk_loc _startpos _endpos in mk_identifier (IdSymbol symb) loc )
+# 1385 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 284 "src/smtlib/smtlib_parser.mly"
+                   _3
+# 1390 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (
+# 284 "src/smtlib/smtlib_parser.mly"
+         fd
+# 1394 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_fun_def) (_startpos_fd_ : Lexing.position) (_endpos_fd_ : Lexing.position) (_startofs_fd_ : int) (_endofs_fd_ : int) (_loc_fd_ : Lexing.position * Lexing.position) (
+# 284 "src/smtlib/smtlib_parser.mly"
+ _1
+# 1398 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_fun_rec_def ->
+    
+# 285 "src/smtlib/smtlib_parser.mly"
+ ( let s, ps, svs, so, t = fd in
+   let loc = mk_loc _startpos _endpos in
+   mk_fun_rec_def (FunRecDef (s, ps, svs, so, t)) loc )
+# 1405 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 277 "src/smtlib/smtlib_parser.mly"
+  fd
+# 1410 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_fun_def) (_startpos_fd_ : Lexing.position) (_endpos_fd_ : Lexing.position) (_startofs_fd_ : int) (_endofs_fd_ : int) (_loc_fd_ : Lexing.position * Lexing.position) : 'tv_fun_nonrec_def ->
+    
+# 278 "src/smtlib/smtlib_parser.mly"
+  ( let loc = mk_loc _startpos _endpos in
+    let s, ps, svs, so, t = fd in
+    mk_fun_def (FunDef (s, ps, svs, so, t)) loc )
+# 1417 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 272 "src/smtlib/smtlib_parser.mly"
+                                            t
+# 1422 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_term) (_startpos_t_ : Lexing.position) (_endpos_t_ : Lexing.position) (_startofs_t_ : int) (_endofs_t_ : int) (_loc_t_ : Lexing.position * Lexing.position) (
+# 272 "src/smtlib/smtlib_parser.mly"
+                                   so
+# 1426 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_sort) (_startpos_so_ : Lexing.position) (_endpos_so_ : Lexing.position) (_startofs_so_ : int) (_endofs_so_ : int) (_loc_so_ : Lexing.position * Lexing.position) (
+# 272 "src/smtlib/smtlib_parser.mly"
+                           _5
+# 1430 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__5_ : Lexing.position) (_endpos__5_ : Lexing.position) (_startofs__5_ : int) (_endofs__5_ : int) (_loc__5_ : Lexing.position * Lexing.position) (
+# 272 "src/smtlib/smtlib_parser.mly"
+         svars
+# 1434 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_list_sorted_var_) (_startpos_svars_ : Lexing.position) (_endpos_svars_ : Lexing.position) (_startofs_svars_ : int) (_endofs_svars_ : int) (_loc_svars_ : Lexing.position * Lexing.position) (
+# 271 "src/smtlib/smtlib_parser.mly"
+                                             _3
+# 1439 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (
+# 271 "src/smtlib/smtlib_parser.mly"
+               polys
+# 1443 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_option_poly_parameters_) (_startpos_polys_ : Lexing.position) (_endpos_polys_ : Lexing.position) (_startofs_polys_ : int) (_endofs_polys_ : int) (_loc_polys_ : Lexing.position * Lexing.position) (
+# 271 "src/smtlib/smtlib_parser.mly"
+  symb
+# 1447 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_symbol) (_startpos_symb_ : Lexing.position) (_endpos_symb_ : Lexing.position) (_startofs_symb_ : int) (_endofs_symb_ : int) (_loc_symb_ : Lexing.position * Lexing.position) : 'tv_fun_def ->
+    
+# 273 "src/smtlib/smtlib_parser.mly"
+  ( (symb, polys, svars, so, t) )
+# 1452 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 265 "src/smtlib/smtlib_parser.mly"
+            sopt
+# 1457 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_smt_option) (_startpos_sopt_ : Lexing.position) (_endpos_sopt_ : Lexing.position) (_startofs_sopt_ : int) (_endofs_sopt_ : int) (_loc_sopt_ : Lexing.position * Lexing.position) (
+# 265 "src/smtlib/smtlib_parser.mly"
+ _1
+# 1461 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_command ->
+    
+# 266 "src/smtlib/smtlib_parser.mly"
+  ( let loc = mk_loc _startpos _endpos in
+    mk_command (CmdSetOption sopt) loc )
+# 1467 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 262 "src/smtlib/smtlib_parser.mly"
+           symb
+# 1472 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_symbol) (_startpos_symb_ : Lexing.position) (_endpos_symb_ : Lexing.position) (_startofs_symb_ : int) (_endofs_symb_ : int) (_loc_symb_ : Lexing.position * Lexing.position) (
+# 262 "src/smtlib/smtlib_parser.mly"
+ _1
+# 1476 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_command ->
+    
+# 263 "src/smtlib/smtlib_parser.mly"
+  ( let loc = mk_loc _startpos _endpos in
+    mk_command (CmdSetLogic symb) loc )
+# 1482 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 259 "src/smtlib/smtlib_parser.mly"
+          attr
+# 1487 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_attribute) (_startpos_attr_ : Lexing.position) (_endpos_attr_ : Lexing.position) (_startofs_attr_ : int) (_endofs_attr_ : int) (_loc_attr_ : Lexing.position * Lexing.position) (
+# 259 "src/smtlib/smtlib_parser.mly"
+ _1
+# 1491 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_command ->
+    
+# 260 "src/smtlib/smtlib_parser.mly"
+  ( let loc = mk_loc _startpos _endpos in
+    mk_command (CmdSetInfo attr) loc )
+# 1497 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 256 "src/smtlib/smtlib_parser.mly"
+       num
+# 1502 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_option_NUMERAL_) (_startpos_num_ : Lexing.position) (_endpos_num_ : Lexing.position) (_startofs_num_ : int) (_endofs_num_ : int) (_loc_num_ : Lexing.position * Lexing.position) (
+# 256 "src/smtlib/smtlib_parser.mly"
+ _1
+# 1506 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_command ->
+    
+# 257 "src/smtlib/smtlib_parser.mly"
+  ( let loc = mk_loc _startpos _endpos in
+    mk_command (CmdPush num) loc )
+# 1512 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 253 "src/smtlib/smtlib_parser.mly"
+      num
+# 1517 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_option_NUMERAL_) (_startpos_num_ : Lexing.position) (_endpos_num_ : Lexing.position) (_startofs_num_ : int) (_endofs_num_ : int) (_loc_num_ : Lexing.position * Lexing.position) (
+# 253 "src/smtlib/smtlib_parser.mly"
+ _1
+# 1521 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_command ->
+    
+# 254 "src/smtlib/smtlib_parser.mly"
+  ( let loc = mk_loc _startpos _endpos in
+    mk_command (CmdPop num) loc )
+# 1527 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 250 "src/smtlib/smtlib_parser.mly"
+           attr
+# 1532 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_attribute) (_startpos_attr_ : Lexing.position) (_endpos_attr_ : Lexing.position) (_startofs_attr_ : int) (_endofs_attr_ : int) (_loc_attr_ : Lexing.position * Lexing.position) (
+# 250 "src/smtlib/smtlib_parser.mly"
+ _1
+# 1536 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_command ->
+    
+# 251 "src/smtlib/smtlib_parser.mly"
+  ( let loc = mk_loc _startpos _endpos in
+    mk_command (CmdMetaInfo attr) loc )
+# 1542 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 247 "src/smtlib/smtlib_parser.mly"
+                           _4
+# 1547 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__4_ : Lexing.position) (_endpos__4_ : Lexing.position) (_startofs__4_ : int) (_endofs__4_ : int) (_loc__4_ : Lexing.position * Lexing.position) (
+# 247 "src/smtlib/smtlib_parser.mly"
+                  ts
+# 1551 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_nonempty_list_term_) (_startpos_ts_ : Lexing.position) (_endpos_ts_ : Lexing.position) (_startofs_ts_ : int) (_endofs_ts_ : int) (_loc_ts_ : Lexing.position * Lexing.position) (
+# 247 "src/smtlib/smtlib_parser.mly"
+          _2
+# 1555 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 247 "src/smtlib/smtlib_parser.mly"
+ _1
+# 1559 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_command ->
+    
+# 248 "src/smtlib/smtlib_parser.mly"
+  ( let loc = mk_loc _startpos _endpos in
+    mk_command (CmdGetValue ts) loc )
+# 1565 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 244 "src/smtlib/smtlib_parser.mly"
+ _1
+# 1570 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_command ->
+    
+# 245 "src/smtlib/smtlib_parser.mly"
+    ( let loc = mk_loc _startpos _endpos in
+      mk_command CmdGetUnsatAssumptions loc )
+# 1576 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 241 "src/smtlib/smtlib_parser.mly"
+ _1
+# 1581 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_command ->
+    
+# 242 "src/smtlib/smtlib_parser.mly"
+    ( let loc = mk_loc _startpos _endpos in
+      mk_command CmdGetUnsatCore loc )
+# 1587 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 238 "src/smtlib/smtlib_parser.mly"
+ _1
+# 1592 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_command ->
+    
+# 239 "src/smtlib/smtlib_parser.mly"
+    ( let loc = mk_loc _startpos _endpos in
+      mk_command CmdGetProof loc )
+# 1598 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 235 "src/smtlib/smtlib_parser.mly"
+ _1
+# 1603 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_command ->
+    
+# 236 "src/smtlib/smtlib_parser.mly"
+    ( let loc = mk_loc _startpos _endpos in
+      mk_command CmdResetAssertions loc )
+# 1609 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 232 "src/smtlib/smtlib_parser.mly"
+ _1
+# 1614 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_command ->
+    
+# 233 "src/smtlib/smtlib_parser.mly"
+    ( let loc = mk_loc _startpos _endpos in
+      mk_command CmdReset loc )
+# 1620 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 229 "src/smtlib/smtlib_parser.mly"
+            kwd
+# 1625 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : (
+# 139 "src/smtlib/smtlib_parser.mly"
+       (string)
+# 1629 "src/smtlib/smtlib_parser__mock.ml.mock"
+  )) (_startpos_kwd_ : Lexing.position) (_endpos_kwd_ : Lexing.position) (_startofs_kwd_ : int) (_endofs_kwd_ : int) (_loc_kwd_ : Lexing.position * Lexing.position) (
+# 229 "src/smtlib/smtlib_parser.mly"
+ _1
+# 1633 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_command ->
+    
+# 230 "src/smtlib/smtlib_parser.mly"
+  ( let loc = mk_loc _startpos _endpos in
+    mk_command (CmdGetOption kwd) loc )
+# 1639 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 226 "src/smtlib/smtlib_parser.mly"
+ _1
+# 1644 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_command ->
+    
+# 227 "src/smtlib/smtlib_parser.mly"
+    ( let loc = mk_loc _startpos _endpos in
+      mk_command CmdGetModel loc )
+# 1650 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 223 "src/smtlib/smtlib_parser.mly"
+          iflag
+# 1655 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_info_flag) (_startpos_iflag_ : Lexing.position) (_endpos_iflag_ : Lexing.position) (_startofs_iflag_ : int) (_endofs_iflag_ : int) (_loc_iflag_ : Lexing.position * Lexing.position) (
+# 223 "src/smtlib/smtlib_parser.mly"
+ _1
+# 1659 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_command ->
+    
+# 224 "src/smtlib/smtlib_parser.mly"
+  ( let loc = mk_loc _startpos _endpos in
+    mk_command (CmdGetInfo iflag) loc )
+# 1665 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 220 "src/smtlib/smtlib_parser.mly"
+ _1
+# 1670 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_command ->
+    
+# 221 "src/smtlib/smtlib_parser.mly"
+    ( let loc = mk_loc _startpos _endpos in
+      mk_command CmdGetAssignment loc )
+# 1676 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 217 "src/smtlib/smtlib_parser.mly"
+ _1
+# 1681 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_command ->
+    
+# 218 "src/smtlib/smtlib_parser.mly"
+    ( let loc = mk_loc _startpos _endpos in
+      mk_command CmdGetAssertions loc )
+# 1687 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 214 "src/smtlib/smtlib_parser.mly"
+ _1
+# 1692 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_command ->
+    
+# 215 "src/smtlib/smtlib_parser.mly"
+  ( let loc = mk_loc _startpos _endpos in
+    mk_command CmdExit loc )
+# 1698 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 211 "src/smtlib/smtlib_parser.mly"
+       s
+# 1703 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : (
+# 137 "src/smtlib/smtlib_parser.mly"
+       (string)
+# 1707 "src/smtlib/smtlib_parser__mock.ml.mock"
+  )) (_startpos_s_ : Lexing.position) (_endpos_s_ : Lexing.position) (_startofs_s_ : int) (_endofs_s_ : int) (_loc_s_ : Lexing.position * Lexing.position) (
+# 211 "src/smtlib/smtlib_parser.mly"
+ _1
+# 1711 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_command ->
+    
+# 212 "src/smtlib/smtlib_parser.mly"
+  ( let loc = mk_loc _startpos _endpos in
+    mk_command (CmdEcho s) loc )
+# 1717 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 208 "src/smtlib/smtlib_parser.mly"
+                                                      so
+# 1722 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_sort) (_startpos_so_ : Lexing.position) (_endpos_so_ : Lexing.position) (_startofs_so_ : int) (_endofs_so_ : int) (_loc_so_ : Lexing.position * Lexing.position) (
+# 208 "src/smtlib/smtlib_parser.mly"
+                                              _5
+# 1726 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__5_ : Lexing.position) (_endpos__5_ : Lexing.position) (_startofs__5_ : int) (_endofs__5_ : int) (_loc__5_ : Lexing.position * Lexing.position) (
+# 208 "src/smtlib/smtlib_parser.mly"
+                                 symbs
+# 1730 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_nonempty_list_symbol_) (_startpos_symbs_ : Lexing.position) (_endpos_symbs_ : Lexing.position) (_startofs_symbs_ : int) (_endofs_symbs_ : int) (_loc_symbs_ : Lexing.position * Lexing.position) (
+# 208 "src/smtlib/smtlib_parser.mly"
+                         _3
+# 1734 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (
+# 208 "src/smtlib/smtlib_parser.mly"
+             symb
+# 1738 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_symbol) (_startpos_symb_ : Lexing.position) (_endpos_symb_ : Lexing.position) (_startofs_symb_ : int) (_endofs_symb_ : int) (_loc_symb_ : Lexing.position * Lexing.position) (
+# 208 "src/smtlib/smtlib_parser.mly"
+ _1
+# 1742 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_command ->
+    
+# 209 "src/smtlib/smtlib_parser.mly"
+  ( let loc = mk_loc _startpos _endpos in
+    mk_command (CmdDefineSort (symb, symbs, so)) loc )
+# 1748 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 205 "src/smtlib/smtlib_parser.mly"
+                                          _4
+# 1753 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__4_ : Lexing.position) (_endpos__4_ : Lexing.position) (_startofs__4_ : int) (_endofs__4_ : int) (_loc__4_ : Lexing.position * Lexing.position) (
+# 205 "src/smtlib/smtlib_parser.mly"
+                      frdefs
+# 1757 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_nonempty_list_fun_rec_def_) (_startpos_frdefs_ : Lexing.position) (_endpos_frdefs_ : Lexing.position) (_startofs_frdefs_ : int) (_endofs_frdefs_ : int) (_loc_frdefs_ : Lexing.position * Lexing.position) (
+# 205 "src/smtlib/smtlib_parser.mly"
+              _2
+# 1761 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 205 "src/smtlib/smtlib_parser.mly"
+ _1
+# 1765 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_command ->
+    
+# 206 "src/smtlib/smtlib_parser.mly"
+ ( let loc = mk_loc _startpos _endpos in
+   mk_command (CmdDefineFunRec frdefs) loc )
+# 1771 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 202 "src/smtlib/smtlib_parser.mly"
+            fdef
+# 1776 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_fun_nonrec_def) (_startpos_fdef_ : Lexing.position) (_endpos_fdef_ : Lexing.position) (_startofs_fdef_ : int) (_endofs_fdef_ : int) (_loc_fdef_ : Lexing.position * Lexing.position) (
+# 202 "src/smtlib/smtlib_parser.mly"
+ _1
+# 1780 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_command ->
+    
+# 203 "src/smtlib/smtlib_parser.mly"
+ ( let loc = mk_loc _startpos _endpos in
+   mk_command (CmdDefineFun fdef) loc )
+# 1786 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 199 "src/smtlib/smtlib_parser.mly"
+                           num
+# 1791 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : (
+# 132 "src/smtlib/smtlib_parser.mly"
+       (Smtlib.numeral)
+# 1795 "src/smtlib/smtlib_parser__mock.ml.mock"
+  )) (_startpos_num_ : Lexing.position) (_endpos_num_ : Lexing.position) (_startofs_num_ : int) (_endofs_num_ : int) (_loc_num_ : Lexing.position * Lexing.position) (
+# 199 "src/smtlib/smtlib_parser.mly"
+              symb
+# 1799 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_symbol) (_startpos_symb_ : Lexing.position) (_endpos_symb_ : Lexing.position) (_startofs_symb_ : int) (_endofs_symb_ : int) (_loc_symb_ : Lexing.position * Lexing.position) (
+# 199 "src/smtlib/smtlib_parser.mly"
+ _1
+# 1803 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_command ->
+    
+# 200 "src/smtlib/smtlib_parser.mly"
+  ( let loc = mk_loc _startpos _endpos in
+    mk_command (CmdDeclareSort(symb, num)) loc )
+# 1809 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 196 "src/smtlib/smtlib_parser.mly"
+                            so
+# 1814 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_sort) (_startpos_so_ : Lexing.position) (_endpos_so_ : Lexing.position) (_startofs_so_ : int) (_endofs_so_ : int) (_loc_so_ : Lexing.position * Lexing.position) (
+# 196 "src/smtlib/smtlib_parser.mly"
+                    _6
+# 1818 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__6_ : Lexing.position) (_endpos__6_ : Lexing.position) (_startofs__6_ : int) (_endofs__6_ : int) (_loc__6_ : Lexing.position * Lexing.position) (
+# 196 "src/smtlib/smtlib_parser.mly"
+         sorts
+# 1822 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_list_sort_) (_startpos_sorts_ : Lexing.position) (_endpos_sorts_ : Lexing.position) (_startofs_sorts_ : int) (_endofs_sorts_ : int) (_loc_sorts_ : Lexing.position * Lexing.position) (
+# 195 "src/smtlib/smtlib_parser.mly"
+                                                        _4
+# 1827 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__4_ : Lexing.position) (_endpos__4_ : Lexing.position) (_startofs__4_ : int) (_endofs__4_ : int) (_loc__4_ : Lexing.position * Lexing.position) (
+# 195 "src/smtlib/smtlib_parser.mly"
+                          polys
+# 1831 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_option_poly_parameters_) (_startpos_polys_ : Lexing.position) (_endpos_polys_ : Lexing.position) (_startofs_polys_ : int) (_endofs_polys_ : int) (_loc_polys_ : Lexing.position * Lexing.position) (
+# 195 "src/smtlib/smtlib_parser.mly"
+             symb
+# 1835 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_symbol) (_startpos_symb_ : Lexing.position) (_endpos_symb_ : Lexing.position) (_startofs_symb_ : int) (_endofs_symb_ : int) (_loc_symb_ : Lexing.position * Lexing.position) (
+# 195 "src/smtlib/smtlib_parser.mly"
+ _1
+# 1839 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_command ->
+    
+# 197 "src/smtlib/smtlib_parser.mly"
+  ( let loc = mk_loc _startpos _endpos in
+    mk_command (CmdDeclareFun (symb, polys, sorts, so)) loc )
+# 1845 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 192 "src/smtlib/smtlib_parser.mly"
+                            so
+# 1850 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_sort) (_startpos_so_ : Lexing.position) (_endpos_so_ : Lexing.position) (_startofs_so_ : int) (_endofs_so_ : int) (_loc_so_ : Lexing.position * Lexing.position) (
+# 192 "src/smtlib/smtlib_parser.mly"
+               symb
+# 1854 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_symbol) (_startpos_symb_ : Lexing.position) (_endpos_symb_ : Lexing.position) (_startofs_symb_ : int) (_endofs_symb_ : int) (_loc_symb_ : Lexing.position * Lexing.position) (
+# 192 "src/smtlib/smtlib_parser.mly"
+ _1
+# 1858 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_command ->
+    
+# 193 "src/smtlib/smtlib_parser.mly"
+  ( let loc = mk_loc _startpos _endpos in
+    mk_command (CmdDeclareConst(symb, so)) loc )
+# 1864 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 190 "src/smtlib/smtlib_parser.mly"
+ _1
+# 1869 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_command ->
+    
+# 191 "src/smtlib/smtlib_parser.mly"
+  ( let loc = mk_loc _startpos _endpos in mk_command CmdCheckSat loc )
+# 1874 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 188 "src/smtlib/smtlib_parser.mly"
+         t
+# 1879 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_term) (_startpos_t_ : Lexing.position) (_endpos_t_ : Lexing.position) (_startofs_t_ : int) (_endofs_t_ : int) (_loc_t_ : Lexing.position * Lexing.position) (
+# 188 "src/smtlib/smtlib_parser.mly"
+ _1
+# 1883 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_command ->
+    
+# 189 "src/smtlib/smtlib_parser.mly"
+  ( let loc = mk_loc _startpos _endpos in mk_command (CmdAssert t) loc )
+# 1888 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 390 "src/smtlib/smtlib_parser.mly"
+                       _3
+# 1893 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (
+# 390 "src/smtlib/smtlib_parser.mly"
+         sexprs
+# 1897 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_list_sexpr_) (_startpos_sexprs_ : Lexing.position) (_endpos_sexprs_ : Lexing.position) (_startofs_sexprs_ : int) (_endofs_sexprs_ : int) (_loc_sexprs_ : Lexing.position * Lexing.position) (
+# 390 "src/smtlib/smtlib_parser.mly"
+ _1
+# 1901 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_attribute_value ->
+    
+# 391 "src/smtlib/smtlib_parser.mly"
+ ( let loc = mk_loc _startpos _endpos in
+   mk_attr_value (AttrValSexpr sexprs) loc )
+# 1907 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 387 "src/smtlib/smtlib_parser.mly"
+  symb
+# 1912 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_symbol) (_startpos_symb_ : Lexing.position) (_endpos_symb_ : Lexing.position) (_startofs_symb_ : int) (_endofs_symb_ : int) (_loc_symb_ : Lexing.position * Lexing.position) : 'tv_attribute_value ->
+    
+# 388 "src/smtlib/smtlib_parser.mly"
+  ( let loc = mk_loc _startpos _endpos in
+    mk_attr_value (AttrValSymbol symb) loc )
+# 1918 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 384 "src/smtlib/smtlib_parser.mly"
+  sc
+# 1923 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_spec_constant) (_startpos_sc_ : Lexing.position) (_endpos_sc_ : Lexing.position) (_startofs_sc_ : int) (_endofs_sc_ : int) (_loc_sc_ : Lexing.position * Lexing.position) : 'tv_attribute_value ->
+    
+# 385 "src/smtlib/smtlib_parser.mly"
+  ( let loc = mk_loc _startpos _endpos in
+    mk_attr_value (AttrValSpecConstant sc) loc )
+# 1929 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 414 "src/smtlib/smtlib_parser.mly"
+               attrval
+# 1934 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : 'tv_attribute_value) (_startpos_attrval_ : Lexing.position) (_endpos_attrval_ : Lexing.position) (_startofs_attrval_ : int) (_endofs_attrval_ : int) (_loc_attrval_ : Lexing.position * Lexing.position) (
+# 414 "src/smtlib/smtlib_parser.mly"
+  kwd
+# 1938 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : (
+# 139 "src/smtlib/smtlib_parser.mly"
+       (string)
+# 1942 "src/smtlib/smtlib_parser__mock.ml.mock"
+  )) (_startpos_kwd_ : Lexing.position) (_endpos_kwd_ : Lexing.position) (_startofs_kwd_ : int) (_endofs_kwd_ : int) (_loc_kwd_ : Lexing.position * Lexing.position) : 'tv_attribute ->
+    
+# 415 "src/smtlib/smtlib_parser.mly"
+  ( let loc = mk_loc _startpos _endpos in
+    mk_attribute (AttrKeywordValue (kwd, attrval)) loc )
+# 1948 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 411 "src/smtlib/smtlib_parser.mly"
+  kwd
+# 1953 "src/smtlib/smtlib_parser__mock.ml.mock"
+   : (
+# 139 "src/smtlib/smtlib_parser.mly"
+       (string)
+# 1957 "src/smtlib/smtlib_parser__mock.ml.mock"
+  )) (_startpos_kwd_ : Lexing.position) (_endpos_kwd_ : Lexing.position) (_startofs_kwd_ : int) (_endofs_kwd_ : int) (_loc_kwd_ : Lexing.position * Lexing.position) : 'tv_attribute ->
+    
+# 412 "src/smtlib/smtlib_parser.mly"
+  ( let loc = mk_loc _startpos _endpos in
+    mk_attribute (AttrKeyword kwd) loc )
+# 1963 "src/smtlib/smtlib_parser__mock.ml.mock"
+     in
+  ((let rec diverge() = diverge() in diverge()) : 'tv_var_binding * 'tv_value * 'tv_term * 'tv_symbol * 'tv_spec_constant * 'tv_sorted_var * 'tv_sort * 'tv_smt_option * 'tv_sexpr * 'tv_script * 'tv_qual_identifier * 'tv_preceded_option_MODEL__list_delimited_LPAREN_command_RPAREN___ * 'tv_poly_parameters * 'tv_pair_term_term_ * 'tv_option_poly_parameters_ * 'tv_option_NUMERAL_ * 'tv_option_MODEL_ * 'tv_nonempty_list_var_binding_ * 'tv_nonempty_list_term_ * 'tv_nonempty_list_symbol_ * 'tv_nonempty_list_sorted_var_ * 'tv_nonempty_list_sort_ * 'tv_nonempty_list_index_ * 'tv_nonempty_list_fun_rec_def_ * 'tv_nonempty_list_delimited_LPAREN_pair_term_term__RPAREN__ * 'tv_nonempty_list_attribute_ * 'tv_model * 'tv_list_sorted_var_ * 'tv_list_sort_ * 'tv_list_sexpr_ * 'tv_list_delimited_LPAREN_command_RPAREN__ * 'tv_ivalue * 'tv_info_flag * 'tv_index * 'tv_identifier * 'tv_fun_rec_def * 'tv_fun_nonrec_def * 'tv_fun_def * 'tv_delimited_LPAREN_preceded_option_MODEL__list_delimited_LPAREN_command_RPAREN____RPAREN_ * 'tv_delimited_LPAREN_pair_term_term__RPAREN_ * 'tv_delimited_LPAREN_command_RPAREN_ * 'tv_command * 'tv_attribute_value * 'tv_attribute)
+
+and menhir_end_marker =
+  0

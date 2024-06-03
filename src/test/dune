@@ -1,0 +1,11 @@
+(include_subdirs no)
+
+(library
+ (name test)
+ (modules :standard)
+ (flags
+  (:standard -open Binsec -open Smt -open Sse -open Libsse -open Libterm 
+  -open Libformula))
+ (library_flags
+  (:standard -linkall))
+ (libraries binsec smt sse libsse libterm libformula))

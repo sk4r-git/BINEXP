@@ -1,0 +1,2537 @@
+(lang dune 3.14)
+(name binsec)
+(version 0.8.1)
+(sections
+ (lib .)
+ (lib_root ..)
+ (libexec .)
+ (bin ../../bin)
+ (share ../../share/binsec)
+ (share_root ../../share)
+ (doc ../../doc/binsec)
+ (stublibs ../stublibs))
+(sites (plugins lib) (utils share))
+(files
+ (lib
+  (META
+   Plugins.ml
+   Runtime.ml
+   amd64decoder/amd64ToDba.ml
+   amd64decoder/amd64ToDba.mli
+   amd64decoder/amd64_options.ml
+   amd64decoder/amd64_options.mli
+   amd64decoder/amd64decoder.a
+   amd64decoder/amd64decoder.cma
+   amd64decoder/amd64decoder.cmi
+   amd64decoder/amd64decoder.cmt
+   amd64decoder/amd64decoder.cmx
+   amd64decoder/amd64decoder.cmxa
+   amd64decoder/amd64decoder.ml
+   amd64decoder/amd64decoder__Amd64ToDba.cmi
+   amd64decoder/amd64decoder__Amd64ToDba.cmt
+   amd64decoder/amd64decoder__Amd64ToDba.cmti
+   amd64decoder/amd64decoder__Amd64ToDba.cmx
+   amd64decoder/amd64decoder__Amd64_options.cmi
+   amd64decoder/amd64decoder__Amd64_options.cmt
+   amd64decoder/amd64decoder__Amd64_options.cmti
+   amd64decoder/amd64decoder__Amd64_options.cmx
+   armv7decoder/armToDba.ml
+   armv7decoder/armToDba.mli
+   armv7decoder/arm_options.ml
+   armv7decoder/arm_options.mli
+   armv7decoder/armv7decoder.a
+   armv7decoder/armv7decoder.cma
+   armv7decoder/armv7decoder.cmi
+   armv7decoder/armv7decoder.cmt
+   armv7decoder/armv7decoder.cmx
+   armv7decoder/armv7decoder.cmxa
+   armv7decoder/armv7decoder.ml
+   armv7decoder/armv7decoder__ArmToDba.cmi
+   armv7decoder/armv7decoder__ArmToDba.cmt
+   armv7decoder/armv7decoder__ArmToDba.cmti
+   armv7decoder/armv7decoder__ArmToDba.cmx
+   armv7decoder/armv7decoder__Arm_options.cmi
+   armv7decoder/armv7decoder__Arm_options.cmt
+   armv7decoder/armv7decoder__Arm_options.cmti
+   armv7decoder/armv7decoder__Arm_options.cmx
+   armv8decoder/aarch64ToDba.ml
+   armv8decoder/aarch64ToDba.mli
+   armv8decoder/aarch64_options.ml
+   armv8decoder/aarch64_options.mli
+   armv8decoder/armv8decoder.a
+   armv8decoder/armv8decoder.cma
+   armv8decoder/armv8decoder.cmi
+   armv8decoder/armv8decoder.cmt
+   armv8decoder/armv8decoder.cmx
+   armv8decoder/armv8decoder.cmxa
+   armv8decoder/armv8decoder.ml
+   armv8decoder/armv8decoder__Aarch64ToDba.cmi
+   armv8decoder/armv8decoder__Aarch64ToDba.cmt
+   armv8decoder/armv8decoder__Aarch64ToDba.cmti
+   armv8decoder/armv8decoder__Aarch64ToDba.cmx
+   armv8decoder/armv8decoder__Aarch64_options.cmi
+   armv8decoder/armv8decoder__Aarch64_options.cmt
+   armv8decoder/armv8decoder__Aarch64_options.cmti
+   armv8decoder/armv8decoder__Aarch64_options.cmx
+   ast/ast.ml
+   ast/ast.mli
+   ast/ast_types.ml
+   ast/cfgraph.ml
+   ast/cfgraph.mli
+   ast/instr_cfg.ml
+   ast/instr_cfg.mli
+   base/array_utils.ml
+   base/array_utils.mli
+   base/base_logger.ml
+   base/base_logger.mli
+   base/basic_types.ml
+   base/basic_types.mli
+   base/binstream.ml
+   base/binstream.mli
+   base/bitset.ml
+   base/bitset.mli
+   base/bitvector.ml
+   base/bitvector.mli
+   base/cli.ml
+   base/cli.mli
+   base/file_utils.ml
+   base/file_utils.mli
+   base/hash.ml
+   base/hash.mli
+   base/hashamt.ml
+   base/hashamt.mli
+   base/imap.ml
+   base/imap.mli
+   base/interval.ml
+   base/interval.mli
+   base/list_utils.ml
+   base/list_utils.mli
+   base/lmap.ml
+   base/lmap.mli
+   base/logger.ml
+   base/logger.mli
+   base/machine.ml
+   base/machine.mli
+   base/mnemonic.ml
+   base/mnemonic.mli
+   base/natural.ml
+   base/natural.mli
+   base/prettytbl.ml
+   base/prettytbl.mli
+   base/print_utils.ml
+   base/print_utils.mli
+   base/sequence.ml
+   base/sequence.mli
+   base/sigs.mli
+   base/size.ml
+   base/size.mli
+   base/string_utils.ml
+   base/string_utils.mli
+   base/subprocess.ml
+   base/subprocess.mli
+   base/suid.ml
+   base/suid.mli
+   base/utils.ml
+   base/utils.mli
+   base/virtual_address.ml
+   base/virtual_address.mli
+   base/worklist.ml
+   base/worklist.mli
+   binpatcher/binpatcher.ml
+   binpatcher/binpatcher.mli
+   binpatcher/binpatcher_options.ml
+   binpatcher/binpatcher_options.mli
+   binsec.a
+   binsec.cma
+   binsec.cmi
+   binsec.cmt
+   binsec.cmx
+   binsec.cmxa
+   binsec.ml
+   binsec__Array_utils.cmi
+   binsec__Array_utils.cmt
+   binsec__Array_utils.cmti
+   binsec__Array_utils.cmx
+   binsec__Ast.cmi
+   binsec__Ast.cmt
+   binsec__Ast.cmti
+   binsec__Ast.cmx
+   binsec__Ast_types.cmi
+   binsec__Ast_types.cmt
+   binsec__Ast_types.cmx
+   binsec__Base_logger.cmi
+   binsec__Base_logger.cmt
+   binsec__Base_logger.cmti
+   binsec__Base_logger.cmx
+   binsec__Basic_types.cmi
+   binsec__Basic_types.cmt
+   binsec__Basic_types.cmti
+   binsec__Basic_types.cmx
+   binsec__Binpatcher.cmi
+   binsec__Binpatcher.cmt
+   binsec__Binpatcher.cmti
+   binsec__Binpatcher.cmx
+   binsec__Binpatcher_options.cmi
+   binsec__Binpatcher_options.cmt
+   binsec__Binpatcher_options.cmti
+   binsec__Binpatcher_options.cmx
+   binsec__Binstream.cmi
+   binsec__Binstream.cmt
+   binsec__Binstream.cmti
+   binsec__Binstream.cmx
+   binsec__Bitset.cmi
+   binsec__Bitset.cmt
+   binsec__Bitset.cmti
+   binsec__Bitset.cmx
+   binsec__Bitvector.cmi
+   binsec__Bitvector.cmt
+   binsec__Bitvector.cmti
+   binsec__Bitvector.cmx
+   binsec__Cfg.cmi
+   binsec__Cfg.cmt
+   binsec__Cfg.cmti
+   binsec__Cfg.cmx
+   binsec__Cfgraph.cmi
+   binsec__Cfgraph.cmt
+   binsec__Cfgraph.cmti
+   binsec__Cfgraph.cmx
+   binsec__Cli.cmi
+   binsec__Cli.cmt
+   binsec__Cli.cmti
+   binsec__Cli.cmx
+   binsec__Colors.cmi
+   binsec__Colors.cmt
+   binsec__Colors.cmti
+   binsec__Colors.cmx
+   binsec__Concrete.cmi
+   binsec__Concrete.cmt
+   binsec__Concrete.cmti
+   binsec__Concrete.cmx
+   binsec__Dba.cmi
+   binsec__Dba.cmt
+   binsec__Dba.cmti
+   binsec__Dba.cmx
+   binsec__Dba_printer.cmi
+   binsec__Dba_printer.cmt
+   binsec__Dba_printer.cmti
+   binsec__Dba_printer.cmx
+   binsec__Dba_to_formula.cmi
+   binsec__Dba_to_formula.cmt
+   binsec__Dba_to_formula.cmti
+   binsec__Dba_to_formula.cmx
+   binsec__Dba_types.cmi
+   binsec__Dba_types.cmt
+   binsec__Dba_types.cmti
+   binsec__Dba_types.cmx
+   binsec__Dba_utils.cmi
+   binsec__Dba_utils.cmt
+   binsec__Dba_utils.cmti
+   binsec__Dba_utils.cmx
+   binsec__Dba_visitor.cmi
+   binsec__Dba_visitor.cmt
+   binsec__Dba_visitor.cmti
+   binsec__Dba_visitor.cmx
+   binsec__Dbacsl_parser.cmi
+   binsec__Dbacsl_parser.cmt
+   binsec__Dbacsl_parser.cmti
+   binsec__Dbacsl_parser.cmx
+   binsec__Dbacsl_token.cmi
+   binsec__Dbacsl_token.cmt
+   binsec__Dbacsl_token.cmx
+   binsec__Decode_utils.cmi
+   binsec__Decode_utils.cmt
+   binsec__Decode_utils.cmti
+   binsec__Decode_utils.cmx
+   binsec__Dhunk.cmi
+   binsec__Dhunk.cmt
+   binsec__Dhunk.cmti
+   binsec__Dhunk.cmx
+   binsec__Directive.cmi
+   binsec__Directive.cmt
+   binsec__Directive.cmti
+   binsec__Directive.cmx
+   binsec__Disasm.cmi
+   binsec__Disasm.cmt
+   binsec__Disasm.cmti
+   binsec__Disasm.cmx
+   binsec__Disasm_cfg.cmi
+   binsec__Disasm_cfg.cmt
+   binsec__Disasm_cfg.cmti
+   binsec__Disasm_cfg.cmx
+   binsec__Disasm_core.cmi
+   binsec__Disasm_core.cmt
+   binsec__Disasm_core.cmti
+   binsec__Disasm_core.cmx
+   binsec__Disasm_options.cmi
+   binsec__Disasm_options.cmt
+   binsec__Disasm_options.cmti
+   binsec__Disasm_options.cmx
+   binsec__Dwarf.cmi
+   binsec__Dwarf.cmt
+   binsec__Dwarf.cmti
+   binsec__Dwarf.cmx
+   binsec__Dwarf_cunit.cmi
+   binsec__Dwarf_cunit.cmt
+   binsec__Dwarf_cunit.cmti
+   binsec__Dwarf_cunit.cmx
+   binsec__Dwarf_expr.cmi
+   binsec__Dwarf_expr.cmt
+   binsec__Dwarf_expr.cmti
+   binsec__Dwarf_expr.cmx
+   binsec__Dwarf_frame.cmi
+   binsec__Dwarf_frame.cmt
+   binsec__Dwarf_frame.cmti
+   binsec__Dwarf_frame.cmx
+   binsec__Dwarf_lines.cmi
+   binsec__Dwarf_lines.cmt
+   binsec__Dwarf_lines.cmti
+   binsec__Dwarf_lines.cmx
+   binsec__Dwarf_options.cmi
+   binsec__Dwarf_options.cmt
+   binsec__Dwarf_options.cmti
+   binsec__Dwarf_options.cmx
+   binsec__Elf_options.cmi
+   binsec__Elf_options.cmt
+   binsec__Elf_options.cmti
+   binsec__Elf_options.cmx
+   binsec__Errors.cmi
+   binsec__Errors.cmt
+   binsec__Errors.cmti
+   binsec__Errors.cmx
+   binsec__File_utils.cmi
+   binsec__File_utils.cmt
+   binsec__File_utils.cmti
+   binsec__File_utils.cmx
+   binsec__Formula.cmi
+   binsec__Formula.cmt
+   binsec__Formula.cmti
+   binsec__Formula.cmx
+   binsec__Formula_main.cmi
+   binsec__Formula_main.cmt
+   binsec__Formula_main.cmti
+   binsec__Formula_main.cmx
+   binsec__Formula_options.cmi
+   binsec__Formula_options.cmt
+   binsec__Formula_options.cmti
+   binsec__Formula_options.cmx
+   binsec__Formula_pp.cmi
+   binsec__Formula_pp.cmt
+   binsec__Formula_pp.cmti
+   binsec__Formula_pp.cmx
+   binsec__Formula_to_smtlib.cmi
+   binsec__Formula_to_smtlib.cmt
+   binsec__Formula_to_smtlib.cmti
+   binsec__Formula_to_smtlib.cmx
+   binsec__Formula_transformation.cmi
+   binsec__Formula_transformation.cmt
+   binsec__Formula_transformation.cmti
+   binsec__Formula_transformation.cmx
+   binsec__Formula_utils.cmi
+   binsec__Formula_utils.cmt
+   binsec__Formula_utils.cmti
+   binsec__Formula_utils.cmx
+   binsec__Ghidra_cfg.cmi
+   binsec__Ghidra_cfg.cmt
+   binsec__Ghidra_cfg.cmti
+   binsec__Ghidra_cfg.cmx
+   binsec__Ghidra_options.cmi
+   binsec__Ghidra_options.cmt
+   binsec__Ghidra_options.cmti
+   binsec__Ghidra_options.cmx
+   binsec__Hash.cmi
+   binsec__Hash.cmt
+   binsec__Hash.cmti
+   binsec__Hash.cmx
+   binsec__Hashamt.cmi
+   binsec__Hashamt.cmt
+   binsec__Hashamt.cmti
+   binsec__Hashamt.cmx
+   binsec__Htx_main.cmi
+   binsec__Htx_main.cmt
+   binsec__Htx_main.cmti
+   binsec__Htx_main.cmx
+   binsec__Htx_options.cmi
+   binsec__Htx_options.cmt
+   binsec__Htx_options.cmti
+   binsec__Htx_options.cmx
+   binsec__Ida.cmi
+   binsec__Ida.cmt
+   binsec__Ida.cmti
+   binsec__Ida.cmx
+   binsec__Ida_cfg.cmi
+   binsec__Ida_cfg.cmt
+   binsec__Ida_cfg.cmti
+   binsec__Ida_cfg.cmx
+   binsec__Ida_cg.cmi
+   binsec__Ida_cg.cmt
+   binsec__Ida_cg.cmti
+   binsec__Ida_cg.cmx
+   binsec__Ida_options.cmi
+   binsec__Ida_options.cmt
+   binsec__Ida_options.cmti
+   binsec__Ida_options.cmx
+   binsec__Ida_utils.cmi
+   binsec__Ida_utils.cmt
+   binsec__Ida_utils.cmti
+   binsec__Ida_utils.cmx
+   binsec__Imap.cmi
+   binsec__Imap.cmt
+   binsec__Imap.cmti
+   binsec__Imap.cmx
+   binsec__Infos.cmi
+   binsec__Infos.cmt
+   binsec__Infos.cmti
+   binsec__Infos.cmx
+   binsec__Instr_cfg.cmi
+   binsec__Instr_cfg.cmt
+   binsec__Instr_cfg.cmti
+   binsec__Instr_cfg.cmx
+   binsec__Instruction.cmi
+   binsec__Instruction.cmt
+   binsec__Instruction.cmti
+   binsec__Instruction.cmx
+   binsec__Interval.cmi
+   binsec__Interval.cmt
+   binsec__Interval.cmti
+   binsec__Interval.cmx
+   binsec__Isa_helper.cmi
+   binsec__Isa_helper.cmt
+   binsec__Isa_helper.cmti
+   binsec__Isa_helper.cmx
+   binsec__Kernel_core.cmi
+   binsec__Kernel_core.cmt
+   binsec__Kernel_core.cmti
+   binsec__Kernel_core.cmx
+   binsec__Kernel_functions.cmi
+   binsec__Kernel_functions.cmt
+   binsec__Kernel_functions.cmti
+   binsec__Kernel_functions.cmx
+   binsec__Kernel_options.cmi
+   binsec__Kernel_options.cmt
+   binsec__Kernel_options.cmti
+   binsec__Kernel_options.cmx
+   binsec__Lexer.cmi
+   binsec__Lexer.cmt
+   binsec__Lexer.cmx
+   binsec__Lexer_ghidra.cmi
+   binsec__Lexer_ghidra.cmt
+   binsec__Lexer_ghidra.cmx
+   binsec__List_utils.cmi
+   binsec__List_utils.cmt
+   binsec__List_utils.cmti
+   binsec__List_utils.cmx
+   binsec__Lmap.cmi
+   binsec__Lmap.cmt
+   binsec__Lmap.cmti
+   binsec__Lmap.cmx
+   binsec__Loader.cmi
+   binsec__Loader.cmt
+   binsec__Loader.cmti
+   binsec__Loader.cmx
+   binsec__Loader_buf.cmi
+   binsec__Loader_buf.cmt
+   binsec__Loader_buf.cmti
+   binsec__Loader_buf.cmx
+   binsec__Loader_elf.cmi
+   binsec__Loader_elf.cmt
+   binsec__Loader_elf.cmti
+   binsec__Loader_elf.cmx
+   binsec__Loader_pe.cmi
+   binsec__Loader_pe.cmt
+   binsec__Loader_pe.cmti
+   binsec__Loader_pe.cmx
+   binsec__Loader_raw.cmi
+   binsec__Loader_raw.cmt
+   binsec__Loader_raw.cmti
+   binsec__Loader_raw.cmx
+   binsec__Loader_sigs.cmi
+   binsec__Loader_sigs.cmti
+   binsec__Loader_ti83.cmi
+   binsec__Loader_ti83.cmt
+   binsec__Loader_ti83.cmti
+   binsec__Loader_ti83.cmx
+   binsec__Loader_types.cmi
+   binsec__Loader_types.cmti
+   binsec__Loader_utils.cmi
+   binsec__Loader_utils.cmt
+   binsec__Loader_utils.cmti
+   binsec__Loader_utils.cmx
+   binsec__Location.cmi
+   binsec__Location.cmt
+   binsec__Location.cmti
+   binsec__Location.cmx
+   binsec__Logger.cmi
+   binsec__Logger.cmt
+   binsec__Logger.cmti
+   binsec__Logger.cmx
+   binsec__Lreader.cmi
+   binsec__Lreader.cmt
+   binsec__Lreader.cmti
+   binsec__Lreader.cmx
+   binsec__Machine.cmi
+   binsec__Machine.cmt
+   binsec__Machine.cmti
+   binsec__Machine.cmx
+   binsec__Mcount_main.cmi
+   binsec__Mcount_main.cmt
+   binsec__Mcount_main.cmti
+   binsec__Mcount_main.cmx
+   binsec__Mcount_options.cmi
+   binsec__Mcount_options.cmt
+   binsec__Mcount_options.cmti
+   binsec__Mcount_options.cmx
+   binsec__Mnemonic.cmi
+   binsec__Mnemonic.cmt
+   binsec__Mnemonic.cmti
+   binsec__Mnemonic.cmx
+   binsec__Natural.cmi
+   binsec__Natural.cmt
+   binsec__Natural.cmti
+   binsec__Natural.cmx
+   binsec__Parse_helpers.cmi
+   binsec__Parse_helpers.cmt
+   binsec__Parse_helpers.cmti
+   binsec__Parse_helpers.cmx
+   binsec__Parse_utils.cmi
+   binsec__Parse_utils.cmt
+   binsec__Parse_utils.cmti
+   binsec__Parse_utils.cmx
+   binsec__Parser.cmi
+   binsec__Parser.cmt
+   binsec__Parser.cmti
+   binsec__Parser.cmx
+   binsec__Parser_ghidra.cmi
+   binsec__Parser_ghidra.cmt
+   binsec__Parser_ghidra.cmti
+   binsec__Parser_ghidra.cmx
+   binsec__Plugins.cmi
+   binsec__Plugins.cmt
+   binsec__Plugins.cmx
+   binsec__Predba.cmi
+   binsec__Predba.cmt
+   binsec__Predba.cmti
+   binsec__Predba.cmx
+   binsec__Prettytbl.cmi
+   binsec__Prettytbl.cmt
+   binsec__Prettytbl.cmti
+   binsec__Prettytbl.cmx
+   binsec__Print_utils.cmi
+   binsec__Print_utils.cmt
+   binsec__Print_utils.cmti
+   binsec__Print_utils.cmx
+   binsec__Prover.cmi
+   binsec__Prover.cmt
+   binsec__Prover.cmti
+   binsec__Prover.cmx
+   binsec__Riscv_arch.cmi
+   binsec__Riscv_arch.cmt
+   binsec__Riscv_arch.cmti
+   binsec__Riscv_arch.cmx
+   binsec__Riscv_options.cmi
+   binsec__Riscv_options.cmt
+   binsec__Riscv_options.cmti
+   binsec__Riscv_options.cmx
+   binsec__Riscv_to_dba.cmi
+   binsec__Riscv_to_dba.cmt
+   binsec__Riscv_to_dba.cmti
+   binsec__Riscv_to_dba.cmx
+   binsec__Runtime.cmi
+   binsec__Runtime.cmt
+   binsec__Runtime.cmx
+   binsec__Sequence.cmi
+   binsec__Sequence.cmt
+   binsec__Sequence.cmti
+   binsec__Sequence.cmx
+   binsec__Sigs.cmi
+   binsec__Sigs.cmti
+   binsec__Simulation.cmi
+   binsec__Simulation.cmt
+   binsec__Simulation.cmti
+   binsec__Simulation.cmx
+   binsec__Size.cmi
+   binsec__Size.cmt
+   binsec__Size.cmti
+   binsec__Size.cmx
+   binsec__Smt_model.cmi
+   binsec__Smt_model.cmt
+   binsec__Smt_model.cmti
+   binsec__Smt_model.cmx
+   binsec__Smtlib.cmi
+   binsec__Smtlib.cmti
+   binsec__Smtlib_lexer.cmi
+   binsec__Smtlib_lexer.cmt
+   binsec__Smtlib_lexer.cmx
+   binsec__Smtlib_options.cmi
+   binsec__Smtlib_options.cmt
+   binsec__Smtlib_options.cmti
+   binsec__Smtlib_options.cmx
+   binsec__Smtlib_parser.cmi
+   binsec__Smtlib_parser.cmt
+   binsec__Smtlib_parser.cmti
+   binsec__Smtlib_parser.cmx
+   binsec__Smtlib_pp.cmi
+   binsec__Smtlib_pp.cmt
+   binsec__Smtlib_pp.cmti
+   binsec__Smtlib_pp.cmx
+   binsec__Smtlib_to_formula.cmi
+   binsec__Smtlib_to_formula.cmt
+   binsec__Smtlib_to_formula.cmti
+   binsec__Smtlib_to_formula.cmx
+   binsec__Smtlib_utils.cmi
+   binsec__Smtlib_utils.cmt
+   binsec__Smtlib_utils.cmti
+   binsec__Smtlib_utils.cmx
+   binsec__Solver.cmi
+   binsec__Solver.cmt
+   binsec__Solver.cmti
+   binsec__Solver.cmx
+   binsec__String_utils.cmi
+   binsec__String_utils.cmt
+   binsec__String_utils.cmti
+   binsec__String_utils.cmx
+   binsec__Subprocess.cmi
+   binsec__Subprocess.cmt
+   binsec__Subprocess.cmti
+   binsec__Subprocess.cmx
+   binsec__Suid.cmi
+   binsec__Suid.cmt
+   binsec__Suid.cmti
+   binsec__Suid.cmx
+   binsec__Term.cmi
+   binsec__Term.cmt
+   binsec__Term.cmti
+   binsec__Term.cmx
+   binsec__Utils.cmi
+   binsec__Utils.cmt
+   binsec__Utils.cmti
+   binsec__Utils.cmx
+   binsec__Virtual_address.cmi
+   binsec__Virtual_address.cmt
+   binsec__Virtual_address.cmti
+   binsec__Virtual_address.cmx
+   binsec__Worklist.cmi
+   binsec__Worklist.cmt
+   binsec__Worklist.cmti
+   binsec__Worklist.cmx
+   binsec__X86Instruction.cmi
+   binsec__X86Instruction.cmt
+   binsec__X86Instruction.cmti
+   binsec__X86Instruction.cmx
+   binsec__X86Types.cmi
+   binsec__X86Types.cmti
+   binsec__X86Util.cmi
+   binsec__X86Util.cmt
+   binsec__X86Util.cmti
+   binsec__X86Util.cmx
+   binsec__X86_options.cmi
+   binsec__X86_options.cmt
+   binsec__X86_options.cmti
+   binsec__X86_options.cmx
+   binsec__X86decoder.cmi
+   binsec__X86decoder.cmt
+   binsec__X86decoder.cmti
+   binsec__X86decoder.cmx
+   binsec__X86pp.cmi
+   binsec__X86pp.cmt
+   binsec__X86pp.cmti
+   binsec__X86pp.cmx
+   binsec__X86toDba.cmi
+   binsec__X86toDba.cmt
+   binsec__X86toDba.cmti
+   binsec__X86toDba.cmx
+   binsec__Z80_arch.cmi
+   binsec__Z80_arch.cmt
+   binsec__Z80_arch.cmti
+   binsec__Z80_arch.cmx
+   binsec__Z80_options.cmi
+   binsec__Z80_options.cmt
+   binsec__Z80_options.cmti
+   binsec__Z80_options.cmx
+   binsec__Z80_to_dba.cmi
+   binsec__Z80_to_dba.cmt
+   binsec__Z80_to_dba.cmti
+   binsec__Z80_to_dba.cmx
+   dba/dba.ml
+   dba/dba.mli
+   dba/dba_printer.ml
+   dba/dba_printer.mli
+   dba/dba_to_formula.ml
+   dba/dba_to_formula.mli
+   dba/dba_types.ml
+   dba/dba_types.mli
+   dba/dba_utils.ml
+   dba/dba_utils.mli
+   dba/dba_visitor.ml
+   dba/dba_visitor.mli
+   dba/errors.ml
+   dba/errors.mli
+   disasm/decode_utils.ml
+   disasm/decode_utils.mli
+   disasm/disasm.ml
+   disasm/disasm.mli
+   disasm/disasm_cfg.ml
+   disasm/disasm_cfg.mli
+   disasm/disasm_core.ml
+   disasm/disasm_core.mli
+   disasm/disasm_options.ml
+   disasm/disasm_options.mli
+   disasm/lreader.ml
+   disasm/lreader.mli
+   disasm/riscv/riscv_arch.ml
+   disasm/riscv/riscv_arch.mli
+   disasm/riscv/riscv_options.ml
+   disasm/riscv/riscv_options.mli
+   disasm/riscv/riscv_to_dba.ml
+   disasm/riscv/riscv_to_dba.mli
+   disasm/x86/predba.ml
+   disasm/x86/predba.mli
+   disasm/x86/x86Instruction.ml
+   disasm/x86/x86Instruction.mli
+   disasm/x86/x86Types.mli
+   disasm/x86/x86Util.ml
+   disasm/x86/x86Util.mli
+   disasm/x86/x86_options.ml
+   disasm/x86/x86_options.mli
+   disasm/x86/x86decoder.ml
+   disasm/x86/x86decoder.mli
+   disasm/x86/x86pp.ml
+   disasm/x86/x86pp.mli
+   disasm/x86/x86toDba.ml
+   disasm/x86/x86toDba.mli
+   disasm/z80/z80_arch.ml
+   disasm/z80/z80_arch.mli
+   disasm/z80/z80_options.ml
+   disasm/z80/z80_options.mli
+   disasm/z80/z80_to_dba.ml
+   disasm/z80/z80_to_dba.mli
+   domains/.private/domains__Common.cmi
+   domains/.private/domains__Common.cmt
+   domains/.private/domains__Interval.cmi
+   domains/.private/domains__Interval.cmt
+   domains/.private/domains__Interval.cmti
+   domains/common.ml
+   domains/domains.a
+   domains/domains.cma
+   domains/domains.cmi
+   domains/domains.cmt
+   domains/domains.cmti
+   domains/domains.cmx
+   domains/domains.cmxa
+   domains/domains.ml
+   domains/domains.mli
+   domains/domains__.cmi
+   domains/domains__.cmt
+   domains/domains__.cmx
+   domains/domains__.ml
+   domains/domains__Common.cmx
+   domains/domains__Interval.cmx
+   domains/interval.ml
+   domains/interval.mli
+   dune-package
+   dwarf/dwarf.ml
+   dwarf/dwarf.mli
+   dwarf/dwarf_cunit.ml
+   dwarf/dwarf_cunit.mli
+   dwarf/dwarf_expr.ml
+   dwarf/dwarf_expr.mli
+   dwarf/dwarf_frame.ml
+   dwarf/dwarf_frame.mli
+   dwarf/dwarf_lines.ml
+   dwarf/dwarf_lines.mli
+   dwarf/dwarf_options.ml
+   dwarf/dwarf_options.mli
+   examples/htmlexport/htx_main.ml
+   examples/htmlexport/htx_main.mli
+   examples/htmlexport/htx_options.ml
+   examples/htmlexport/htx_options.mli
+   examples/mcount/mcount_main.ml
+   examples/mcount/mcount_main.mli
+   examples/mcount/mcount_options.ml
+   examples/mcount/mcount_options.mli
+   formula/formula.ml
+   formula/formula.mli
+   formula/formula_main.ml
+   formula/formula_main.mli
+   formula/formula_options.ml
+   formula/formula_options.mli
+   formula/formula_pp.ml
+   formula/formula_pp.mli
+   formula/formula_to_smtlib.ml
+   formula/formula_to_smtlib.mli
+   formula/formula_transformation.ml
+   formula/formula_transformation.mli
+   formula/formula_utils.ml
+   formula/formula_utils.mli
+   formula/prover.ml
+   formula/prover.mli
+   formula/smtlib_to_formula.ml
+   formula/smtlib_to_formula.mli
+   formula/solver.ml
+   formula/solver.mli
+   ghidra/ghidra_cfg.ml
+   ghidra/ghidra_cfg.mli
+   ghidra/ghidra_options.ml
+   ghidra/ghidra_options.mli
+   ghidra/lexer_ghidra.ml
+   ghidra/parser_ghidra.ml
+   ghidra/parser_ghidra.mli
+   ida/ida.ml
+   ida/ida.mli
+   ida/ida_cfg.ml
+   ida/ida_cfg.mli
+   ida/ida_cg.ml
+   ida/ida_cg.mli
+   ida/ida_options.ml
+   ida/ida_options.mli
+   ida/ida_utils.ml
+   ida/ida_utils.mli
+   kernel/kernel_core.ml
+   kernel/kernel_core.mli
+   kernel/kernel_functions.ml
+   kernel/kernel_functions.mli
+   kernel/kernel_options.ml
+   kernel/kernel_options.mli
+   libbinsec_stubs.a
+   loader/elf_options.ml
+   loader/elf_options.mli
+   loader/loader.ml
+   loader/loader.mli
+   loader/loader_buf.ml
+   loader/loader_buf.mli
+   loader/loader_elf.ml
+   loader/loader_elf.mli
+   loader/loader_pe.ml
+   loader/loader_pe.mli
+   loader/loader_raw.ml
+   loader/loader_raw.mli
+   loader/loader_sigs.mli
+   loader/loader_ti83.ml
+   loader/loader_ti83.mli
+   loader/loader_types.mli
+   loader/loader_utils.ml
+   loader/loader_utils.mli
+   opam
+   parser/dbacsl_parser.ml
+   parser/dbacsl_parser.mli
+   parser/dbacsl_token.ml
+   parser/infos.ml
+   parser/infos.mli
+   parser/lexer.ml
+   parser/libparser.a
+   parser/libparser.cma
+   parser/libparser.cmi
+   parser/libparser.cmt
+   parser/libparser.cmx
+   parser/libparser.cmxa
+   parser/libparser.ml
+   parser/libparser__.cmi
+   parser/libparser__.cmt
+   parser/libparser__.cmx
+   parser/libparser__.ml
+   parser/libparser__Syntax.cmi
+   parser/libparser__Syntax.cmt
+   parser/libparser__Syntax.cmti
+   parser/libparser__Syntax.cmx
+   parser/parse_helpers.ml
+   parser/parse_helpers.mli
+   parser/parse_utils.ml
+   parser/parse_utils.mli
+   parser/parser.ml
+   parser/parser.mli
+   parser/syntax.ml
+   parser/syntax.mli
+   ppc64decoder/ppc64ToDba.ml
+   ppc64decoder/ppc64ToDba.mli
+   ppc64decoder/ppc64_options.ml
+   ppc64decoder/ppc64_options.mli
+   ppc64decoder/ppc64decoder.a
+   ppc64decoder/ppc64decoder.cma
+   ppc64decoder/ppc64decoder.cmi
+   ppc64decoder/ppc64decoder.cmt
+   ppc64decoder/ppc64decoder.cmx
+   ppc64decoder/ppc64decoder.cmxa
+   ppc64decoder/ppc64decoder.ml
+   ppc64decoder/ppc64decoder__Ppc64ToDba.cmi
+   ppc64decoder/ppc64decoder__Ppc64ToDba.cmt
+   ppc64decoder/ppc64decoder__Ppc64ToDba.cmti
+   ppc64decoder/ppc64decoder__Ppc64ToDba.cmx
+   ppc64decoder/ppc64decoder__Ppc64_options.cmi
+   ppc64decoder/ppc64decoder__Ppc64_options.cmt
+   ppc64decoder/ppc64decoder__Ppc64_options.cmti
+   ppc64decoder/ppc64decoder__Ppc64_options.cmx
+   smt/smt.a
+   smt/smt.cma
+   smt/smt.cmi
+   smt/smt.cmt
+   smt/smt.cmx
+   smt/smt.cmxa
+   smt/smt.ml
+   smt/smt__Smt_bitwuzla.cmi
+   smt/smt__Smt_bitwuzla.cmt
+   smt/smt__Smt_bitwuzla.cmti
+   smt/smt__Smt_bitwuzla.cmx
+   smt/smt__Smt_bitwuzla_utils.cmi
+   smt/smt__Smt_bitwuzla_utils.cmt
+   smt/smt__Smt_bitwuzla_utils.cmti
+   smt/smt__Smt_bitwuzla_utils.cmx
+   smt/smt__Smt_external.cmi
+   smt/smt__Smt_external.cmt
+   smt/smt__Smt_external.cmti
+   smt/smt__Smt_external.cmx
+   smt/smt__Smt_options.cmi
+   smt/smt__Smt_options.cmt
+   smt/smt__Smt_options.cmti
+   smt/smt__Smt_options.cmx
+   smt/smt__Smt_sig.cmi
+   smt/smt__Smt_sig.cmti
+   smt/smt__Smt_solver.cmi
+   smt/smt__Smt_solver.cmt
+   smt/smt__Smt_solver.cmti
+   smt/smt__Smt_solver.cmx
+   smt/smt__Smt_symbolic.cmi
+   smt/smt__Smt_symbolic.cmt
+   smt/smt__Smt_symbolic.cmti
+   smt/smt__Smt_symbolic.cmx
+   smt/smt_bitwuzla.ml
+   smt/smt_bitwuzla.mli
+   smt/smt_bitwuzla_utils.ml
+   smt/smt_bitwuzla_utils.mli
+   smt/smt_external.ml
+   smt/smt_external.mli
+   smt/smt_options.ml
+   smt/smt_options.mli
+   smt/smt_sig.mli
+   smt/smt_solver.ml
+   smt/smt_solver.mli
+   smt/smt_symbolic.ml
+   smt/smt_symbolic.mli
+   smtlib/location.ml
+   smtlib/location.mli
+   smtlib/smt_model.ml
+   smtlib/smt_model.mli
+   smtlib/smtlib.mli
+   smtlib/smtlib_lexer.ml
+   smtlib/smtlib_options.ml
+   smtlib/smtlib_options.mli
+   smtlib/smtlib_parser.ml
+   smtlib/smtlib_parser.mli
+   smtlib/smtlib_pp.ml
+   smtlib/smtlib_pp.mli
+   smtlib/smtlib_utils.ml
+   smtlib/smtlib_utils.mli
+   sse/checkct/checkct.a
+   sse/checkct/checkct.cma
+   sse/checkct/checkct.cmi
+   sse/checkct/checkct.cmt
+   sse/checkct/checkct.cmx
+   sse/checkct/checkct.cmxa
+   sse/checkct/checkct.ml
+   sse/dcode.ml
+   sse/dcode.mli
+   sse/eval.ml
+   sse/exec.ml
+   sse/exec.mli
+   sse/fiber.ml
+   sse/formula/libformula.a
+   sse/formula/libformula.cma
+   sse/formula/libformula.cmi
+   sse/formula/libformula.cmt
+   sse/formula/libformula.cmx
+   sse/formula/libformula.cmxa
+   sse/formula/libformula.ml
+   sse/formula/libformula__Sse_symbolic.cmi
+   sse/formula/libformula__Sse_symbolic.cmt
+   sse/formula/libformula__Sse_symbolic.cmti
+   sse/formula/libformula__Sse_symbolic.cmx
+   sse/formula/sse_symbolic.ml
+   sse/formula/sse_symbolic.mli
+   sse/heuristic.ml
+   sse/heuristic.mli
+   sse/ir.ml
+   sse/libsse.a
+   sse/libsse.cma
+   sse/libsse.cmi
+   sse/libsse.cmt
+   sse/libsse.cmx
+   sse/libsse.cmxa
+   sse/libsse.ml
+   sse/libsse__Dcode.cmi
+   sse/libsse__Dcode.cmt
+   sse/libsse__Dcode.cmti
+   sse/libsse__Dcode.cmx
+   sse/libsse__Eval.cmi
+   sse/libsse__Eval.cmt
+   sse/libsse__Eval.cmx
+   sse/libsse__Exec.cmi
+   sse/libsse__Exec.cmt
+   sse/libsse__Exec.cmti
+   sse/libsse__Exec.cmx
+   sse/libsse__Fiber.cmi
+   sse/libsse__Fiber.cmt
+   sse/libsse__Fiber.cmx
+   sse/libsse__Heuristic.cmi
+   sse/libsse__Heuristic.cmt
+   sse/libsse__Heuristic.cmti
+   sse/libsse__Heuristic.cmx
+   sse/libsse__Ir.cmi
+   sse/libsse__Ir.cmt
+   sse/libsse__Ir.cmx
+   sse/libsse__Opt.cmi
+   sse/libsse__Opt.cmt
+   sse/libsse__Opt.cmx
+   sse/libsse__Options.cmi
+   sse/libsse__Options.cmt
+   sse/libsse__Options.cmti
+   sse/libsse__Options.cmx
+   sse/libsse__Path.cmi
+   sse/libsse__Path.cmt
+   sse/libsse__Path.cmti
+   sse/libsse__Path.cmx
+   sse/libsse__Probe.cmi
+   sse/libsse__Probe.cmt
+   sse/libsse__Probe.cmx
+   sse/libsse__Screen.cmi
+   sse/libsse__Screen.cmt
+   sse/libsse__Screen.cmti
+   sse/libsse__Screen.cmx
+   sse/libsse__Script.cmi
+   sse/libsse__Script.cmt
+   sse/libsse__Script.cmti
+   sse/libsse__Script.cmx
+   sse/libsse__Stats.cmi
+   sse/libsse__Stats.cmt
+   sse/libsse__Stats.cmti
+   sse/libsse__Stats.cmx
+   sse/libsse__Types.cmi
+   sse/libsse__Types.cmt
+   sse/libsse__Types.cmx
+   sse/opt.ml
+   sse/options.ml
+   sse/options.mli
+   sse/path.ml
+   sse/path.mli
+   sse/probe.ml
+   sse/screen.ml
+   sse/screen.mli
+   sse/script.ml
+   sse/script.mli
+   sse/shadow_stack/shadow_stack.a
+   sse/shadow_stack/shadow_stack.cma
+   sse/shadow_stack/shadow_stack.cmi
+   sse/shadow_stack/shadow_stack.cmt
+   sse/shadow_stack/shadow_stack.cmx
+   sse/shadow_stack/shadow_stack.cmxa
+   sse/shadow_stack/shadow_stack.ml
+   sse/stats.ml
+   sse/stats.mli
+   sse/term/ai.ml
+   sse/term/libterm.a
+   sse/term/libterm.cma
+   sse/term/libterm.cmi
+   sse/term/libterm.cmt
+   sse/term/libterm.cmx
+   sse/term/libterm.cmxa
+   sse/term/libterm.ml
+   sse/term/libterm__Ai.cmi
+   sse/term/libterm__Ai.cmt
+   sse/term/libterm__Ai.cmx
+   sse/term/libterm__Memory_manager.cmi
+   sse/term/libterm__Memory_manager.cmt
+   sse/term/libterm__Memory_manager.cmx
+   sse/term/libterm__Native_solver.cmi
+   sse/term/libterm__Native_solver.cmt
+   sse/term/libterm__Native_solver.cmti
+   sse/term/libterm__Native_solver.cmx
+   sse/term/libterm__Senv.cmi
+   sse/term/libterm__Senv.cmt
+   sse/term/libterm__Senv.cmti
+   sse/term/libterm__Senv.cmx
+   sse/term/libterm__Sexpr.cmi
+   sse/term/libterm__Sexpr.cmt
+   sse/term/libterm__Sexpr.cmti
+   sse/term/libterm__Sexpr.cmx
+   sse/term/libterm__Smt2_solver.cmi
+   sse/term/libterm__Smt2_solver.cmt
+   sse/term/libterm__Smt2_solver.cmti
+   sse/term/libterm__Smt2_solver.cmx
+   sse/term/libterm__Solver_sig.cmi
+   sse/term/libterm__Solver_sig.cmti
+   sse/term/memory_manager.ml
+   sse/term/native_solver.ml
+   sse/term/native_solver.mli
+   sse/term/senv.ml
+   sse/term/senv.mli
+   sse/term/sexpr.ml
+   sse/term/sexpr.mli
+   sse/term/smt2_solver.ml
+   sse/term/smt2_solver.mli
+   sse/term/solver_sig.mli
+   sse/types.ml
+   sse_register/sse.a
+   sse_register/sse.cma
+   sse_register/sse.cmi
+   sse_register/sse.cmt
+   sse_register/sse.cmti
+   sse_register/sse.cmx
+   sse_register/sse.cmxa
+   sse_register/sse.ml
+   sse_register/sse.mli
+   static/interpreter/concrete.ml
+   static/interpreter/concrete.mli
+   static/interpreter/simulation.ml
+   static/interpreter/simulation.mli
+   term/term.ml
+   term/term.mli
+   utils/cfg.ml
+   utils/cfg.mli
+   utils/colors.ml
+   utils/colors.mli
+   utils/dhunk.ml
+   utils/dhunk.mli
+   utils/directive.ml
+   utils/directive.mli
+   utils/instruction.ml
+   utils/instruction.mli
+   utils/isa_helper.ml
+   utils/isa_helper.mli))
+ (lib_root (binsec/plugins/checkct/META binsec/plugins/shadow_stack/META))
+ (libexec
+  (amd64decoder/amd64decoder.cmxs
+   armv7decoder/armv7decoder.cmxs
+   armv8decoder/armv8decoder.cmxs
+   binsec.cmxs
+   domains/domains.cmxs
+   parser/libparser.cmxs
+   ppc64decoder/ppc64decoder.cmxs
+   smt/smt.cmxs
+   sse/checkct/checkct.cmxs
+   sse/formula/libformula.cmxs
+   sse/libsse.cmxs
+   sse/shadow_stack/shadow_stack.cmxs
+   sse/term/libterm.cmxs
+   sse_register/sse.cmxs))
+ (bin (binsec make_coredump.sh))
+ (share_root (binsec/utils/ghidra_export.java))
+ (doc (CHANGES.md LICENSE.md README.md))
+ (stublibs (dllbinsec_stubs.so)))
+(library
+ (name binsec)
+ (kind normal)
+ (archives (byte binsec.cma) (native binsec.cmxa))
+ (plugins (byte binsec.cma) (native binsec.cmxs))
+ (foreign_objects hash_stubs.o hashcons_stubs.o subprocess.o)
+ (foreign_archives (archives (for all) (files libbinsec_stubs.a)))
+ (foreign_dll_files ../stublibs/dllbinsec_stubs.so)
+ (native_archives binsec.a)
+ (requires str bigarray ocamlgraph zarith dune-site dune-site.plugins)
+ (main_module_name Binsec)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name binsec)
+     (visibility public)
+     (kind alias)
+     (source (path Binsec) (impl (path binsec.ml-gen))))
+    (name Binsec)
+    (modules
+     (module
+      (obj_name binsec__Array_utils)
+      (visibility public)
+      (source
+       (path Array_utils)
+       (intf (path base/array_utils.mli))
+       (impl (path base/array_utils.ml))))
+     (module
+      (obj_name binsec__Ast)
+      (visibility public)
+      (source (path Ast) (intf (path ast/ast.mli)) (impl (path ast/ast.ml))))
+     (module
+      (obj_name binsec__Ast_types)
+      (visibility public)
+      (source (path Ast_types) (impl (path ast/ast_types.ml))))
+     (module
+      (obj_name binsec__Base_logger)
+      (visibility public)
+      (source
+       (path Base_logger)
+       (intf (path base/base_logger.mli))
+       (impl (path base/base_logger.ml))))
+     (module
+      (obj_name binsec__Basic_types)
+      (visibility public)
+      (source
+       (path Basic_types)
+       (intf (path base/basic_types.mli))
+       (impl (path base/basic_types.ml))))
+     (module
+      (obj_name binsec__Binpatcher)
+      (visibility public)
+      (source
+       (path Binpatcher)
+       (intf (path binpatcher/binpatcher.mli))
+       (impl (path binpatcher/binpatcher.ml))))
+     (module
+      (obj_name binsec__Binpatcher_options)
+      (visibility public)
+      (source
+       (path Binpatcher_options)
+       (intf (path binpatcher/binpatcher_options.mli))
+       (impl (path binpatcher/binpatcher_options.ml))))
+     (module
+      (obj_name binsec__Binstream)
+      (visibility public)
+      (source
+       (path Binstream)
+       (intf (path base/binstream.mli))
+       (impl (path base/binstream.ml))))
+     (module
+      (obj_name binsec__Bitset)
+      (visibility public)
+      (source
+       (path Bitset)
+       (intf (path base/bitset.mli))
+       (impl (path base/bitset.ml))))
+     (module
+      (obj_name binsec__Bitvector)
+      (visibility public)
+      (source
+       (path Bitvector)
+       (intf (path base/bitvector.mli))
+       (impl (path base/bitvector.ml))))
+     (module
+      (obj_name binsec__Cfg)
+      (visibility public)
+      (source
+       (path Cfg)
+       (intf (path utils/cfg.mli))
+       (impl (path utils/cfg.ml))))
+     (module
+      (obj_name binsec__Cfgraph)
+      (visibility public)
+      (source
+       (path Cfgraph)
+       (intf (path ast/cfgraph.mli))
+       (impl (path ast/cfgraph.ml))))
+     (module
+      (obj_name binsec__Cli)
+      (visibility public)
+      (source (path Cli) (intf (path base/cli.mli)) (impl (path base/cli.ml))))
+     (module
+      (obj_name binsec__Colors)
+      (visibility public)
+      (source
+       (path Colors)
+       (intf (path utils/colors.mli))
+       (impl (path utils/colors.ml))))
+     (module
+      (obj_name binsec__Concrete)
+      (visibility public)
+      (source
+       (path Concrete)
+       (intf (path static/interpreter/concrete.mli))
+       (impl (path static/interpreter/concrete.ml))))
+     (module
+      (obj_name binsec__Dba)
+      (visibility public)
+      (source (path Dba) (intf (path dba/dba.mli)) (impl (path dba/dba.ml))))
+     (module
+      (obj_name binsec__Dba_printer)
+      (visibility public)
+      (source
+       (path Dba_printer)
+       (intf (path dba/dba_printer.mli))
+       (impl (path dba/dba_printer.ml))))
+     (module
+      (obj_name binsec__Dba_to_formula)
+      (visibility public)
+      (source
+       (path Dba_to_formula)
+       (intf (path dba/dba_to_formula.mli))
+       (impl (path dba/dba_to_formula.ml))))
+     (module
+      (obj_name binsec__Dba_types)
+      (visibility public)
+      (source
+       (path Dba_types)
+       (intf (path dba/dba_types.mli))
+       (impl (path dba/dba_types.ml))))
+     (module
+      (obj_name binsec__Dba_utils)
+      (visibility public)
+      (source
+       (path Dba_utils)
+       (intf (path dba/dba_utils.mli))
+       (impl (path dba/dba_utils.ml))))
+     (module
+      (obj_name binsec__Dba_visitor)
+      (visibility public)
+      (source
+       (path Dba_visitor)
+       (intf (path dba/dba_visitor.mli))
+       (impl (path dba/dba_visitor.ml))))
+     (module
+      (obj_name binsec__Dbacsl_parser)
+      (visibility public)
+      (source
+       (path Dbacsl_parser)
+       (intf (path parser/dbacsl_parser.mli))
+       (impl (path parser/dbacsl_parser.ml))))
+     (module
+      (obj_name binsec__Dbacsl_token)
+      (visibility public)
+      (source (path Dbacsl_token) (impl (path parser/dbacsl_token.ml))))
+     (module
+      (obj_name binsec__Decode_utils)
+      (visibility public)
+      (source
+       (path Decode_utils)
+       (intf (path disasm/decode_utils.mli))
+       (impl (path disasm/decode_utils.ml))))
+     (module
+      (obj_name binsec__Dhunk)
+      (visibility public)
+      (source
+       (path Dhunk)
+       (intf (path utils/dhunk.mli))
+       (impl (path utils/dhunk.ml))))
+     (module
+      (obj_name binsec__Directive)
+      (visibility public)
+      (source
+       (path Directive)
+       (intf (path utils/directive.mli))
+       (impl (path utils/directive.ml))))
+     (module
+      (obj_name binsec__Disasm)
+      (visibility public)
+      (source
+       (path Disasm)
+       (intf (path disasm/disasm.mli))
+       (impl (path disasm/disasm.ml))))
+     (module
+      (obj_name binsec__Disasm_cfg)
+      (visibility public)
+      (source
+       (path Disasm_cfg)
+       (intf (path disasm/disasm_cfg.mli))
+       (impl (path disasm/disasm_cfg.ml))))
+     (module
+      (obj_name binsec__Disasm_core)
+      (visibility public)
+      (source
+       (path Disasm_core)
+       (intf (path disasm/disasm_core.mli))
+       (impl (path disasm/disasm_core.ml))))
+     (module
+      (obj_name binsec__Disasm_options)
+      (visibility public)
+      (source
+       (path Disasm_options)
+       (intf (path disasm/disasm_options.mli))
+       (impl (path disasm/disasm_options.ml))))
+     (module
+      (obj_name binsec__Dwarf)
+      (visibility public)
+      (source
+       (path Dwarf)
+       (intf (path dwarf/dwarf.mli))
+       (impl (path dwarf/dwarf.ml))))
+     (module
+      (obj_name binsec__Dwarf_cunit)
+      (visibility public)
+      (source
+       (path Dwarf_cunit)
+       (intf (path dwarf/dwarf_cunit.mli))
+       (impl (path dwarf/dwarf_cunit.ml))))
+     (module
+      (obj_name binsec__Dwarf_expr)
+      (visibility public)
+      (source
+       (path Dwarf_expr)
+       (intf (path dwarf/dwarf_expr.mli))
+       (impl (path dwarf/dwarf_expr.ml))))
+     (module
+      (obj_name binsec__Dwarf_frame)
+      (visibility public)
+      (source
+       (path Dwarf_frame)
+       (intf (path dwarf/dwarf_frame.mli))
+       (impl (path dwarf/dwarf_frame.ml))))
+     (module
+      (obj_name binsec__Dwarf_lines)
+      (visibility public)
+      (source
+       (path Dwarf_lines)
+       (intf (path dwarf/dwarf_lines.mli))
+       (impl (path dwarf/dwarf_lines.ml))))
+     (module
+      (obj_name binsec__Dwarf_options)
+      (visibility public)
+      (source
+       (path Dwarf_options)
+       (intf (path dwarf/dwarf_options.mli))
+       (impl (path dwarf/dwarf_options.ml))))
+     (module
+      (obj_name binsec__Elf_options)
+      (visibility public)
+      (source
+       (path Elf_options)
+       (intf (path loader/elf_options.mli))
+       (impl (path loader/elf_options.ml))))
+     (module
+      (obj_name binsec__Errors)
+      (visibility public)
+      (source
+       (path Errors)
+       (intf (path dba/errors.mli))
+       (impl (path dba/errors.ml))))
+     (module
+      (obj_name binsec__File_utils)
+      (visibility public)
+      (source
+       (path File_utils)
+       (intf (path base/file_utils.mli))
+       (impl (path base/file_utils.ml))))
+     (module
+      (obj_name binsec__Formula)
+      (visibility public)
+      (source
+       (path Formula)
+       (intf (path formula/formula.mli))
+       (impl (path formula/formula.ml))))
+     (module
+      (obj_name binsec__Formula_main)
+      (visibility public)
+      (source
+       (path Formula_main)
+       (intf (path formula/formula_main.mli))
+       (impl (path formula/formula_main.ml))))
+     (module
+      (obj_name binsec__Formula_options)
+      (visibility public)
+      (source
+       (path Formula_options)
+       (intf (path formula/formula_options.mli))
+       (impl (path formula/formula_options.ml))))
+     (module
+      (obj_name binsec__Formula_pp)
+      (visibility public)
+      (source
+       (path Formula_pp)
+       (intf (path formula/formula_pp.mli))
+       (impl (path formula/formula_pp.ml))))
+     (module
+      (obj_name binsec__Formula_to_smtlib)
+      (visibility public)
+      (source
+       (path Formula_to_smtlib)
+       (intf (path formula/formula_to_smtlib.mli))
+       (impl (path formula/formula_to_smtlib.ml))))
+     (module
+      (obj_name binsec__Formula_transformation)
+      (visibility public)
+      (source
+       (path Formula_transformation)
+       (intf (path formula/formula_transformation.mli))
+       (impl (path formula/formula_transformation.ml))))
+     (module
+      (obj_name binsec__Formula_utils)
+      (visibility public)
+      (source
+       (path Formula_utils)
+       (intf (path formula/formula_utils.mli))
+       (impl (path formula/formula_utils.ml))))
+     (module
+      (obj_name binsec__Ghidra_cfg)
+      (visibility public)
+      (source
+       (path Ghidra_cfg)
+       (intf (path ghidra/ghidra_cfg.mli))
+       (impl (path ghidra/ghidra_cfg.ml))))
+     (module
+      (obj_name binsec__Ghidra_options)
+      (visibility public)
+      (source
+       (path Ghidra_options)
+       (intf (path ghidra/ghidra_options.mli))
+       (impl (path ghidra/ghidra_options.ml))))
+     (module
+      (obj_name binsec__Hash)
+      (visibility public)
+      (source
+       (path Hash)
+       (intf (path base/hash.mli))
+       (impl (path base/hash.ml))))
+     (module
+      (obj_name binsec__Hashamt)
+      (visibility public)
+      (source
+       (path Hashamt)
+       (intf (path base/hashamt.mli))
+       (impl (path base/hashamt.ml))))
+     (module
+      (obj_name binsec__Htx_main)
+      (visibility public)
+      (source
+       (path Htx_main)
+       (intf (path examples/htmlexport/htx_main.mli))
+       (impl (path examples/htmlexport/htx_main.ml))))
+     (module
+      (obj_name binsec__Htx_options)
+      (visibility public)
+      (source
+       (path Htx_options)
+       (intf (path examples/htmlexport/htx_options.mli))
+       (impl (path examples/htmlexport/htx_options.ml))))
+     (module
+      (obj_name binsec__Ida)
+      (visibility public)
+      (source (path Ida) (intf (path ida/ida.mli)) (impl (path ida/ida.ml))))
+     (module
+      (obj_name binsec__Ida_cfg)
+      (visibility public)
+      (source
+       (path Ida_cfg)
+       (intf (path ida/ida_cfg.mli))
+       (impl (path ida/ida_cfg.ml))))
+     (module
+      (obj_name binsec__Ida_cg)
+      (visibility public)
+      (source
+       (path Ida_cg)
+       (intf (path ida/ida_cg.mli))
+       (impl (path ida/ida_cg.ml))))
+     (module
+      (obj_name binsec__Ida_options)
+      (visibility public)
+      (source
+       (path Ida_options)
+       (intf (path ida/ida_options.mli))
+       (impl (path ida/ida_options.ml))))
+     (module
+      (obj_name binsec__Ida_utils)
+      (visibility public)
+      (source
+       (path Ida_utils)
+       (intf (path ida/ida_utils.mli))
+       (impl (path ida/ida_utils.ml))))
+     (module
+      (obj_name binsec__Imap)
+      (visibility public)
+      (source
+       (path Imap)
+       (intf (path base/imap.mli))
+       (impl (path base/imap.ml))))
+     (module
+      (obj_name binsec__Infos)
+      (visibility public)
+      (source
+       (path Infos)
+       (intf (path parser/infos.mli))
+       (impl (path parser/infos.ml))))
+     (module
+      (obj_name binsec__Instr_cfg)
+      (visibility public)
+      (source
+       (path Instr_cfg)
+       (intf (path ast/instr_cfg.mli))
+       (impl (path ast/instr_cfg.ml))))
+     (module
+      (obj_name binsec__Instruction)
+      (visibility public)
+      (source
+       (path Instruction)
+       (intf (path utils/instruction.mli))
+       (impl (path utils/instruction.ml))))
+     (module
+      (obj_name binsec__Interval)
+      (visibility public)
+      (source
+       (path Interval)
+       (intf (path base/interval.mli))
+       (impl (path base/interval.ml))))
+     (module
+      (obj_name binsec__Isa_helper)
+      (visibility public)
+      (source
+       (path Isa_helper)
+       (intf (path utils/isa_helper.mli))
+       (impl (path utils/isa_helper.ml))))
+     (module
+      (obj_name binsec__Kernel_core)
+      (visibility public)
+      (source
+       (path Kernel_core)
+       (intf (path kernel/kernel_core.mli))
+       (impl (path kernel/kernel_core.ml))))
+     (module
+      (obj_name binsec__Kernel_functions)
+      (visibility public)
+      (source
+       (path Kernel_functions)
+       (intf (path kernel/kernel_functions.mli))
+       (impl (path kernel/kernel_functions.ml))))
+     (module
+      (obj_name binsec__Kernel_options)
+      (visibility public)
+      (source
+       (path Kernel_options)
+       (intf (path kernel/kernel_options.mli))
+       (impl (path kernel/kernel_options.ml))))
+     (module
+      (obj_name binsec__Lexer)
+      (visibility public)
+      (source (path Lexer) (impl (path parser/lexer.ml))))
+     (module
+      (obj_name binsec__Lexer_ghidra)
+      (visibility public)
+      (source (path Lexer_ghidra) (impl (path ghidra/lexer_ghidra.ml))))
+     (module
+      (obj_name binsec__List_utils)
+      (visibility public)
+      (source
+       (path List_utils)
+       (intf (path base/list_utils.mli))
+       (impl (path base/list_utils.ml))))
+     (module
+      (obj_name binsec__Lmap)
+      (visibility public)
+      (source
+       (path Lmap)
+       (intf (path base/lmap.mli))
+       (impl (path base/lmap.ml))))
+     (module
+      (obj_name binsec__Loader)
+      (visibility public)
+      (source
+       (path Loader)
+       (intf (path loader/loader.mli))
+       (impl (path loader/loader.ml))))
+     (module
+      (obj_name binsec__Loader_buf)
+      (visibility public)
+      (source
+       (path Loader_buf)
+       (intf (path loader/loader_buf.mli))
+       (impl (path loader/loader_buf.ml))))
+     (module
+      (obj_name binsec__Loader_elf)
+      (visibility public)
+      (source
+       (path Loader_elf)
+       (intf (path loader/loader_elf.mli))
+       (impl (path loader/loader_elf.ml))))
+     (module
+      (obj_name binsec__Loader_pe)
+      (visibility public)
+      (source
+       (path Loader_pe)
+       (intf (path loader/loader_pe.mli))
+       (impl (path loader/loader_pe.ml))))
+     (module
+      (obj_name binsec__Loader_raw)
+      (visibility public)
+      (source
+       (path Loader_raw)
+       (intf (path loader/loader_raw.mli))
+       (impl (path loader/loader_raw.ml))))
+     (module
+      (obj_name binsec__Loader_sigs)
+      (visibility public)
+      (source (path Loader_sigs) (intf (path loader/loader_sigs.mli))))
+     (module
+      (obj_name binsec__Loader_ti83)
+      (visibility public)
+      (source
+       (path Loader_ti83)
+       (intf (path loader/loader_ti83.mli))
+       (impl (path loader/loader_ti83.ml))))
+     (module
+      (obj_name binsec__Loader_types)
+      (visibility public)
+      (source (path Loader_types) (intf (path loader/loader_types.mli))))
+     (module
+      (obj_name binsec__Loader_utils)
+      (visibility public)
+      (source
+       (path Loader_utils)
+       (intf (path loader/loader_utils.mli))
+       (impl (path loader/loader_utils.ml))))
+     (module
+      (obj_name binsec__Location)
+      (visibility public)
+      (source
+       (path Location)
+       (intf (path smtlib/location.mli))
+       (impl (path smtlib/location.ml))))
+     (module
+      (obj_name binsec__Logger)
+      (visibility public)
+      (source
+       (path Logger)
+       (intf (path base/logger.mli))
+       (impl (path base/logger.ml))))
+     (module
+      (obj_name binsec__Lreader)
+      (visibility public)
+      (source
+       (path Lreader)
+       (intf (path disasm/lreader.mli))
+       (impl (path disasm/lreader.ml))))
+     (module
+      (obj_name binsec__Machine)
+      (visibility public)
+      (source
+       (path Machine)
+       (intf (path base/machine.mli))
+       (impl (path base/machine.ml))))
+     (module
+      (obj_name binsec__Mcount_main)
+      (visibility public)
+      (source
+       (path Mcount_main)
+       (intf (path examples/mcount/mcount_main.mli))
+       (impl (path examples/mcount/mcount_main.ml))))
+     (module
+      (obj_name binsec__Mcount_options)
+      (visibility public)
+      (source
+       (path Mcount_options)
+       (intf (path examples/mcount/mcount_options.mli))
+       (impl (path examples/mcount/mcount_options.ml))))
+     (module
+      (obj_name binsec__Mnemonic)
+      (visibility public)
+      (source
+       (path Mnemonic)
+       (intf (path base/mnemonic.mli))
+       (impl (path base/mnemonic.ml))))
+     (module
+      (obj_name binsec__Natural)
+      (visibility public)
+      (source
+       (path Natural)
+       (intf (path base/natural.mli))
+       (impl (path base/natural.ml))))
+     (module
+      (obj_name binsec__Parse_helpers)
+      (visibility public)
+      (source
+       (path Parse_helpers)
+       (intf (path parser/parse_helpers.mli))
+       (impl (path parser/parse_helpers.ml))))
+     (module
+      (obj_name binsec__Parse_utils)
+      (visibility public)
+      (source
+       (path Parse_utils)
+       (intf (path parser/parse_utils.mli))
+       (impl (path parser/parse_utils.ml))))
+     (module
+      (obj_name binsec__Parser)
+      (visibility public)
+      (source
+       (path Parser)
+       (intf (path parser/parser.mli))
+       (impl (path parser/parser.ml))))
+     (module
+      (obj_name binsec__Parser_ghidra)
+      (visibility public)
+      (source
+       (path Parser_ghidra)
+       (intf (path ghidra/parser_ghidra.mli))
+       (impl (path ghidra/parser_ghidra.ml))))
+     (module
+      (obj_name binsec__Plugins)
+      (visibility public)
+      (source (path Plugins) (impl (path Plugins.ml))))
+     (module
+      (obj_name binsec__Predba)
+      (visibility public)
+      (source
+       (path Predba)
+       (intf (path disasm/x86/predba.mli))
+       (impl (path disasm/x86/predba.ml))))
+     (module
+      (obj_name binsec__Prettytbl)
+      (visibility public)
+      (source
+       (path Prettytbl)
+       (intf (path base/prettytbl.mli))
+       (impl (path base/prettytbl.ml))))
+     (module
+      (obj_name binsec__Print_utils)
+      (visibility public)
+      (source
+       (path Print_utils)
+       (intf (path base/print_utils.mli))
+       (impl (path base/print_utils.ml))))
+     (module
+      (obj_name binsec__Prover)
+      (visibility public)
+      (source
+       (path Prover)
+       (intf (path formula/prover.mli))
+       (impl (path formula/prover.ml))))
+     (module
+      (obj_name binsec__Riscv_arch)
+      (visibility public)
+      (source
+       (path Riscv_arch)
+       (intf (path disasm/riscv/riscv_arch.mli))
+       (impl (path disasm/riscv/riscv_arch.ml))))
+     (module
+      (obj_name binsec__Riscv_options)
+      (visibility public)
+      (source
+       (path Riscv_options)
+       (intf (path disasm/riscv/riscv_options.mli))
+       (impl (path disasm/riscv/riscv_options.ml))))
+     (module
+      (obj_name binsec__Riscv_to_dba)
+      (visibility public)
+      (source
+       (path Riscv_to_dba)
+       (intf (path disasm/riscv/riscv_to_dba.mli))
+       (impl (path disasm/riscv/riscv_to_dba.ml))))
+     (module
+      (obj_name binsec__Runtime)
+      (visibility public)
+      (source (path Runtime) (impl (path Runtime.ml))))
+     (module
+      (obj_name binsec__Sequence)
+      (visibility public)
+      (source
+       (path Sequence)
+       (intf (path base/sequence.mli))
+       (impl (path base/sequence.ml))))
+     (module
+      (obj_name binsec__Sigs)
+      (visibility public)
+      (source (path Sigs) (intf (path base/sigs.mli))))
+     (module
+      (obj_name binsec__Simulation)
+      (visibility public)
+      (source
+       (path Simulation)
+       (intf (path static/interpreter/simulation.mli))
+       (impl (path static/interpreter/simulation.ml))))
+     (module
+      (obj_name binsec__Size)
+      (visibility public)
+      (source
+       (path Size)
+       (intf (path base/size.mli))
+       (impl (path base/size.ml))))
+     (module
+      (obj_name binsec__Smt_model)
+      (visibility public)
+      (source
+       (path Smt_model)
+       (intf (path smtlib/smt_model.mli))
+       (impl (path smtlib/smt_model.ml))))
+     (module
+      (obj_name binsec__Smtlib)
+      (visibility public)
+      (source (path Smtlib) (intf (path smtlib/smtlib.mli))))
+     (module
+      (obj_name binsec__Smtlib_lexer)
+      (visibility public)
+      (source (path Smtlib_lexer) (impl (path smtlib/smtlib_lexer.ml))))
+     (module
+      (obj_name binsec__Smtlib_options)
+      (visibility public)
+      (source
+       (path Smtlib_options)
+       (intf (path smtlib/smtlib_options.mli))
+       (impl (path smtlib/smtlib_options.ml))))
+     (module
+      (obj_name binsec__Smtlib_parser)
+      (visibility public)
+      (source
+       (path Smtlib_parser)
+       (intf (path smtlib/smtlib_parser.mli))
+       (impl (path smtlib/smtlib_parser.ml))))
+     (module
+      (obj_name binsec__Smtlib_pp)
+      (visibility public)
+      (source
+       (path Smtlib_pp)
+       (intf (path smtlib/smtlib_pp.mli))
+       (impl (path smtlib/smtlib_pp.ml))))
+     (module
+      (obj_name binsec__Smtlib_to_formula)
+      (visibility public)
+      (source
+       (path Smtlib_to_formula)
+       (intf (path formula/smtlib_to_formula.mli))
+       (impl (path formula/smtlib_to_formula.ml))))
+     (module
+      (obj_name binsec__Smtlib_utils)
+      (visibility public)
+      (source
+       (path Smtlib_utils)
+       (intf (path smtlib/smtlib_utils.mli))
+       (impl (path smtlib/smtlib_utils.ml))))
+     (module
+      (obj_name binsec__Solver)
+      (visibility public)
+      (source
+       (path Solver)
+       (intf (path formula/solver.mli))
+       (impl (path formula/solver.ml))))
+     (module
+      (obj_name binsec__String_utils)
+      (visibility public)
+      (source
+       (path String_utils)
+       (intf (path base/string_utils.mli))
+       (impl (path base/string_utils.ml))))
+     (module
+      (obj_name binsec__Subprocess)
+      (visibility public)
+      (source
+       (path Subprocess)
+       (intf (path base/subprocess.mli))
+       (impl (path base/subprocess.ml))))
+     (module
+      (obj_name binsec__Suid)
+      (visibility public)
+      (source
+       (path Suid)
+       (intf (path base/suid.mli))
+       (impl (path base/suid.ml))))
+     (module
+      (obj_name binsec__Term)
+      (visibility public)
+      (source
+       (path Term)
+       (intf (path term/term.mli))
+       (impl (path term/term.ml))))
+     (module
+      (obj_name binsec__Utils)
+      (visibility public)
+      (source
+       (path Utils)
+       (intf (path base/utils.mli))
+       (impl (path base/utils.ml))))
+     (module
+      (obj_name binsec__Virtual_address)
+      (visibility public)
+      (source
+       (path Virtual_address)
+       (intf (path base/virtual_address.mli))
+       (impl (path base/virtual_address.ml))))
+     (module
+      (obj_name binsec__Worklist)
+      (visibility public)
+      (source
+       (path Worklist)
+       (intf (path base/worklist.mli))
+       (impl (path base/worklist.ml))))
+     (module
+      (obj_name binsec__X86Instruction)
+      (visibility public)
+      (source
+       (path X86Instruction)
+       (intf (path disasm/x86/x86Instruction.mli))
+       (impl (path disasm/x86/x86Instruction.ml))))
+     (module
+      (obj_name binsec__X86Types)
+      (visibility public)
+      (source (path X86Types) (intf (path disasm/x86/x86Types.mli))))
+     (module
+      (obj_name binsec__X86Util)
+      (visibility public)
+      (source
+       (path X86Util)
+       (intf (path disasm/x86/x86Util.mli))
+       (impl (path disasm/x86/x86Util.ml))))
+     (module
+      (obj_name binsec__X86_options)
+      (visibility public)
+      (source
+       (path X86_options)
+       (intf (path disasm/x86/x86_options.mli))
+       (impl (path disasm/x86/x86_options.ml))))
+     (module
+      (obj_name binsec__X86decoder)
+      (visibility public)
+      (source
+       (path X86decoder)
+       (intf (path disasm/x86/x86decoder.mli))
+       (impl (path disasm/x86/x86decoder.ml))))
+     (module
+      (obj_name binsec__X86pp)
+      (visibility public)
+      (source
+       (path X86pp)
+       (intf (path disasm/x86/x86pp.mli))
+       (impl (path disasm/x86/x86pp.ml))))
+     (module
+      (obj_name binsec__X86toDba)
+      (visibility public)
+      (source
+       (path X86toDba)
+       (intf (path disasm/x86/x86toDba.mli))
+       (impl (path disasm/x86/x86toDba.ml))))
+     (module
+      (obj_name binsec__Z80_arch)
+      (visibility public)
+      (source
+       (path Z80_arch)
+       (intf (path disasm/z80/z80_arch.mli))
+       (impl (path disasm/z80/z80_arch.ml))))
+     (module
+      (obj_name binsec__Z80_options)
+      (visibility public)
+      (source
+       (path Z80_options)
+       (intf (path disasm/z80/z80_options.mli))
+       (impl (path disasm/z80/z80_options.ml))))
+     (module
+      (obj_name binsec__Z80_to_dba)
+      (visibility public)
+      (source
+       (path Z80_to_dba)
+       (intf (path disasm/z80/z80_to_dba.mli))
+       (impl (path disasm/z80/z80_to_dba.ml))))))
+   (wrapped true))))
+(library
+ (name binsec.amd64decoder)
+ (kind normal)
+ (archives
+  (byte amd64decoder/amd64decoder.cma)
+  (native amd64decoder/amd64decoder.cmxa))
+ (plugins
+  (byte amd64decoder/amd64decoder.cma)
+  (native amd64decoder/amd64decoder.cmxs))
+ (native_archives amd64decoder/amd64decoder.a)
+ (requires binsec unisim_archisec.amd64dba)
+ (main_module_name Amd64decoder)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name amd64decoder)
+     (visibility public)
+     (kind alias)
+     (source
+      (path Amd64decoder)
+      (impl (path amd64decoder/amd64decoder.ml-gen))))
+    (name Amd64decoder)
+    (modules
+     (module
+      (obj_name amd64decoder__Amd64ToDba)
+      (visibility public)
+      (source
+       (path Amd64ToDba)
+       (intf (path amd64decoder/amd64ToDba.mli))
+       (impl (path amd64decoder/amd64ToDba.ml))))
+     (module
+      (obj_name amd64decoder__Amd64_options)
+      (visibility public)
+      (source
+       (path Amd64_options)
+       (intf (path amd64decoder/amd64_options.mli))
+       (impl (path amd64decoder/amd64_options.ml))))))
+   (wrapped true))))
+(library
+ (name binsec.armv7decoder)
+ (kind normal)
+ (archives
+  (byte armv7decoder/armv7decoder.cma)
+  (native armv7decoder/armv7decoder.cmxa))
+ (plugins
+  (byte armv7decoder/armv7decoder.cma)
+  (native armv7decoder/armv7decoder.cmxs))
+ (native_archives armv7decoder/armv7decoder.a)
+ (requires binsec unisim_archisec.arm32dba)
+ (main_module_name Armv7decoder)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name armv7decoder)
+     (visibility public)
+     (kind alias)
+     (source
+      (path Armv7decoder)
+      (impl (path armv7decoder/armv7decoder.ml-gen))))
+    (name Armv7decoder)
+    (modules
+     (module
+      (obj_name armv7decoder__ArmToDba)
+      (visibility public)
+      (source
+       (path ArmToDba)
+       (intf (path armv7decoder/armToDba.mli))
+       (impl (path armv7decoder/armToDba.ml))))
+     (module
+      (obj_name armv7decoder__Arm_options)
+      (visibility public)
+      (source
+       (path Arm_options)
+       (intf (path armv7decoder/arm_options.mli))
+       (impl (path armv7decoder/arm_options.ml))))))
+   (wrapped true))))
+(library
+ (name binsec.armv8decoder)
+ (kind normal)
+ (archives
+  (byte armv8decoder/armv8decoder.cma)
+  (native armv8decoder/armv8decoder.cmxa))
+ (plugins
+  (byte armv8decoder/armv8decoder.cma)
+  (native armv8decoder/armv8decoder.cmxs))
+ (native_archives armv8decoder/armv8decoder.a)
+ (requires binsec unisim_archisec.aarch64dba)
+ (main_module_name Armv8decoder)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name armv8decoder)
+     (visibility public)
+     (kind alias)
+     (source
+      (path Armv8decoder)
+      (impl (path armv8decoder/armv8decoder.ml-gen))))
+    (name Armv8decoder)
+    (modules
+     (module
+      (obj_name armv8decoder__Aarch64ToDba)
+      (visibility public)
+      (source
+       (path Aarch64ToDba)
+       (intf (path armv8decoder/aarch64ToDba.mli))
+       (impl (path armv8decoder/aarch64ToDba.ml))))
+     (module
+      (obj_name armv8decoder__Aarch64_options)
+      (visibility public)
+      (source
+       (path Aarch64_options)
+       (intf (path armv8decoder/aarch64_options.mli))
+       (impl (path armv8decoder/aarch64_options.ml))))))
+   (wrapped true))))
+(library
+ (name binsec.domains)
+ (kind normal)
+ (archives (byte domains/domains.cma) (native domains/domains.cmxa))
+ (plugins (byte domains/domains.cma) (native domains/domains.cmxs))
+ (native_archives domains/domains.a)
+ (requires zarith)
+ (main_module_name Domains)
+ (modes byte native)
+ (obj_dir (private_dir .private))
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name domains__)
+     (visibility public)
+     (kind alias)
+     (source (path Domains__) (impl (path domains/domains__.ml-gen))))
+    (name Domains)
+    (modules
+     (module
+      (obj_name domains__Common)
+      (visibility private)
+      (source (path Common) (impl (path domains/common.ml))))
+     (module
+      (obj_name domains)
+      (visibility public)
+      (source
+       (path Domains)
+       (intf (path domains/domains.mli))
+       (impl (path domains/domains.ml))))
+     (module
+      (obj_name domains__Interval)
+      (visibility private)
+      (source
+       (path Interval)
+       (intf (path domains/interval.mli))
+       (impl (path domains/interval.ml))))))
+   (wrapped true))))
+(library
+ (name binsec.parser)
+ (kind normal)
+ (archives (byte parser/libparser.cma) (native parser/libparser.cmxa))
+ (plugins (byte parser/libparser.cma) (native parser/libparser.cmxs))
+ (native_archives parser/libparser.a)
+ (requires binsec dyp)
+ (main_module_name Libparser)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name libparser__)
+     (visibility public)
+     (kind alias)
+     (source (path Libparser__) (impl (path parser/libparser__.ml-gen))))
+    (name Libparser)
+    (modules
+     (module
+      (obj_name libparser)
+      (visibility public)
+      (source (path Libparser) (impl (path parser/libparser.ml))))
+     (module
+      (obj_name libparser__Syntax)
+      (visibility public)
+      (source
+       (path Syntax)
+       (intf (path parser/syntax.mli))
+       (impl (path parser/syntax.ml))))))
+   (wrapped true))))
+(library
+ (name binsec.ppc64decoder)
+ (kind normal)
+ (archives
+  (byte ppc64decoder/ppc64decoder.cma)
+  (native ppc64decoder/ppc64decoder.cmxa))
+ (plugins
+  (byte ppc64decoder/ppc64decoder.cma)
+  (native ppc64decoder/ppc64decoder.cmxs))
+ (native_archives ppc64decoder/ppc64decoder.a)
+ (requires binsec unisim_archisec.ppc64dba)
+ (main_module_name Ppc64decoder)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name ppc64decoder)
+     (visibility public)
+     (kind alias)
+     (source
+      (path Ppc64decoder)
+      (impl (path ppc64decoder/ppc64decoder.ml-gen))))
+    (name Ppc64decoder)
+    (modules
+     (module
+      (obj_name ppc64decoder__Ppc64ToDba)
+      (visibility public)
+      (source
+       (path Ppc64ToDba)
+       (intf (path ppc64decoder/ppc64ToDba.mli))
+       (impl (path ppc64decoder/ppc64ToDba.ml))))
+     (module
+      (obj_name ppc64decoder__Ppc64_options)
+      (visibility public)
+      (source
+       (path Ppc64_options)
+       (intf (path ppc64decoder/ppc64_options.mli))
+       (impl (path ppc64decoder/ppc64_options.ml))))))
+   (wrapped true))))
+(library
+ (name binsec.smt)
+ (kind normal)
+ (archives (byte smt/smt.cma) (native smt/smt.cmxa))
+ (plugins (byte smt/smt.cma) (native smt/smt.cmxs))
+ (native_archives smt/smt.a)
+ (requires binsec bitwuzla)
+ (main_module_name Smt)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name smt)
+     (visibility public)
+     (kind alias)
+     (source (path Smt) (impl (path smt/smt.ml-gen))))
+    (name Smt)
+    (modules
+     (module
+      (obj_name smt__Smt_bitwuzla)
+      (visibility public)
+      (source
+       (path Smt_bitwuzla)
+       (intf (path smt/smt_bitwuzla.mli))
+       (impl (path smt/smt_bitwuzla.ml))))
+     (module
+      (obj_name smt__Smt_bitwuzla_utils)
+      (visibility public)
+      (source
+       (path Smt_bitwuzla_utils)
+       (intf (path smt/smt_bitwuzla_utils.mli))
+       (impl (path smt/smt_bitwuzla_utils.ml))))
+     (module
+      (obj_name smt__Smt_external)
+      (visibility public)
+      (source
+       (path Smt_external)
+       (intf (path smt/smt_external.mli))
+       (impl (path smt/smt_external.ml))))
+     (module
+      (obj_name smt__Smt_options)
+      (visibility public)
+      (source
+       (path Smt_options)
+       (intf (path smt/smt_options.mli))
+       (impl (path smt/smt_options.ml))))
+     (module
+      (obj_name smt__Smt_sig)
+      (visibility public)
+      (source (path Smt_sig) (intf (path smt/smt_sig.mli))))
+     (module
+      (obj_name smt__Smt_solver)
+      (visibility public)
+      (source
+       (path Smt_solver)
+       (intf (path smt/smt_solver.mli))
+       (impl (path smt/smt_solver.ml))))
+     (module
+      (obj_name smt__Smt_symbolic)
+      (visibility public)
+      (source
+       (path Smt_symbolic)
+       (intf (path smt/smt_symbolic.mli))
+       (impl (path smt/smt_symbolic.ml))))))
+   (wrapped true))))
+(library
+ (name binsec.sse)
+ (kind normal)
+ (archives (byte sse/libsse.cma) (native sse/libsse.cmxa))
+ (plugins (byte sse/libsse.cma) (native sse/libsse.cmxs))
+ (native_archives sse/libsse.a)
+ (requires threads toml binsec binsec.parser curses)
+ (main_module_name Libsse)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name libsse)
+     (visibility public)
+     (kind alias)
+     (source (path Libsse) (impl (path sse/libsse.ml-gen))))
+    (name Libsse)
+    (modules
+     (module
+      (obj_name libsse__Dcode)
+      (visibility public)
+      (source
+       (path Dcode)
+       (intf (path sse/dcode.mli))
+       (impl (path sse/dcode.ml))))
+     (module
+      (obj_name libsse__Eval)
+      (visibility public)
+      (source (path Eval) (impl (path sse/eval.ml))))
+     (module
+      (obj_name libsse__Exec)
+      (visibility public)
+      (source
+       (path Exec)
+       (intf (path sse/exec.mli))
+       (impl (path sse/exec.ml))))
+     (module
+      (obj_name libsse__Fiber)
+      (visibility public)
+      (source (path Fiber) (impl (path sse/fiber.ml))))
+     (module
+      (obj_name libsse__Heuristic)
+      (visibility public)
+      (source
+       (path Heuristic)
+       (intf (path sse/heuristic.mli))
+       (impl (path sse/heuristic.ml))))
+     (module
+      (obj_name libsse__Ir)
+      (visibility public)
+      (source (path Ir) (impl (path sse/ir.ml))))
+     (module
+      (obj_name libsse__Opt)
+      (visibility public)
+      (source (path Opt) (impl (path sse/opt.ml))))
+     (module
+      (obj_name libsse__Options)
+      (visibility public)
+      (source
+       (path Options)
+       (intf (path sse/options.mli))
+       (impl (path sse/options.ml))))
+     (module
+      (obj_name libsse__Path)
+      (visibility public)
+      (source
+       (path Path)
+       (intf (path sse/path.mli))
+       (impl (path sse/path.ml))))
+     (module
+      (obj_name libsse__Probe)
+      (visibility public)
+      (source (path Probe) (impl (path sse/probe.ml))))
+     (module
+      (obj_name libsse__Screen)
+      (visibility public)
+      (source
+       (path Screen)
+       (intf (path sse/screen.mli))
+       (impl (path sse/screen.ml))))
+     (module
+      (obj_name libsse__Script)
+      (visibility public)
+      (source
+       (path Script)
+       (intf (path sse/script.mli))
+       (impl (path sse/script.ml))))
+     (module
+      (obj_name libsse__Stats)
+      (visibility public)
+      (source
+       (path Stats)
+       (intf (path sse/stats.mli))
+       (impl (path sse/stats.ml))))
+     (module
+      (obj_name libsse__Types)
+      (visibility public)
+      (source (path Types) (impl (path sse/types.ml))))))
+   (wrapped true))))
+(library
+ (name binsec.sse.checkct)
+ (kind normal)
+ (archives (byte sse/checkct/checkct.cma) (native sse/checkct/checkct.cmxa))
+ (plugins (byte sse/checkct/checkct.cma) (native sse/checkct/checkct.cmxs))
+ (native_archives sse/checkct/checkct.a)
+ (requires binsec.sse binsec.sse.term)
+ (main_module_name Checkct)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name checkct)
+   (visibility public)
+   (source (path Checkct) (impl (path sse/checkct/checkct.ml))))))
+(library
+ (name binsec.sse.formula)
+ (kind normal)
+ (archives
+  (byte sse/formula/libformula.cma)
+  (native sse/formula/libformula.cmxa))
+ (plugins
+  (byte sse/formula/libformula.cma)
+  (native sse/formula/libformula.cmxs))
+ (native_archives sse/formula/libformula.a)
+ (requires binsec binsec.smt binsec.sse)
+ (main_module_name Libformula)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name libformula)
+     (visibility public)
+     (kind alias)
+     (source (path Libformula) (impl (path sse/formula/libformula.ml-gen))))
+    (name Libformula)
+    (modules
+     (module
+      (obj_name libformula__Sse_symbolic)
+      (visibility public)
+      (source
+       (path Sse_symbolic)
+       (intf (path sse/formula/sse_symbolic.mli))
+       (impl (path sse/formula/sse_symbolic.ml))))))
+   (wrapped true))))
+(library
+ (name binsec.sse.shadow_stack)
+ (kind normal)
+ (archives
+  (byte sse/shadow_stack/shadow_stack.cma)
+  (native sse/shadow_stack/shadow_stack.cmxa))
+ (plugins
+  (byte sse/shadow_stack/shadow_stack.cma)
+  (native sse/shadow_stack/shadow_stack.cmxs))
+ (native_archives sse/shadow_stack/shadow_stack.a)
+ (requires binsec.sse)
+ (main_module_name Shadow_stack)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name shadow_stack)
+   (visibility public)
+   (source (path Shadow_stack) (impl (path sse/shadow_stack/shadow_stack.ml))))))
+(library
+ (name binsec.sse.term)
+ (kind normal)
+ (archives (byte sse/term/libterm.cma) (native sse/term/libterm.cmxa))
+ (plugins (byte sse/term/libterm.cma) (native sse/term/libterm.cmxs))
+ (native_archives sse/term/libterm.a)
+ (requires binsec binsec.smt binsec.domains binsec.sse bitwuzla)
+ (main_module_name Libterm)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name libterm)
+     (visibility public)
+     (kind alias)
+     (source (path Libterm) (impl (path sse/term/libterm.ml-gen))))
+    (name Libterm)
+    (modules
+     (module
+      (obj_name libterm__Ai)
+      (visibility public)
+      (source (path Ai) (impl (path sse/term/ai.ml))))
+     (module
+      (obj_name libterm__Memory_manager)
+      (visibility public)
+      (source (path Memory_manager) (impl (path sse/term/memory_manager.ml))))
+     (module
+      (obj_name libterm__Native_solver)
+      (visibility public)
+      (source
+       (path Native_solver)
+       (intf (path sse/term/native_solver.mli))
+       (impl (path sse/term/native_solver.ml))))
+     (module
+      (obj_name libterm__Senv)
+      (visibility public)
+      (source
+       (path Senv)
+       (intf (path sse/term/senv.mli))
+       (impl (path sse/term/senv.ml))))
+     (module
+      (obj_name libterm__Sexpr)
+      (visibility public)
+      (source
+       (path Sexpr)
+       (intf (path sse/term/sexpr.mli))
+       (impl (path sse/term/sexpr.ml))))
+     (module
+      (obj_name libterm__Smt2_solver)
+      (visibility public)
+      (source
+       (path Smt2_solver)
+       (intf (path sse/term/smt2_solver.mli))
+       (impl (path sse/term/smt2_solver.ml))))
+     (module
+      (obj_name libterm__Solver_sig)
+      (visibility public)
+      (source (path Solver_sig) (intf (path sse/term/solver_sig.mli))))))
+   (wrapped true))))
+(library
+ (name binsec.sse_register)
+ (kind normal)
+ (archives (byte sse_register/sse.cma) (native sse_register/sse.cmxa))
+ (plugins (byte sse_register/sse.cma) (native sse_register/sse.cmxs))
+ (native_archives sse_register/sse.a)
+ (requires binsec.smt binsec.sse binsec.sse.term binsec.sse.formula)
+ (main_module_name Sse)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name sse)
+   (visibility public)
+   (source
+    (path Sse)
+    (intf (path sse_register/sse.mli))
+    (impl (path sse_register/sse.ml))))))

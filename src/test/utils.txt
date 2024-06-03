@@ -1,0 +1,13 @@
+    List.iter(fun d ->
+      match d with
+      | Dba.Instr.Assign (_lhs, _expr, _id) -> Printf.printf "Assign\n" 
+      | Dba.Instr.SJump (_addr, _tag) -> Printf.printf "Sjump\n"
+      | Dba.Instr.DJump (_e_addr, _tag) -> Printf.printf "Djump\n"
+      | Dba.Instr.If (_e, _addr, _int_addr) -> Printf.printf "If\n"
+      | Dba.Instr.Stop _state_opt -> Printf.printf "Stop\n" 
+      | Dba.Instr.Assume (_cond, _id) -> Printf.printf "Assume\n"
+      | Dba.Instr.Assert (_cond, _id) -> Printf.printf "Assert\n"
+      | Dba.Instr.Undef (_lhs, _id) -> Printf.printf "undef/nondet\n"
+      | Dba.Instr.Nondet (_lhs, _id) -> Printf.printf "undef/nondet\n"
+
+    )!dba_p;

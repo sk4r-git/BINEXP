@@ -1,0 +1,217 @@
+
+type token = 
+  | SUPER
+  | SUCCESSORS
+  | STRING of (
+# 25 "src/ghidra/parser_ghidra.mly"
+       (string)
+# 9 "src/ghidra/parser_ghidra__mock.ml.mock"
+)
+  | SIZE
+  | RPAR
+  | OPCODE
+  | NUMERIC of (
+# 24 "src/ghidra/parser_ghidra.mly"
+       (Z.t)
+# 17 "src/ghidra/parser_ghidra__mock.ml.mock"
+)
+  | MNEMONIC
+  | LPAR
+  | KIND
+  | INFO
+  | FILE
+  | EOF
+  | DOT
+  | DATE
+  | ADDRESS
+
+let menhir_begin_marker =
+  0
+
+and (xv_log_kv_SUCCESSORS_list_NUMERIC___, xv_log_kv_SIZE_NUMERIC__, xv_log_kv_OPCODE_NUMERIC__, xv_log_kv_MNEMONIC_STRING__, xv_log_kv_KIND_STRING__, xv_log_kv_ADDRESS_NUMERIC__, xv_list_instruction_, xv_list_NUMERIC_, xv_kv_SUCCESSORS_list_NUMERIC__, xv_kv_SIZE_NUMERIC_, xv_kv_OPCODE_NUMERIC_, xv_kv_MNEMONIC_STRING_, xv_kv_KIND_STRING_, xv_kv_ADDRESS_NUMERIC_, xv_instructions, xv_instruction) =
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 55 "src/ghidra/parser_ghidra.mly"
+                                           _5
+# 36 "src/ghidra/parser_ghidra__mock.ml.mock"
+   : 'tv_kv_SUCCESSORS_list_NUMERIC__) (_startpos__5_ : Lexing.position) (_endpos__5_ : Lexing.position) (_startofs__5_ : int) (_endofs__5_ : int) (_loc__5_ : Lexing.position * Lexing.position) (_4 : unit) (_startpos__4_ : Lexing.position) (_endpos__4_ : Lexing.position) (_startofs__4_ : int) (_endofs__4_ : int) (_loc__4_ : Lexing.position * Lexing.position) (_3 : unit) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (_2 : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (_1 : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_log_kv_SUCCESSORS_list_NUMERIC___ ->
+    _5 in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 55 "src/ghidra/parser_ghidra.mly"
+                                           _5
+# 42 "src/ghidra/parser_ghidra__mock.ml.mock"
+   : 'tv_kv_SIZE_NUMERIC_) (_startpos__5_ : Lexing.position) (_endpos__5_ : Lexing.position) (_startofs__5_ : int) (_endofs__5_ : int) (_loc__5_ : Lexing.position * Lexing.position) (_4 : unit) (_startpos__4_ : Lexing.position) (_endpos__4_ : Lexing.position) (_startofs__4_ : int) (_endofs__4_ : int) (_loc__4_ : Lexing.position * Lexing.position) (_3 : unit) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (_2 : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (_1 : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_log_kv_SIZE_NUMERIC__ ->
+    _5 in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 55 "src/ghidra/parser_ghidra.mly"
+                                           _5
+# 48 "src/ghidra/parser_ghidra__mock.ml.mock"
+   : 'tv_kv_OPCODE_NUMERIC_) (_startpos__5_ : Lexing.position) (_endpos__5_ : Lexing.position) (_startofs__5_ : int) (_endofs__5_ : int) (_loc__5_ : Lexing.position * Lexing.position) (_4 : unit) (_startpos__4_ : Lexing.position) (_endpos__4_ : Lexing.position) (_startofs__4_ : int) (_endofs__4_ : int) (_loc__4_ : Lexing.position * Lexing.position) (_3 : unit) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (_2 : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (_1 : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_log_kv_OPCODE_NUMERIC__ ->
+    _5 in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 55 "src/ghidra/parser_ghidra.mly"
+                                           _5
+# 54 "src/ghidra/parser_ghidra__mock.ml.mock"
+   : 'tv_kv_MNEMONIC_STRING_) (_startpos__5_ : Lexing.position) (_endpos__5_ : Lexing.position) (_startofs__5_ : int) (_endofs__5_ : int) (_loc__5_ : Lexing.position * Lexing.position) (_4 : unit) (_startpos__4_ : Lexing.position) (_endpos__4_ : Lexing.position) (_startofs__4_ : int) (_endofs__4_ : int) (_loc__4_ : Lexing.position * Lexing.position) (_3 : unit) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (_2 : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (_1 : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_log_kv_MNEMONIC_STRING__ ->
+    _5 in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 55 "src/ghidra/parser_ghidra.mly"
+                                           _5
+# 60 "src/ghidra/parser_ghidra__mock.ml.mock"
+   : 'tv_kv_KIND_STRING_) (_startpos__5_ : Lexing.position) (_endpos__5_ : Lexing.position) (_startofs__5_ : int) (_endofs__5_ : int) (_loc__5_ : Lexing.position * Lexing.position) (_4 : unit) (_startpos__4_ : Lexing.position) (_endpos__4_ : Lexing.position) (_startofs__4_ : int) (_endofs__4_ : int) (_loc__4_ : Lexing.position * Lexing.position) (_3 : unit) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (_2 : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (_1 : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_log_kv_KIND_STRING__ ->
+    _5 in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 55 "src/ghidra/parser_ghidra.mly"
+                                           _5
+# 66 "src/ghidra/parser_ghidra__mock.ml.mock"
+   : 'tv_kv_ADDRESS_NUMERIC_) (_startpos__5_ : Lexing.position) (_endpos__5_ : Lexing.position) (_startofs__5_ : int) (_endofs__5_ : int) (_loc__5_ : Lexing.position * Lexing.position) (_4 : unit) (_startpos__4_ : Lexing.position) (_endpos__4_ : Lexing.position) (_startofs__4_ : int) (_endofs__4_ : int) (_loc__4_ : Lexing.position * Lexing.position) (_3 : unit) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (_2 : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (_1 : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_log_kv_ADDRESS_NUMERIC__ ->
+    _5 in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 218 "<standard.mly>"
+         xs
+# 72 "src/ghidra/parser_ghidra__mock.ml.mock"
+   : 'tv_list_instruction_) (_startpos_xs_ : Lexing.position) (_endpos_xs_ : Lexing.position) (_startofs_xs_ : int) (_endofs_xs_ : int) (_loc_xs_ : Lexing.position * Lexing.position) ((
+# 218 "<standard.mly>"
+  x
+# 76 "src/ghidra/parser_ghidra__mock.ml.mock"
+   : 'tv_instruction) : (
+# 32 "src/ghidra/parser_ghidra.mly"
+      (Virtual_address.t * int * string * string * Virtual_address.t list)
+# 80 "src/ghidra/parser_ghidra__mock.ml.mock"
+  )) (_startpos_x_ : Lexing.position) (_endpos_x_ : Lexing.position) (_startofs_x_ : int) (_endofs_x_ : int) (_loc_x_ : Lexing.position * Lexing.position) : 'tv_list_instruction_ ->
+    
+# 219 "<standard.mly>"
+    ( x :: xs )
+# 85 "src/ghidra/parser_ghidra__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) : 'tv_list_instruction_ ->
+    
+# 216 "<standard.mly>"
+    ( [] )
+# 91 "src/ghidra/parser_ghidra__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 218 "<standard.mly>"
+         xs
+# 96 "src/ghidra/parser_ghidra__mock.ml.mock"
+   : 'tv_list_NUMERIC_) (_startpos_xs_ : Lexing.position) (_endpos_xs_ : Lexing.position) (_startofs_xs_ : int) (_endofs_xs_ : int) (_loc_xs_ : Lexing.position * Lexing.position) (
+# 218 "<standard.mly>"
+  x
+# 100 "src/ghidra/parser_ghidra__mock.ml.mock"
+   : (
+# 24 "src/ghidra/parser_ghidra.mly"
+       (Z.t)
+# 104 "src/ghidra/parser_ghidra__mock.ml.mock"
+  )) (_startpos_x_ : Lexing.position) (_endpos_x_ : Lexing.position) (_startofs_x_ : int) (_endofs_x_ : int) (_loc_x_ : Lexing.position * Lexing.position) : 'tv_list_NUMERIC_ ->
+    
+# 219 "<standard.mly>"
+    ( x :: xs )
+# 109 "src/ghidra/parser_ghidra__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) : 'tv_list_NUMERIC_ ->
+    
+# 216 "<standard.mly>"
+    ( [] )
+# 115 "src/ghidra/parser_ghidra__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (_5 : unit) (_startpos__5_ : Lexing.position) (_endpos__5_ : Lexing.position) (_startofs__5_ : int) (_endofs__5_ : int) (_loc__5_ : Lexing.position * Lexing.position) (
+# 53 "src/ghidra/parser_ghidra.mly"
+                                       value
+# 120 "src/ghidra/parser_ghidra__mock.ml.mock"
+   : 'tv_list_NUMERIC_) (_startpos_value_ : Lexing.position) (_endpos_value_ : Lexing.position) (_startofs_value_ : int) (_endofs_value_ : int) (_loc_value_ : Lexing.position * Lexing.position) (_3 : unit) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (_2 : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (_1 : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_kv_SUCCESSORS_list_NUMERIC__ ->
+    value in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (_5 : unit) (_startpos__5_ : Lexing.position) (_endpos__5_ : Lexing.position) (_startofs__5_ : int) (_endofs__5_ : int) (_loc__5_ : Lexing.position * Lexing.position) (
+# 53 "src/ghidra/parser_ghidra.mly"
+                                       value
+# 126 "src/ghidra/parser_ghidra__mock.ml.mock"
+   : (
+# 24 "src/ghidra/parser_ghidra.mly"
+       (Z.t)
+# 130 "src/ghidra/parser_ghidra__mock.ml.mock"
+  )) (_startpos_value_ : Lexing.position) (_endpos_value_ : Lexing.position) (_startofs_value_ : int) (_endofs_value_ : int) (_loc_value_ : Lexing.position * Lexing.position) (_3 : unit) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (_2 : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (_1 : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_kv_SIZE_NUMERIC_ ->
+    value in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (_5 : unit) (_startpos__5_ : Lexing.position) (_endpos__5_ : Lexing.position) (_startofs__5_ : int) (_endofs__5_ : int) (_loc__5_ : Lexing.position * Lexing.position) (
+# 53 "src/ghidra/parser_ghidra.mly"
+                                       value
+# 136 "src/ghidra/parser_ghidra__mock.ml.mock"
+   : (
+# 24 "src/ghidra/parser_ghidra.mly"
+       (Z.t)
+# 140 "src/ghidra/parser_ghidra__mock.ml.mock"
+  )) (_startpos_value_ : Lexing.position) (_endpos_value_ : Lexing.position) (_startofs_value_ : int) (_endofs_value_ : int) (_loc_value_ : Lexing.position * Lexing.position) (_3 : unit) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (_2 : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (_1 : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_kv_OPCODE_NUMERIC_ ->
+    value in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (_5 : unit) (_startpos__5_ : Lexing.position) (_endpos__5_ : Lexing.position) (_startofs__5_ : int) (_endofs__5_ : int) (_loc__5_ : Lexing.position * Lexing.position) (
+# 53 "src/ghidra/parser_ghidra.mly"
+                                       value
+# 146 "src/ghidra/parser_ghidra__mock.ml.mock"
+   : (
+# 25 "src/ghidra/parser_ghidra.mly"
+       (string)
+# 150 "src/ghidra/parser_ghidra__mock.ml.mock"
+  )) (_startpos_value_ : Lexing.position) (_endpos_value_ : Lexing.position) (_startofs_value_ : int) (_endofs_value_ : int) (_loc_value_ : Lexing.position * Lexing.position) (_3 : unit) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (_2 : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (_1 : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_kv_MNEMONIC_STRING_ ->
+    value in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (_5 : unit) (_startpos__5_ : Lexing.position) (_endpos__5_ : Lexing.position) (_startofs__5_ : int) (_endofs__5_ : int) (_loc__5_ : Lexing.position * Lexing.position) (
+# 53 "src/ghidra/parser_ghidra.mly"
+                                       value
+# 156 "src/ghidra/parser_ghidra__mock.ml.mock"
+   : (
+# 25 "src/ghidra/parser_ghidra.mly"
+       (string)
+# 160 "src/ghidra/parser_ghidra__mock.ml.mock"
+  )) (_startpos_value_ : Lexing.position) (_endpos_value_ : Lexing.position) (_startofs_value_ : int) (_endofs_value_ : int) (_loc_value_ : Lexing.position * Lexing.position) (_3 : unit) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (_2 : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (_1 : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_kv_KIND_STRING_ ->
+    value in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (_5 : unit) (_startpos__5_ : Lexing.position) (_endpos__5_ : Lexing.position) (_startofs__5_ : int) (_endofs__5_ : int) (_loc__5_ : Lexing.position * Lexing.position) (
+# 53 "src/ghidra/parser_ghidra.mly"
+                                       value
+# 166 "src/ghidra/parser_ghidra__mock.ml.mock"
+   : (
+# 24 "src/ghidra/parser_ghidra.mly"
+       (Z.t)
+# 170 "src/ghidra/parser_ghidra__mock.ml.mock"
+  )) (_startpos_value_ : Lexing.position) (_endpos_value_ : Lexing.position) (_startofs_value_ : int) (_endofs_value_ : int) (_loc_value_ : Lexing.position * Lexing.position) (_3 : unit) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (_2 : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (_1 : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_kv_ADDRESS_NUMERIC_ ->
+    value in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (_2 : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (_1 : 'tv_list_instruction_) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : (
+# 29 "src/ghidra/parser_ghidra.mly"
+      ((Virtual_address.t * int * string * string * Virtual_address.t list) list)
+# 176 "src/ghidra/parser_ghidra__mock.ml.mock"
+  ) ->
+    (_1 : 'tv_instructions) in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 44 "src/ghidra/parser_ghidra.mly"
+  successors
+# 182 "src/ghidra/parser_ghidra__mock.ml.mock"
+   : 'tv_log_kv_SUCCESSORS_list_NUMERIC___) (_startpos_successors_ : Lexing.position) (_endpos_successors_ : Lexing.position) (_startofs_successors_ : int) (_endofs_successors_ : int) (_loc_successors_ : Lexing.position * Lexing.position) (
+# 43 "src/ghidra/parser_ghidra.mly"
+  kind
+# 186 "src/ghidra/parser_ghidra__mock.ml.mock"
+   : 'tv_log_kv_KIND_STRING__) (_startpos_kind_ : Lexing.position) (_endpos_kind_ : Lexing.position) (_startofs_kind_ : int) (_endofs_kind_ : int) (_loc_kind_ : Lexing.position * Lexing.position) (
+# 42 "src/ghidra/parser_ghidra.mly"
+  mnemonic
+# 190 "src/ghidra/parser_ghidra__mock.ml.mock"
+   : 'tv_log_kv_MNEMONIC_STRING__) (_startpos_mnemonic_ : Lexing.position) (_endpos_mnemonic_ : Lexing.position) (_startofs_mnemonic_ : int) (_endofs_mnemonic_ : int) (_loc_mnemonic_ : Lexing.position * Lexing.position) (
+# 41 "src/ghidra/parser_ghidra.mly"
+  size
+# 194 "src/ghidra/parser_ghidra__mock.ml.mock"
+   : 'tv_log_kv_SIZE_NUMERIC__) (_startpos_size_ : Lexing.position) (_endpos_size_ : Lexing.position) (_startofs_size_ : int) (_endofs_size_ : int) (_loc_size_ : Lexing.position * Lexing.position) (_2 : 'tv_log_kv_OPCODE_NUMERIC__) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 39 "src/ghidra/parser_ghidra.mly"
+  addr
+# 198 "src/ghidra/parser_ghidra__mock.ml.mock"
+   : 'tv_log_kv_ADDRESS_NUMERIC__) (_startpos_addr_ : Lexing.position) (_endpos_addr_ : Lexing.position) (_startofs_addr_ : int) (_endofs_addr_ : int) (_loc_addr_ : Lexing.position * Lexing.position) : (
+# 32 "src/ghidra/parser_ghidra.mly"
+      (Virtual_address.t * int * string * string * Virtual_address.t list)
+# 202 "src/ghidra/parser_ghidra__mock.ml.mock"
+  ) ->
+    (
+# 45 "src/ghidra/parser_ghidra.mly"
+    (
+      Virtual_address.of_bigint addr,
+      Z.to_int size,
+      String.lowercase mnemonic,
+      kind,
+      List.map Virtual_address.of_bigint successors
+    )
+# 213 "src/ghidra/parser_ghidra__mock.ml.mock"
+     : 'tv_instruction) in
+  ((let rec diverge() = diverge() in diverge()) : 'tv_log_kv_SUCCESSORS_list_NUMERIC___ * 'tv_log_kv_SIZE_NUMERIC__ * 'tv_log_kv_OPCODE_NUMERIC__ * 'tv_log_kv_MNEMONIC_STRING__ * 'tv_log_kv_KIND_STRING__ * 'tv_log_kv_ADDRESS_NUMERIC__ * 'tv_list_instruction_ * 'tv_list_NUMERIC_ * 'tv_kv_SUCCESSORS_list_NUMERIC__ * 'tv_kv_SIZE_NUMERIC_ * 'tv_kv_OPCODE_NUMERIC_ * 'tv_kv_MNEMONIC_STRING_ * 'tv_kv_KIND_STRING_ * 'tv_kv_ADDRESS_NUMERIC_ * 'tv_instructions * 'tv_instruction)
+
+and menhir_end_marker =
+  0

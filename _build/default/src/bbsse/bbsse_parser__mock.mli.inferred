@@ -1,0 +1,21 @@
+type token =
+    UNREACHABLE
+  | SKIP
+  | PROCESS
+  | OPAQUE
+  | IS
+  | FALLTHROUGH
+  | EXPECT
+  | EOF
+  | CLEAR
+  | CALL
+  | BRANCH
+  | AT
+  | ADDRESS of Z.t
+val menhir_begin_marker : int
+val xv_status : Bbsse_types.Status.t
+val xv_list_directive_ : Bbsse_types.Directive.t list
+val xv_directives : Bbsse_types.Directive.t list
+val xv_directive : Bbsse_types.Directive.t
+val xv_address : int
+val menhir_end_marker : int

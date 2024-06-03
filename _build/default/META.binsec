@@ -1,0 +1,137 @@
+version = "0.8.1"
+description = ""
+requires = "bigarray dune-site dune-site.plugins ocamlgraph str zarith"
+archive(byte) = "binsec.cma"
+archive(native) = "binsec.cmxa"
+plugin(byte) = "binsec.cma"
+plugin(native) = "binsec.cmxs"
+package "amd64decoder" (
+  directory = "amd64decoder"
+  version = "0.8.1"
+  description = ""
+  requires = "binsec unisim_archisec.amd64dba"
+  archive(byte) = "amd64decoder.cma"
+  archive(native) = "amd64decoder.cmxa"
+  plugin(byte) = "amd64decoder.cma"
+  plugin(native) = "amd64decoder.cmxs"
+)
+package "armv7decoder" (
+  directory = "armv7decoder"
+  version = "0.8.1"
+  description = ""
+  requires = "binsec unisim_archisec.arm32dba"
+  archive(byte) = "armv7decoder.cma"
+  archive(native) = "armv7decoder.cmxa"
+  plugin(byte) = "armv7decoder.cma"
+  plugin(native) = "armv7decoder.cmxs"
+)
+package "armv8decoder" (
+  directory = "armv8decoder"
+  version = "0.8.1"
+  description = ""
+  requires = "binsec unisim_archisec.aarch64dba"
+  archive(byte) = "armv8decoder.cma"
+  archive(native) = "armv8decoder.cmxa"
+  plugin(byte) = "armv8decoder.cma"
+  plugin(native) = "armv8decoder.cmxs"
+)
+package "domains" (
+  directory = "domains"
+  version = "0.8.1"
+  description = ""
+  requires = "zarith"
+  archive(byte) = "domains.cma"
+  archive(native) = "domains.cmxa"
+  plugin(byte) = "domains.cma"
+  plugin(native) = "domains.cmxs"
+)
+package "parser" (
+  directory = "parser"
+  version = "0.8.1"
+  description = ""
+  requires = "binsec dyp"
+  archive(byte) = "libparser.cma"
+  archive(native) = "libparser.cmxa"
+  plugin(byte) = "libparser.cma"
+  plugin(native) = "libparser.cmxs"
+)
+package "ppc64decoder" (
+  directory = "ppc64decoder"
+  version = "0.8.1"
+  description = ""
+  requires = "binsec unisim_archisec.ppc64dba"
+  archive(byte) = "ppc64decoder.cma"
+  archive(native) = "ppc64decoder.cmxa"
+  plugin(byte) = "ppc64decoder.cma"
+  plugin(native) = "ppc64decoder.cmxs"
+)
+package "smt" (
+  directory = "smt"
+  version = "0.8.1"
+  description = ""
+  requires = "binsec bitwuzla"
+  archive(byte) = "smt.cma"
+  archive(native) = "smt.cmxa"
+  plugin(byte) = "smt.cma"
+  plugin(native) = "smt.cmxs"
+)
+package "sse" (
+  directory = "sse"
+  version = "0.8.1"
+  description = ""
+  requires = "binsec binsec.parser curses threads toml"
+  archive(byte) = "libsse.cma"
+  archive(native) = "libsse.cmxa"
+  plugin(byte) = "libsse.cma"
+  plugin(native) = "libsse.cmxs"
+  package "checkct" (
+    directory = "checkct"
+    version = "0.8.1"
+    description = ""
+    requires = "binsec.sse binsec.sse.term"
+    archive(byte) = "checkct.cma"
+    archive(native) = "checkct.cmxa"
+    plugin(byte) = "checkct.cma"
+    plugin(native) = "checkct.cmxs"
+  )
+  package "formula" (
+    directory = "formula"
+    version = "0.8.1"
+    description = ""
+    requires = "binsec binsec.smt binsec.sse"
+    archive(byte) = "libformula.cma"
+    archive(native) = "libformula.cmxa"
+    plugin(byte) = "libformula.cma"
+    plugin(native) = "libformula.cmxs"
+  )
+  package "shadow_stack" (
+    directory = "shadow_stack"
+    version = "0.8.1"
+    description = ""
+    requires = "binsec.sse"
+    archive(byte) = "shadow_stack.cma"
+    archive(native) = "shadow_stack.cmxa"
+    plugin(byte) = "shadow_stack.cma"
+    plugin(native) = "shadow_stack.cmxs"
+  )
+  package "term" (
+    directory = "term"
+    version = "0.8.1"
+    description = ""
+    requires = "binsec binsec.domains binsec.smt binsec.sse bitwuzla"
+    archive(byte) = "libterm.cma"
+    archive(native) = "libterm.cmxa"
+    plugin(byte) = "libterm.cma"
+    plugin(native) = "libterm.cmxs"
+  )
+)
+package "sse_register" (
+  directory = "sse_register"
+  version = "0.8.1"
+  description = ""
+  requires = "binsec.smt binsec.sse binsec.sse.formula binsec.sse.term"
+  archive(byte) = "sse.cma"
+  archive(native) = "sse.cmxa"
+  plugin(byte) = "sse.cma"
+  plugin(native) = "sse.cmxs"
+)

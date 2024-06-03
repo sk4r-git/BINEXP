@@ -1,0 +1,64 @@
+type token =
+    XOR
+  | UMINUS
+  | TRUE
+  | TERM_TOKEN
+  | SUPER
+  | STORELOAD
+  | RSHIFTU
+  | RSHIFTS
+  | RROTATE
+  | RPAR
+  | RBRACKET
+  | RBRACE
+  | PLUS
+  | OR
+  | NOT
+  | NEQ2
+  | NEQ
+  | MULTU
+  | MULTS
+  | MODU
+  | MODS
+  | MINUS
+  | LTU
+  | LTS
+  | LSHIFT
+  | LROTATE
+  | LPAR
+  | LEU
+  | LES
+  | LBRACKET
+  | LBRACE
+  | INT of string
+  | INFER
+  | IFJUMP
+  | IDENT of string
+  | HEXA of (string * int)
+  | GTU
+  | GTS
+  | GEU
+  | GES
+  | FALSE
+  | EXTU
+  | EXTS
+  | EQQ2
+  | EQQ
+  | EOF
+  | ELSE
+  | DIVU
+  | DIVS
+  | CONCAT
+  | COMMA
+  | ASSUME
+  | ASSERT
+  | AND
+val is_same_size_op : Dba.Binary_op.t -> bool
+val infer_binary_op_size :
+  Dba.Expr.t -> Dba.Binary_op.t -> Dba.Expr.t -> Dba.Expr.t
+val menhir_begin_marker : int
+val xv_term : Dba.Instr.t
+val xv_expr : Dba.Expr.t
+val xv_cond : Dba.Expr.t
+val xv_bin_op : Dba.Binary_op.t
+val menhir_end_marker : int
