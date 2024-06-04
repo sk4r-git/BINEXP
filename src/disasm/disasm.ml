@@ -703,6 +703,7 @@ let disassemble parameters =
       let (intervals : Virtual_address.t Interval.t list) =
         List.map (fun (lo, hi) -> { lo; hi }) p.linear_addresses
       in
+
       Linear.apply ~byte_wise intervals
     in
 
@@ -726,6 +727,8 @@ let disassemble parameters =
         disasm_eps (disassemble_slice ~program ~slice_start ~slice_end) eps
     in
     let eps = get_initial_entry_points img parameters in
+    Virtual_address.Set.iter(fun elm ->
+    Printf.printf "entry point from binsec = 0x%x\n" elm)eps;
     Logger.debug ~level:2 "Entry points: @[%a@]"
       (fun ppf vset ->
         Virtual_address.Set.iter

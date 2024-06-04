@@ -79,7 +79,6 @@ let get_block_delim cfg ims addr : Virtual_address.t list =
 let get_entry_list sink ims : Virtual_address.t list =
   let target_addrs : Virtual_address.t list ref = ref [] in
   Virtual_address.Htbl.iter(fun cle valeur ->
-      Printf.printf "%s\n" valeur;
       if let s = Printf.sprintf "call %s" sink
         in String.equal s valeur then 
         (target_addrs := cle :: !target_addrs)
@@ -92,6 +91,10 @@ let get_entry_list sink ims : Virtual_address.t list =
 
 
 let fetch_cfg target cfg inst_cfg =
+  (* Instr_cfg.iter_vertex(fun v -> 
+    Printf.printf "0x%x\n" (Instr_cfg.V.addr v)
+  )inst_cfg; *)
+
   let dhunk_f : Target_graph.t = Target_graph.create() in
   let low = Target.get_bl target in
   let high = Target.get_el target in
@@ -106,7 +109,8 @@ let fetch_cfg target cfg inst_cfg =
               in
               match Instr_cfg.mem_vertex_a inst_cfg v with 
               | None -> (Printf.printf "low = 0x%x, high = 0x%x\n" low high;
-                      raise (Failure "Vertex non trouve\n"))
+                         Printf.printf "from 0x%x to 0x%x\n" v node;
+                         raise (Failure "bug vertex not found\n")   )
               | Some x -> let vinstr = x in
                 match Instr_cfg.V.inst vinstr with
                 | None -> raise (Failure "impossible with v = 0x\n" )
@@ -162,22 +166,29 @@ let rec fetch_bbl target =
 
 
 
-let prefetch cfg ims path inst =
+let prefetch cfg ims path (inst : Instr_cfg.t) =
   let tl_sink = get_cwe path in 
   let target_list : Target.t list ref = ref [] in
   List.iter(fun sink -> 
-    Printf.printf "%s\n" sink;
-    let target_addrs = get_entry_list sink ims in 
+    let target_addrs = get_entry_list sink ims in
     List.iter(fun trg ->
-        Printf.printf "targ at = 0x%x\n" trg;
+        let in_set = ref false in
+        Instr_cfg.iter_vertex(fun at -> 
+          let v = Instr_cfg.V.addr at in
+          if trg == v then in_set := true
+        )inst;
+        if !in_set then (
         let bound_target_addrs = get_block_delim cfg ims trg in
         let new_t : Target.t = Target.empty in
         let new_t = Target.limit_b new_t (List.nth bound_target_addrs 0) in
         let new_t = Target.limit_e new_t (List.nth bound_target_addrs 1) in
-        let new_t = Target.dhunk_cfg new_t (fetch_cfg new_t cfg inst) in
+        let cf = fetch_cfg new_t cfg inst in 
+        let new_t = Target.dhunk_cfg new_t cf in
         let new_t = Target.sink_addr new_t trg in
+        let new_t = Target.sink new_t sink in
         let new_t = fetch_bbl new_t in
         target_list := new_t :: !target_list;
+        )
       )target_addrs
     )tl_sink;
   !target_list
@@ -186,41 +197,16 @@ let prefetch cfg ims path inst =
 
 
 let fetch () : Target.t list =
-  let cfg, ims = Ghidra_cfg.import () in
   let whole_prog = Disasm.disassemble Infos.default in
+  let cfg, ims = Ghidra_cfg.import () in
   if Vuln_Type.is_set () then 
     let cwe = match Vuln_Type.get_opt () with
       | Some cwe_name -> cwe_name
       | _ -> "pas de cwe spécifiée\n"
     in
-      let target_round_1 = prefetch cfg ims cwe whole_prog.instructions in
-      (* List.iter(fun targ -> 
-        Target.print_target targ
-      )target_round_1; *)
-      target_round_1
-      (* let target_round_2 = ref [] in
-      List.iter(fun targ ->
-          target_round_2 := backtrack_bbl targ :: !target_round_2
-        )target_round_1;
-      let target_round_3 = ref [] in
-      List.iter(fun targ -> 
-          let targ2 = find_paths targ in
-          if List.length targ2.paths <> 0 then
-            target_round_3 := targ2 :: !target_round_3
-        )!target_round_2;
-      let target_round_4 = ref [] in
-      List.iter(fun targ -> 
-          let dd = data_dep targ in
-          let is_dd : bool ref = ref false in 
-          List.iter(fun d ->
-              match d with 
-              |(_, _, _, z) -> 
-                if z then is_dd := true
-            )dd;
-          if !is_dd then target_round_4 := targ :: !target_round_4;
+      let targets = prefetch cfg ims cwe whole_prog.instructions in
+      targets
 
-        )!target_round_3;
-      !target_round_4 *)
   else 
     (Printf.printf "no cwe specified\n";
      []) 

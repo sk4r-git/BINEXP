@@ -1,7 +1,10 @@
-let sinks = ["printf"; "sprintf"; "snprintf"; "fprintf"]
+let sinks = ["printf"; "fprintf"; "dprintf";
+             "sprintf"; "snprintf"; "vprintf";
+             "vfprintf"; "vdprintf"; "vsprintf";
+             "vsnprintf"]
 
 module T = Smt_external.Translate
-
+(* 
 module Test_solv (Solver : Smt_sig.Solver) = struct
 
 
@@ -165,15 +168,29 @@ module Test_solv (Solver : Smt_sig.Solver) = struct
       | TIMEOUT | UNKNOWN -> Printf.printf "unknown\n"; 
     )
     )target.paths
-end
+end *)
 
 let run (targ : Target.t list) = 
-  List.iter(fun tar ->
-    let arg = Taint.back tar "rdi" in
+  List.iter(fun (tar : Target.t) ->
+    let target_register = match tar.sink with
+    | "printf" -> "rdi"
+    | "fprintf" -> "rsi"
+    | "dprintf" -> "rsi"
+    | "sprintf" -> "rsi"
+    | "snprintf" -> "rdx"
+    | "vprintf" -> "rdi"
+    | "vfprintf" -> "rsi"
+    | "vdprintf" -> "rsi"
+    | "vsprintf" -> "rsi"
+    | "vsnprintf" -> "rdx" 
+    | _ -> "no_reg" in
+    let arg = Taint.back tar target_register in
     match arg with 
-    | Const x -> (Printf.printf "const %d\n" x;Target.print_paths tar)
-    | Rel x -> (Printf.printf "rel %d\n" x;
-      let paths, regs, ats = Taint.from_what tar x in
+    | Const _x -> ()
+    | Rax -> ()
+    | Rel_rip _x -> ()
+    | Rel_rbp _x -> (Target.print_paths tar
+      (* let paths, regs, ats = Taint.from_what tar x in
       let new_pl = ref [] in
       let i = ref 0 in
       List.iter(fun path -> 
@@ -196,12 +213,11 @@ let run (targ : Target.t list) =
           new_pl := np :: !new_pl
         )paths;
       let tar = Target.paths tar !new_pl in
-      let tar = Target.source_addr tar (Target.get_bl tar) in
-      (* Target.print_paths tar; *)
+      let tar = Target.source_addr tar (Target.get_bl tar) in *)
 
-      let module TS = Test_solv ((val Smt_solver.get_solver(): Smt_sig.Solver)) in
-      let _res_sym = TS.eval tar regs in
-      Printf.printf "fin target\n\n\n"
+      (* let module TS = Test_solv ((val Smt_solver.get_solver(): Smt_sig.Solver)) in
+      let _res_sym = TS.eval tar regs in *)
+      (* Printf.printf "fin target\n\n\n" *)
       ) 
     | Nondet -> (Printf.printf "nondet\n";Target.print_paths tar);
 

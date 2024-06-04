@@ -40,8 +40,16 @@ public class ghidra_export extends GhidraScript {
 	Listing listing = currentProgram.getListing();
 	Address begin_plt;
 	Address end_plt;
+	Address begin_plt_got;
+	Address end_plt_got;
+	Address begin_plt_sec;
+	Address end_plt_sec;
     int b_plt = 0;
 	int e_plt = 0;
+	int b_plt_got = 0;
+	int e_plt_got = 0;
+	int b_plt_sec = 0;
+	int e_plt_sec = 0;
 	for (MemoryBlock b : currentProgram.getMemory().getBlocks()) {
 	    if (b.isInitialized()) {
 		AddressSet s = new AddressSet(b.getStart(), b.getEnd());
@@ -52,10 +60,23 @@ public class ghidra_export extends GhidraScript {
 			b_plt = Integer.parseInt(begin_plt.toString(), 16);
 			e_plt = Integer.parseInt(end_plt.toString(), 16);
 		}
+		String plt_got_sec = new String(".plt.got");
+		if (b.getName().equals(plt_got_sec)){
+			begin_plt_got = b.getStart();
+			end_plt_got   = b.getEnd();
+			b_plt_got = Integer.parseInt(begin_plt_got.toString(), 16);
+			e_plt_got = Integer.parseInt(end_plt_got.toString(), 16);
+		}
+		String plt_sec_sec = new String(".plt.sec");
+		if (b.getName().equals(plt_sec_sec)){
+			begin_plt_sec = b.getStart();
+			end_plt_sec   = b.getEnd();
+			b_plt_sec = Integer.parseInt(begin_plt_sec.toString(), 16);
+			e_plt_sec = Integer.parseInt(end_plt_sec.toString(), 16);
+		}
+
 
 		for (Instruction i : listing.getInstructions(s, true)) {
-			System.out.println("\n\nbegin plt = " + b_plt + "\n");
-			System.out.println("\n\nend plt = " + e_plt + "\n");
 		    println("(address . 0x" + i.getAddress() + ")");
 		    println("(opcode . 0x" + hexlify(i.getBytes()) + ")");
 		    println("(size . " + i.getBytes().length + ")");
@@ -67,29 +88,27 @@ public class ghidra_export extends GhidraScript {
 			 		Address[] a = i.getFlows();
 					String at = a[0].toString();
 			 		int at2 = Integer.parseInt(at, 16);
-					if (at2 > b_plt){
-						if (at2 < e_plt){
-							SymbolTable symbolTable = currentProgram.getSymbolTable();
-							SymbolIterator si = symbolTable.getAllSymbols(true);
-							for (Symbol cs : si){
-								Address ca = cs.getAddress();
-								if(!ca.isExternalAddress()){
-									String ca2 = ca.toString();
-									try {
-										int ext_ad = Integer.parseInt(ca.toString(), 16);
-										if (ext_ad == at2){
-											System.out.println(cs);
-											m.append('"');
-											m.append("CALL ");
-											m.append(cs);
-											m.append('"');
-											m.append(")");
-											call_libc = 1;
-											break;
-										}
+					if ((at2 > b_plt && at2 < e_plt) || (at2 > b_plt_sec && at2 < e_plt_sec) || (at2 > b_plt_got && at2 < e_plt_got)){
+						SymbolTable symbolTable = currentProgram.getSymbolTable();
+						SymbolIterator si = symbolTable.getAllSymbols(true);
+						for (Symbol cs : si){
+							Address ca = cs.getAddress();
+							if(!ca.isExternalAddress()){
+								String ca2 = ca.toString();
+								try {
+									int ext_ad = Integer.parseInt(ca.toString(), 16);
+									if (ext_ad == at2){
+										System.out.println(cs);
+										m.append('"');
+										m.append("CALL ");
+										m.append(cs);
+										m.append('"');
+										m.append(")");
+										call_libc = 1;
+										break;
 									}
-									catch(NumberFormatException e){}
 								}
+								catch(NumberFormatException e){}
 							}
 						}
 					}

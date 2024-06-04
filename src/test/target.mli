@@ -12,7 +12,9 @@ type vert = {
 }
 
 type arg = | Const of int
-           | Rel of int
+           | Rel_rbp of int
+           | Rel_rip of int
+           | Rax
            | Nondet
 
 module OrderedDhunk : sig

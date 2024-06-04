@@ -171,8 +171,11 @@ let run (targ : Target.t list) =
   List.iter(fun tar ->
     let arg = Taint.back tar "rdi" in
     match arg with 
-    | Const x -> (Printf.printf "const %d\n" x;Target.print_paths tar)
-    | Rel x -> (Printf.printf "rel %d\n" x;
+    | Const _x -> ()
+    | Rel_rip _x -> ()
+    | Rax -> ()
+    | Rel_rbp x -> (Printf.printf "rel rbp %d\n" x;
+      Target.print_paths tar;
       let paths, regs, ats = Taint.from_what tar x in
       let new_pl = ref [] in
       let i = ref 0 in

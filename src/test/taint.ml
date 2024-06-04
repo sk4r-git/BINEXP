@@ -28,13 +28,15 @@ let rec is_concerned expr arg_q =
       | (Dba.Expr.Cst v1, Dba.Expr.Var {name; size; _}) ->
         let _s = size in
         let v : int = Bitvector.to_int v1 in
-        if name = "rbp" then ("rbp", Rel v)
+        if name = "rbp" then ("rbp", Rel_rbp v)
+        else if name = "rip" then ("rip", Rel_rip v)
         else is_concerned rexpr !neutral_q
       | (Dba.Expr.Cst _v1, _) -> is_concerned rexpr !neutral_q
       | (Dba.Expr.Var {name; size; _}, Dba.Expr.Cst v2) ->
         let _s = size in
         let v : int = Bitvector.to_int v2 in
-        if name = "rbp" then ("rbp", Rel v)
+        if name = "rbp" then ("rbp", Rel_rbp v)
+        else if name = "rip" then ("rip", Rel_rip v)
         else is_concerned lexpr !neutral_q
       | (_, Dba.Expr.Cst _v2) -> is_concerned lexpr !neutral_q
       | (_, _) -> ("don't know", !neutral_q)
@@ -258,7 +260,6 @@ let rec dfs target source path path_list =
 
 
 let from_what (target : Target.t) (n : int) : Target.OrderedDhunk.t list list * string list * Virtual_address.t list=
-  (* Printf.printf "%d\n" n;  *)
   let regs = ref [] in
   let ats = ref [] in
   let paths = dfs target (find_v target (get_bl target)) [] [] in
@@ -276,7 +277,7 @@ let from_what (target : Target.t) (n : int) : Target.OrderedDhunk.t list list * 
                 (* Dba_printer.Ascii.pp_lhs Format.std_formatter lval; *)
                 let test = is_concerned_l lval Nondet in
                 (match test with
-                | Rel x -> 
+                | Rel_rbp x -> 
                     (if x == n then(
                       let (reg, _void) = is_concerned expr Nondet in
                       (* Printf.printf "for x = %d -> %s\n" x reg; *)
